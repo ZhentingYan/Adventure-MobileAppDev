@@ -10,7 +10,7 @@ import java.util.concurrent.TimeUnit
 val retrofit by lazy { makeRetrofit() }
 
 private fun makeRetrofit(): Retrofit = Retrofit.Builder()
-        .baseUrl("https://gateway.marvel.com/v1/public/")
+        .baseUrl("https://restapi.amap.com/")
         .client(makeHttpClient())
         .addConverterFactory(GsonConverterFactory.create(Gson()))
         .addCallAdapterFactory(RxJava2CallAdapterFactory.create())

@@ -3,6 +3,7 @@ package com.tongjisse.adventure.view.views.Main
 import android.graphics.Color
 import android.os.Bundle
 import android.support.design.widget.TabLayout
+import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.util.TypedValue
@@ -12,13 +13,14 @@ import android.widget.TextView
 import com.tongjisse.adventure.R
 import android.view.LayoutInflater
 import android.widget.ImageView
+import com.tongjisse.adventure.view.views.MyAdventure.MyAdventureFragment
 import com.tongjisse.adventure.view.views.ScenicSpot.FragmentScenicSpot
 import kotlinx.android.synthetic.main.tab_item.view.*
 
 
 class MenuActivity : AppCompatActivity() {
    // internal var exploreFragment: ExploreFragment
-
+    lateinit var thisFragment:Fragment
     private fun changeTabsFont(tabLayout: TabLayout) {
 
         val vg = tabLayout.getChildAt(0) as ViewGroup
@@ -81,39 +83,49 @@ class MenuActivity : AppCompatActivity() {
             img.setImageResource(tabPics[i])
             tab.setCustomView(view)
             sectionTab.addTab(tab)
-
+            if(i==4){
+                tv.setTextColor(Color.parseColor("#FF6666"))
+            }
         }
+        sectionTab.getTabAt(4)!!.select();
         val scenicSpotFragment = FragmentScenicSpot()
+        val myAdventureFragment = MyAdventureFragment()
+
         val fragmentManager = supportFragmentManager
         val fragmentTransaction = fragmentManager.beginTransaction()
-        fragmentTransaction.add(R.id.sectionFragmentReplace, scenicSpotFragment, "scenicSpotFragment")
-
-        //fragmentTransaction.hide(profileFragment)
-        //fragmentTransaction.show(exploreFragment)
+        fragmentTransaction.add(R.id.sectionFragmentReplace, myAdventureFragment, "MyAdventureFragment")
+        fragmentTransaction.hide(scenicSpotFragment)
+        fragmentTransaction.show(myAdventureFragment)
         fragmentTransaction.commit()
+        thisFragment=myAdventureFragment
         sectionTab.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab) {
-                /*
+
                 when (tab.position) {
-                    0 //Explore
-                    -> fragmentManager.beginTransaction().hide(profileFragment)
-                            .show(exploreFragment).commit()
+                    4 //Explore
+                    -> {
+                        fragmentManager.beginTransaction().hide(thisFragment)
+                                .show(myAdventureFragment).commit()
+                        thisFragment=myAdventureFragment
+                    }
+
                     1 -> {
-                        if (!profileFragment.isAdded()) {
-                            fragmentManager.beginTransaction().add(R.id.sectionFragmentReplace, profileFragment).commit()
+                        if (!scenicSpotFragment.isAdded()) {
+                            fragmentManager.beginTransaction().add(R.id.sectionFragmentReplace, scenicSpotFragment).commit()
                         }
-                        fragmentManager.beginTransaction().hide(exploreFragment)
-                                .show(profileFragment)
+                        fragmentManager.beginTransaction().hide(thisFragment)
+                                .show(scenicSpotFragment)
                                 .commit()
+                        thisFragment=scenicSpotFragment
                     }
                 }
-                */
+
                 tab.view.tvSection.setTextColor(Color.parseColor("#FF6666"))
 
             }
 
             override fun onTabUnselected(tab: TabLayout.Tab) {
-                tab.view.tvSection.setTextColor(Color.parseColor("#BCBCBC"))
+                tab.view.tvSection.setTextColor(Color.parseColor("#6C6C6C"))
             }
 
             override fun onTabReselected(tab: TabLayout.Tab) {

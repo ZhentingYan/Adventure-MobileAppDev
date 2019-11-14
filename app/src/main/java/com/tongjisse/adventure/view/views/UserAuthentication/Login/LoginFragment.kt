@@ -55,7 +55,6 @@ class LogInFragment : android.support.v4.app.Fragment() {
                 //Session部分暂时去除，没有用户验证
                 //val sessionManager = SessionManager(context)
                 //sessionManager.createLoginSession(body!!.getUserId(), body!!.getEmail(), body!!.getFirstName(), body!!.getLastName(), body!!.getPhoneNum())
-
                 val intent = Intent(activity, MenuActivity::class.java)
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
                 startActivity(intent)

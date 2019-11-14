@@ -37,19 +37,25 @@
 
             tools:context="googleplayservices.samples.android.teamtreehouse.com.airbnb.ExploreTab.HomeDescActivity">
 
-            <android.support.v4.view.ViewPager
-                android:id="@+id/viewPager"
+            <ImageView
+                android:id="@+id/ivPhoto"
                 android:layout_width="match_parent"
-                android:layout_height="300dp">
+                android:layout_height="300dp"
+                android:background="@drawable/image_view_background">
 
-            </android.support.v4.view.ViewPager>
+            </ImageView>
 
             <LinearLayout
                 android:id="@+id/layoutDesc"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:padding="10dp"
+                android:paddingStart="10dp"
+                android:paddingLeft="20dp"
+                android:paddingTop="15dp"
+                android:paddingEnd="15dp"
+                android:paddingRight="20dp"
+                android:paddingBottom="10dp"
                 android:visibility="visible">
 
                 <RelativeLayout
@@ -58,11 +64,23 @@
                     android:layout_marginBottom="10dp">
 
                     <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/tvPropertyType"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginEnd="20dp"
+                        android:text="加入心愿单"
+                        android:textColor="@color/lightRed"
+                        android:textSize="15sp" />
+
+                    <TextView
                         android:id="@+id/tvPlaceTitle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="10dp"
                         android:text="Place Title"
+                        android:textAlignment="viewStart"
                         android:textSize="24sp"
                         android:textStyle="normal|bold" />
 
@@ -71,140 +89,37 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_below="@id/tvPlaceTitle"
-                        android:layout_marginBottom="3dp"
-                        android:text="Property Type"
+                        android:layout_marginBottom="10dp"
+                        android:text="景点类型"
+                        android:textSize="16sp"
                         android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/tvHostBy"
+                        android:id="@+id/tvType"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_below="@id/tvPropertyType"
-                        android:text="Hosted by User" />
+                        android:text="Hosted by User"
+                        android:textSize="15sp" />
 
-                    <de.hdodenhof.circleimageview.CircleImageView
+                    <ImageView
                         android:id="@+id/ivHost"
-                        android:layout_width="90dp"
-                        android:layout_height="60dp"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_alignBottom="@+id/tvPropertyType"
                         android:layout_alignParentEnd="true"
                         android:layout_alignParentRight="true"
-                        android:layout_centerVertical="true"
-                        android:layout_marginEnd="23dp"
-                        android:layout_marginRight="23dp" />
+                        android:layout_marginEnd="33dp"
+                        android:layout_marginRight="33dp"
+                        android:layout_marginBottom="-14dp"
+                        app:srcCompat="@drawable/unliked" />
                 </RelativeLayout>
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:layout_alignParentLeft="true"
                     android:layout_alignParentStart="true"
-                    android:background="@color/lightRed" />
-
-                <LinearLayout
-                    android:id="@+id/layoutBasic"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:paddingBottom="10dp"
-                    android:paddingTop="10dp">
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
-
-                        <ImageView
-                            android:id="@+id/ivGuest"
-                            android:layout_width="30dp"
-                            android:layout_height="30dp"
-                            android:layout_gravity="center_horizontal" />
-
-                        <TextView
-                            android:id="@+id/tvGuest"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_horizontal"
-                            android:layout_weight="1"
-                            android:text="x guests" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
-
-                        <ImageView
-                            android:id="@+id/ivRoom"
-                            android:layout_width="30dp"
-                            android:layout_height="30dp"
-                            android:layout_gravity="center_horizontal" />
-
-                        <TextView
-                            android:id="@+id/tvRoom"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_horizontal"
-                            android:layout_weight="1"
-                            android:text="x rooms" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
-
-                        <ImageView
-                            android:id="@+id/ivBed"
-                            android:layout_width="30dp"
-                            android:layout_height="30dp"
-                            android:layout_gravity="center_horizontal" />
-
-                        <TextView
-                            android:id="@+id/tvBed"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_horizontal"
-                            android:layout_weight="1"
-                            android:text="x bed" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
-
-                        <ImageView
-                            android:id="@+id/ivBathroom"
-                            android:layout_width="31dp"
-                            android:layout_height="31dp"
-                            android:layout_gravity="center_horizontal" />
-
-                        <TextView
-                            android:id="@+id/tvBaths"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_horizontal"
-                            android:layout_weight="1"
-                            android:text="x bathrooms" />
-                    </LinearLayout>
-                </LinearLayout>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
                     android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true"
-                    android:background="@color/lightRed" />
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true"
                     android:background="@color/lightRed" />
 
                 <LinearLayout
@@ -216,9 +131,10 @@
                         android:id="@+id/tvDescTitle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="10dp"
                         android:layout_marginTop="10dp"
-                        android:text="About this place  "
+                        android:layout_marginBottom="10dp"
+                        android:text="景区介绍"
+                        android:textSize="16sp"
                         android:textStyle="normal|bold" />
 
                     <TextView
@@ -226,230 +142,106 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="10dp"
-                        android:text="TextView" />
+                        android:text="TextView"
+                        android:textSize="15sp" />
                 </LinearLayout>
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:layout_alignParentLeft="true"
                     android:layout_alignParentStart="true"
+                    android:layout_alignParentLeft="true"
                     android:background="@color/lightRed" />
 
                 <LinearLayout
-                    android:id="@+id/layoutAmenities"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:paddingBottom="10dp"
-                    android:paddingTop="10dp">
-
+                    android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/tvAmenities"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="10dp"
-                        android:layout_weight="1"
-                        android:text="Amenities"
-                        android:textStyle="normal|bold" />
-
-                    <TextView
-                        android:id="@+id/tvAmenitiesNone"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="10dp"
-                        android:layout_weight="1"
-                        android:text="None"
-                        android:textStyle="normal|bold" />
-
-                    <LinearLayout
-                        android:id="@+id/layoutIconAmenities"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:weightSum="6">
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:text="景点地址"
+                        android:textSize="16sp"
+                        android:textStyle="normal|bold" />
 
-                    </LinearLayout>
+                    <TextView
+                        android:id="@+id/tvAddress"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:text="TextView"
+                        android:textSize="15sp" />
                 </LinearLayout>
 
                 <!--<FrameLayout-->
-                    <!--android:id="@+id/mapLayout"-->
-                    <!--android:layout_width="match_parent"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:orientation="vertical">-->
+                <!--android:id="@+id/mapLayout"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:orientation="vertical">-->
 
                 <!--</FrameLayout>-->
-                <fragment
-                android:id="@+id/map"
-                android:name="com.google.android.gms.maps.SupportMapFragment"
-                android:layout_width="match_parent"
-                android:layout_height="300dp"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true" />
+                <com.amap.api.maps.MapView
+                    android:id="@+id/mapView"
+                    android:layout_width="match_parent"
+                    android:layout_height="300dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentTop="true">
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentLeft="true"
+                        android:background="@color/lightRed"
+                        android:visibility="visible" />
+                </com.amap.api.maps.MapView>
 
                 <RelativeLayout
                     android:id="@+id/layoutHouseRule"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingBottom="20dp"
-                    android:paddingTop="20dp">
+                    android:paddingTop="20dp"
+                    android:paddingBottom="20dp">
+
+                    <ImageView
+                        android:id="@+id/ivLocate"
+                        android:layout_width="22dp"
+                        android:layout_height="22dp"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"
+                        app:srcCompat="@drawable/location_icon" />
 
                     <TextView
                         android:id="@+id/tvHouseRule"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="House Rules"
-                        android:textSize="18sp" />
+                        android:layout_toRightOf="@id/ivLocate"
+                        android:text="距离我"
+                        android:textSize="16sp" />
 
                     <TextView
-                        android:id="@+id/tvFlexible"
+                        android:id="@+id/tvDistance"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignBaseline="@+id/tvHouseRule"
                         android:layout_alignBottom="@+id/tvHouseRule"
                         android:layout_alignParentEnd="true"
                         android:layout_alignParentRight="true"
-                        android:text="Read"
-                        android:textSize="18sp" />
+                        android:text="30m"
+                        android:textSize="16sp" />
                 </RelativeLayout>
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:layout_alignParentLeft="true"
                     android:layout_alignParentStart="true"
-                    android:background="@color/lightRed" />
-
-                <LinearLayout
-                    android:id="@+id/layoutRefundable"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    android:paddingBottom="10dp"
-                    android:paddingTop="10dp">
-
-                    <TextView
-                        android:id="@+id/tvRefundable"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="20dp"
-                        android:text="100% Refundable" />
-
-                    <TextView
-                        android:id="@+id/textView10"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Cancel up to 24 hours before your trip and get a full refund, including service fees." />
-                </LinearLayout>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
                     android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true"
-                    android:background="@color/lightRed" />
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingBottom="20dp"
-                    android:paddingTop="20dp">
-
-                    <TextView
-                        android:id="@+id/textView11"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Additional Prices"
-                        android:textSize="18sp" />
-
-                    <TextView
-                        android:id="@+id/tvSee"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
-                        android:layout_alignParentRight="true"
-                        android:layout_alignParentTop="true"
-                        android:text="See"
-                        android:textSize="18sp" />
-                </RelativeLayout>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true"
-                    android:background="@color/lightRed" />
-
-                <RelativeLayout
-                    android:id="@+id/layoutAvailability"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingBottom="20dp"
-                    android:paddingTop="20dp">
-
-                    <TextView
-                        android:id="@+id/tvAvailability"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Availability"
-                        android:textSize="18sp" />
-
-                    <TextView
-                        android:id="@+id/tvCheck"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
-                        android:layout_alignParentRight="true"
-                        android:layout_centerVertical="true"
-                        android:text="Check"
-                        android:textSize="18sp" />
-                </RelativeLayout>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true"
-                    android:background="@color/lightRed" />
-
-                <RelativeLayout
-                    android:id="@+id/layoutContact"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingBottom="20dp"
-                    android:paddingTop="20dp">
-
-                    <TextView
-                        android:id="@+id/tvMessage"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
-                        android:layout_alignParentRight="true"
-                        android:layout_alignParentTop="true"
-                        android:text="Message"
-                        android:textSize="18sp" />
-
-                    <TextView
-                        android:id="@+id/tvContactHost"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentLeft="true"
-                        android:layout_alignParentStart="true"
-                        android:layout_alignParentTop="true"
-                        android:text="Contact Host"
-                        android:textSize="18sp" />
-                </RelativeLayout>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true"
                     android:background="@color/lightRed" />
             </LinearLayout>
-
         </LinearLayout>
     </ScrollView>
 </RelativeLayout>

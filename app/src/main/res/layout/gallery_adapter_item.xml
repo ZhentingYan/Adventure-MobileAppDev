@@ -5,7 +5,7 @@
     android:id="@+id/relative_layout"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_marginStart="5dp"
+    android:layout_margin="15dp"
     android:orientation="vertical">
 
     <LinearLayout
@@ -15,11 +15,34 @@
         android:layout_alignParentTop="true"
         android:orientation="vertical">
 
-        <ImageView
-            android:id="@+id/ivPhoto"
-            android:layout_width="170dp"
-            android:layout_height="150dp"
-            android:scaleType="fitXY" />
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/ivPhoto"
+                android:layout_width="170dp"
+                android:layout_height="170dp"
+                android:background="@drawable/image_view_background"
+                android:scaleType="fitXY" />
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:layout_alignEnd="@+id/ivPhoto"
+                android:layout_alignParentStart="false"
+                android:layout_alignParentLeft="false"
+                android:layout_alignParentTop="false"
+                android:layout_alignParentEnd="false"
+                android:layout_alignParentRight="@id/ivPhoto"
+                android:layout_alignParentBottom="@id/ivPhoto"
+                android:layout_centerInParent="false"
+                android:layout_centerHorizontal="false"
+                android:layout_centerVertical="false"
+                app:srcCompat="@drawable/unliked" />
+
+        </RelativeLayout>
 
         <TextView
             android:id="@+id/tvSceneName"
@@ -27,21 +50,38 @@
             android:layout_height="match_parent"
             android:layout_below="@id/ivPhoto"
             android:layout_alignEnd="@+id/ivPhoto"
+            android:layout_marginTop="3dp"
             android:text="同济大学嘉定校区"
-            android:textColor="@color/black"
-            android:textSize="14dp" />
+            android:textColor="@color/bank_FF6C6C6C"
+            android:textSize="15dp"
+            android:textStyle="normal|bold" />
 
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginTop="8dp">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:orientation="horizontal">
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:textSize="12dp"
-                tools:text="同济大学（Tongji University）简称“同济”，是中华人民共和国教育部直属并由教育部、国家海洋局和上海市共建的全国重点大学，中央直管副部级高校，历史悠久、声誉卓著的综合性、研究型、国际化大学，国家“双一流”、“211工程”、“985..." />
-        </ScrollView>
+                <ImageView
+                    android:layout_width="18dp"
+                    android:layout_height="match_parent"
+                    android:layout_below="@id/ivPhoto"
+                    android:layout_alignParentStart="true"
+                    app:srcCompat="@drawable/scene_logo" />
+
+                <ScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp">
+
+                    <TextView
+                        android:id="@+id/tvType"
+                        android:layout_width="146dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="5dp"
+                        android:textSize="14dp"
+                        tools:text="测试测试" />
+                </ScrollView>
+            </LinearLayout>
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -50,12 +90,12 @@
             android:orientation="horizontal">
 
             <ImageView
-                android:id="@+id/ivLocation"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
+                android:id="@+id/ivDistance"
+                android:layout_width="18dp"
+                android:layout_height="match_parent"
                 android:layout_below="@id/ivPhoto"
                 android:layout_alignParentStart="true"
-                app:srcCompat="@drawable/location" />
+                app:srcCompat="@drawable/julilujing" />
 
             <TextView
                 android:id="@+id/tvDistance"
@@ -66,12 +106,13 @@
                 android:layout_marginTop="5dp"
                 android:layout_marginRight="17dp"
                 android:layout_toLeftOf="@+id/tvSceneName"
-                android:layout_toEndOf="@+id/ivLocation"
+                android:layout_toEndOf="@+id/ivAddress"
                 android:text="30m"
-                android:textSize="11dp" />
+                android:textSize="14dp" />
 
 
         </LinearLayout>
+
     </LinearLayout>
 
 

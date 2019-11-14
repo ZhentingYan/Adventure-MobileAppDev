@@ -18,4 +18,4 @@ operator fun CompositeDisposable.plusAssign(disposable: Disposable) {
 fun <T> Single<T>.subscribeBy(
         onError: ((Throwable) -> Unit)? = null,
         onSuccess: (T) -> Unit
-): Disposable = subscribe(onSuccess, { onError?.invoke(it) })
+): Disposable = subscribe(onSuccess, { onError?.invoke(it)} )
