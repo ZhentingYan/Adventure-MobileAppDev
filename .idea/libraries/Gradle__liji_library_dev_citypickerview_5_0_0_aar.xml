@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: liji.library.dev:citypickerview:5.0.0@aar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/citypickerview-5.0.0.aar/9905e52ffa6b22551b8bc967a4c3f77e/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/citypickerview-5.0.0.aar/9905e52ffa6b22551b8bc967a4c3f77e/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/citypickerview-5.0.0.aar/9905e52ffa6b22551b8bc967a4c3f77e/jars/libs/pinyin4j-2.5.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
