@@ -43,10 +43,10 @@ class FragmentScenicSpot :BaseFragmentWithPresenter(),ScenicSpotView{
     private val jdCityConfig = JDCityConfig.Builder().build()
     private lateinit var userSP: SharedPreferences
     private lateinit var editor: SharedPreferences.Editor
-    private var shakeJudge:Boolean=false
     companion object {
         var locationClient: AMapLocationClient? = null
         var locationOption: AMapLocationClientOption? = null
+        var shakeJudge:Boolean=false
     }
     override var refresh by bindToSwipeRefresh(R.id.swipeRefreshView)
     override val presenter by lazy{ ScenicSpotPresenter(this,ScenicSpotRepository.get())}
@@ -62,7 +62,6 @@ class FragmentScenicSpot :BaseFragmentWithPresenter(),ScenicSpotView{
                 context!!.startActivity(intent)
             }
         }else {
-
             if (!items.isEmpty()) {
                 ErrorLayout.visibility = View.GONE
                 val categoryItemAdapters = items.map(::ScenicSpotGalleryAdapter)
