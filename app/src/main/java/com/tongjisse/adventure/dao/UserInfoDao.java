@@ -15,14 +15,16 @@ import static android.support.constraint.Constraints.TAG;
 public class UserInfoDao {
     private Dao<UserInfo, Long> userDao;
 
-    public UserInfoDao(Context context) {
-        OrmLiteHelper helper = OrmLiteHelper.getInstance(context);
-        Log.d(TAG, "UserInfoDao: " + "inited" + UserInfo.class + helper);
+    public UserInfoDao() {
+        OrmLiteHelper helper = OrmLiteHelper.getInstance();
+        Log.d(TAG, "UserInfoDao: "+"inited" + UserInfo.class + helper);
         try {
             userDao = helper.getDao(UserInfo.class);
             if (userDao == null) {
                 Log.d(TAG, "UserInfoDao: " + "NULL!");
             }
+            userDao.createIfNotExists(new UserInfo("FNAME", "LNAME",
+                    "admin123", "test@admin.com", "18918911111"));
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -48,9 +50,21 @@ public class UserInfoDao {
      *
      * @param info
      */
-    public void delChild(UserInfo info) {
+    public void delInfo(UserInfo info) {
         try {
             userDao.delete(info);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 删除所有表项
+     */
+    public void delAllInfo() {
+        try {
+            List<UserInfo> allInfo = this.query();
+            userDao.delete(allInfo);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -61,7 +75,7 @@ public class UserInfoDao {
      *
      * @param info
      */
-    public void updateChild(UserInfo info) {
+    public void updateInfo(UserInfo info) {
         try {
             userDao.update(info);
         } catch (SQLException e) {
@@ -78,9 +92,10 @@ public class UserInfoDao {
         try {
             List<UserInfo> tempUserList = userDao.queryBuilder()
                     .where().eq("emailAddress", email).query();
-            if (tempUserList.size() > 1) {
+            if (tempUserList.size() < 1) {
                 return null;
             } else {
+                Log.d(TAG, "queryInfoByEmail: "+tempUserList.toString()+tempUserList.size());
                 return tempUserList.get(0);
             }
         } catch (SQLException e) {

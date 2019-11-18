@@ -5,6 +5,7 @@ import android.widget.Toast
 import java.util.regex.Pattern
 
 import android.graphics.Color
+import android.location.Address
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.content.ContextCompat
@@ -19,6 +20,8 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.ProgressBar
 import com.tongjisse.adventure.R
+import com.tongjisse.adventure.dao.UserInfoDao
+import com.tongjisse.adventure.model.bean.UserInfo
 import com.tongjisse.adventure.view.views.Main.MenuActivity
 
 import java.util.Random
@@ -30,6 +33,7 @@ import kotlinx.android.synthetic.main.fragment_phone_num.*
  */
 
 class PhoneNumFragment : Fragment() {
+    private val userDao=UserInfoDao();
 
 
     fun proceed() {
@@ -45,6 +49,11 @@ class PhoneNumFragment : Fragment() {
             bRegProceed.setBackgroundResource(R.drawable.reg_proceed_button_fail)
             bRegProceed.setTextColor(Color.parseColor("#ff6666"))
         }
+    }
+
+    private fun addNewUserInfo(firstName:String,lastName:String,password:String,emailAddress: String,phoneNum: String) {
+        val userInfo=UserInfo(firstName,lastName,password,emailAddress,phoneNum)
+        userDao.addInfo(userInfo)
     }
 
     /*
@@ -68,6 +77,9 @@ class PhoneNumFragment : Fragment() {
         bRegProceed.setOnClickListener {
             //Generate random num
             PHONENUM = etPhone.text.toString()
+            // Add to database
+            addNewUserInfo(RegisterNameFragment.FIRST_NAME,RegisterNameFragment.LAST_NAME,
+                    RegisterPasswordFragment.PASSWORD,RegisterEmailFragment.EMAIL, PHONENUM)
             val intent = Intent(activity, MenuActivity::class.java)
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
             startActivity(intent)

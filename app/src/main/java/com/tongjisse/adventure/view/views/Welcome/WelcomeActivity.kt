@@ -3,10 +3,12 @@ package com.tongjisse.adventure.view.views.Welcome
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import com.tongjisse.adventure.R
+import com.tongjisse.adventure.utils.OrmLiteHelper
 import com.tongjisse.adventure.utils.SessionManager
 import com.tongjisse.adventure.view.views.UserAuthentication.Registration.RegisterNameFragment
 
 class WelcomeActivity : AppCompatActivity() {
+    val ormLiteHelper= OrmLiteHelper.createInstance(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

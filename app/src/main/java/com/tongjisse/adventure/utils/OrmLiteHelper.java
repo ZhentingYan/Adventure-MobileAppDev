@@ -36,14 +36,14 @@ public class OrmLiteHelper extends OrmLiteSqliteOpenHelper {
         }
     }
 
-    public static OrmLiteHelper getInstance(Context context) {
-        if (sORMLITEHELPER == null) {
-            synchronized (OrmLiteHelper.class) {
-                if (sORMLITEHELPER == null) {
-                    sORMLITEHELPER = new OrmLiteHelper(context);
-                }
-            }
-        }
+    public static OrmLiteHelper getInstance() {
+//        if (sORMLITEHELPER == null) {
+//            synchronized (OrmLiteHelper.class) {
+//                if (sORMLITEHELPER == null) {
+//                    sORMLITEHELPER = new OrmLiteHelper(context);
+//                }
+//            }
+//        }
         return sORMLITEHELPER;
     }
     public Dao getDao(Class clazz) throws SQLException {
@@ -79,6 +79,7 @@ public class OrmLiteHelper extends OrmLiteSqliteOpenHelper {
     public void onUpgrade(SQLiteDatabase database, ConnectionSource connectionSource, int oldVersion, int newVersion) {
         try {
             TableUtils.dropTable(connectionSource, UserInfo.class, true);
+            onCreate(database, connectionSource);
         } catch (SQLException e) {
             e.printStackTrace();
         }

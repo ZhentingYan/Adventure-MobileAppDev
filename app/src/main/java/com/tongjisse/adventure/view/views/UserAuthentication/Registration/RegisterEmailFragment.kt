@@ -17,6 +17,7 @@ import android.widget.EditText
 import android.widget.Toast
 
 import com.tongjisse.adventure.R
+import com.tongjisse.adventure.dao.UserInfoDao
 
 import java.util.regex.Matcher
 import java.util.regex.Pattern
@@ -25,6 +26,7 @@ import kotlinx.android.synthetic.main.fragment_register_email.*
 
 
 class RegisterEmailFragment : Fragment() {
+    private val userDao=UserInfoDao()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_register_email, container, false)
@@ -52,17 +54,18 @@ class RegisterEmailFragment : Fragment() {
             bRegProceed.setBackgroundResource(R.drawable.reg_proceed_button)
             bRegProceed.setTextColor(Color.parseColor("#ff6666"))
             bRegProceed.setOnClickListener {
-
-
                 EMAIL = etEmail.text.toString()
-                val fragmentManager = fragmentManager
-                val fragmentTransaction = fragmentManager!!.beginTransaction()
-                val registerPasswordFragment = RegisterPasswordFragment()
-                fragmentTransaction.replace(R.id.progressFragment, registerPasswordFragment)
-                fragmentTransaction.addToBackStack(null)
-                fragmentTransaction.commit()
-
-
+                if(userDao.queryInfoByEmail(EMAIL)!=null){
+                    Toast.makeText(context,"该邮箱已被注册",Toast.LENGTH_SHORT).show()
+                }
+                else {
+                    val fragmentManager = fragmentManager
+                    val fragmentTransaction = fragmentManager!!.beginTransaction()
+                    val registerPasswordFragment = RegisterPasswordFragment()
+                    fragmentTransaction.replace(R.id.progressFragment, registerPasswordFragment)
+                    fragmentTransaction.addToBackStack(null)
+                    fragmentTransaction.commit()
+                }
             }
         } else {
             bRegProceed.isEnabled = false
