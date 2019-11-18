@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/searchLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:orientation="vertical"
+            android:paddingStart="20dp"
+            android:paddingLeft="20dp"
+            android:paddingTop="20dp"
+            android:paddingEnd="20dp"
+            android:paddingRight="20dp"
+            android:paddingBottom="10dp">
+
+            <LinearLayout
+                android:id="@+id/locationLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/linear_layout_background"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:padding="5dp"
+                android:paddingStart="9dp">
+
+                <ImageView
+                    android:id="@+id/ivIcon"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    app:srcCompat="@drawable/location_icon" />
+
+
+                <TextView
+                    android:id="@+id/tvIndication"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:text="我在："
+                    android:textSize="14dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tvLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=" 上海市 上海市 普陀区"
+                    android:textSize="14dp" />
+            </LinearLayout>
+
+            <RelativeLayout
+                android:id="@+id/WeatherLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/linear_layout_background"
+                android:padding="5dp"
+                android:paddingStart="9dp">
+
+
+                <ImageView
+                    android:id="@+id/ivWeather"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="55dp"
+                    app:srcCompat="@drawable/rain" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="79dp"
+                    android:layout_toRightOf="@id/ivWeather"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tvWeather"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="阴雨"
+                        android:textAllCaps="false"
+                        android:textSize="16dp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tvTemperature"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="7dp"
+                        android:layout_toEndOf="@+id/ivWeather"
+                        android:text="-6 ℃"
+                        android:textSize="21dp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+            </RelativeLayout>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/exploreLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/searchLayout"
+            android:orientation="vertical"
+            android:paddingStart="20dp"
+            android:paddingLeft="20dp"
+            android:paddingTop="10dp"
+            android:paddingEnd="20dp"
+            android:paddingRight="20dp"
+            android:paddingBottom="20dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="7dp"
+                android:text="探索Adventure"
+                android:textSize="19dp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:id="@+id/sceneLayout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:background="@drawable/linear_layout_background"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:id="@+id/ivPhoto"
+                            android:layout_width="150dp"
+                            android:layout_height="150dp"
+                            android:background="@drawable/image_view_background"
+                            android:scaleType="fitXY"
+                            app:srcCompat="@drawable/travellers" />
+
+                    </RelativeLayout>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_below="@id/ivPhoto"
+                        android:layout_alignEnd="@+id/ivPhoto"
+                        android:layout_marginTop="3dp"
+                        android:text="景点"
+                        android:textAlignment="center"
+                        android:textColor="@color/bank_FF6C6C6C"
+                        android:textSize="15dp"
+                        android:textStyle="normal" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/storyLayout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginStart="43dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/linear_layout_background"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignTop="@+id/storyLayout"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:id="@+id/ivPhotoStory"
+                            android:layout_width="150dp"
+                            android:layout_height="150dp"
+                            android:background="@drawable/image_view_background"
+                            android:scaleType="fitXY"
+                            app:srcCompat="@drawable/stories" />
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_below="@id/ivPhotoStory"
+                        android:layout_alignEnd="@+id/ivPhotoStory"
+                        android:layout_marginTop="3dp"
+                        android:text="故事"
+                        android:textAlignment="center"
+                        android:textColor="@color/bank_FF6C6C6C"
+                        android:textSize="15dp"
+                        android:textStyle="normal" />
+
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/likesLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/exploreLayout"
+            android:orientation="vertical"
+            android:paddingStart="20dp"
+            android:paddingLeft="20dp"
+            android:paddingTop="10dp"
+            android:paddingEnd="20dp"
+            android:paddingRight="20dp"
+            android:paddingBottom="20dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="7dp"
+                android:text="普陀区的心愿单"
+                android:textSize="19dp"
+                android:textStyle="bold" />
+
+            <android.support.v7.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/linear_layout_background"
+                android:visibility="gone">
+
+            </android.support.v7.widget.RecyclerView>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/linear_layout_background"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:layout_marginStart="95dp"
+                    app:srcCompat="@drawable/undraw_traveling_t8y2" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="50dp"
+                    android:layout_marginTop="7dp"
+                    android:text="在这个城市，你的心愿单还是空的哦！"
+                    android:textAlignment="center" />
+
+            </LinearLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/bottomLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/likesLayout"
+            android:orientation="vertical"
+            android:paddingStart="20dp"
+            android:paddingLeft="20dp"
+            android:paddingTop="10dp"
+            android:paddingEnd="20dp"
+            android:paddingRight="20dp"
+            android:paddingBottom="20dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="7dp"
+                android:text="发现这里的无限精彩"
+                android:textSize="19dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="7dp"
+                android:text="开启第N+1种玩法，感受更多旅行乐趣"
+                android:textSize="15dp" />
+
+        </LinearLayout>
+    </RelativeLayout>
+</ScrollView>

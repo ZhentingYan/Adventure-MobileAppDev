@@ -36,11 +36,11 @@ class ScenicSpotDetailActivity : BaseActivityWithPresenter(),ScenicSpotDetailVie
     override val presenter by lazy{ ScenicSpotDetailPresenter(this,ScenicSpotRepository.get())}
     override fun show(items: List<ScenicSpotDetail>) {
         val detail=items[0]
-        val myLocationStyle: MyLocationStyle
-        myLocationStyle = MyLocationStyle()//初始化定位蓝点样式类myLocationStyle.myLocationType(MyLocationStyle.LOCATION_TYPE_LOCATION_ROTATE);//连续定位、且将视角移动到地图中心点，定位点依照设备方向旋转，并且会跟随设备移动。（1秒1次定位）如果不设置myLocationType，默认也会执行此种模式。
-        myLocationStyle.interval(2000) //设置连续定位模式下的定位间隔，只在连续定位模式下生效，单次定位模式下不会生效。单位为毫秒。
-        mMap.setMyLocationStyle(myLocationStyle)//设置定位蓝点的Style
-        mMap.setMyLocationEnabled(true)// 设置为true表示启动显示定位蓝点，false表示隐藏定位蓝点并不进行定位，默认是false。
+       //val myLocationStyle: MyLocationStyle
+       //myLocationStyle = MyLocationStyle()//初始化定位蓝点样式类myLocationStyle.myLocationType(MyLocationStyle.LOCATION_TYPE_LOCATION_ROTATE);//连续定位、且将视角移动到地图中心点，定位点依照设备方向旋转，并且会跟随设备移动。（1秒1次定位）如果不设置myLocationType，默认也会执行此种模式。
+        //myLocationStyle.interval(2000) //设置连续定位模式下的定位间隔，只在连续定位模式下生效，单次定位模式下不会生效。单位为毫秒。
+       //mMap.setMyLocationStyle(myLocationStyle)//设置定位蓝点的Style
+        //mMap.setMyLocationEnabled(true)// 设置为true表示启动显示定位蓝点，false表示隐藏定位蓝点并不进行定位，默认是false。
         val marker = mMap.addMarker(MarkerOptions().position(LatLng(detail.latitude.toDouble(), detail.longitude.toDouble())).title(detail.name).snippet(detail.address))
         tvAddress.text=detail.address
         tvDesc.text=detail.intro
@@ -57,7 +57,11 @@ class ScenicSpotDetailActivity : BaseActivityWithPresenter(),ScenicSpotDetailVie
     override fun showError(error: Throwable) {
         error.printStackTrace()
         //tvDesc.text="这个景点比较小众，没有相关介绍哦～"
-        toast("这个景点比较小众，暂不支持查看详情噢～")
+        if(FragmentScenicSpot.shakeJudge) {
+            toast("这次没有摇到和你有缘分的景点哦，再试一次吧～")
+            FragmentScenicSpot.shakeJudge=false
+        }
+        else toast("这个景点比较小众，暂不支持查看详情噢～")
         this.finish()
     }
     override fun onCreate(savedInstanceState: Bundle?) {
