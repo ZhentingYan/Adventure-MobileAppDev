@@ -8,7 +8,7 @@
     android:padding="20dp">
 
     <ImageView
-        android:id="@+id/ivHome"
+        android:id="@+id/ivStory"
         android:layout_width="wrap_content"
         android:layout_height="202dp"
         android:scaleType="fitXY" />
@@ -19,40 +19,41 @@
         android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/tvPropertyTypeAndOwnership"
+            android:id="@+id/tvFirstname"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Entire House "
-            android:textStyle="normal|bold"/>
+            android:text="严"
+            android:textStyle="normal|bold" />
 
         <TextView
             android:id="@+id/tvSeperate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text=" - "
-            android:textStyle="normal|bold"/>
+            android:text=" "
+            android:textStyle="normal|bold" />
+
         <TextView
-            android:id="@+id/tvBed"
+            android:id="@+id/tvLastname"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="4 bed"
-            android:textStyle="normal|bold"/>
+            android:text="祯颋"
+            android:textStyle="normal|bold" />
     </LinearLayout>
 
     <TextView
-        android:id="@+id/tvPlaceTitle"
+        android:id="@+id/tvStoryTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Joshua Tree Homesteader Cabin"
-        android:textSize="20sp"
-        android:textStyle="normal|bold"
         android:ellipsize="end"
-        android:maxLines="2"/>
+        android:maxLines="2"
+        android:text="Shanghai Disneyland One-day Trip"
+        android:textSize="20sp"
+        android:textStyle="normal|bold" />
 
     <TextView
-        android:id="@+id/tvPrice"
+        android:id="@+id/tvDate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="$144 per night"
+        android:text="2019年11月16日"
         android:textSize="14sp" />
 </LinearLayout>

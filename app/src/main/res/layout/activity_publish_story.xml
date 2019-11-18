@@ -1,0 +1,313 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rootLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:orientation="vertical"
+                android:padding="20dp"
+                >
+
+                <RelativeLayout
+                    android:id="@+id/layoutQuestion"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="30dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentTop="true"
+                        android:text="发布您的旅行故事"
+                        android:textSize="30sp"
+                        android:textStyle="normal|bold" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/layoutCountry"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingBottom="10dp"
+                    android:paddingTop="10dp">
+
+
+                    <TextView
+                        android:id="@+id/tvCountry"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentTop="true"
+                        android:text="标题"
+                        android:textSize="14sp"
+                        android:textStyle="normal|bold" />
+
+                    <EditText
+                        android:id="@+id/etCountryInput"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/tvCountry"
+                        android:layout_marginTop="10dp"
+                        android:background="@null"
+                        android:hint="e.g 逆风如解意，容易莫摧残"
+                        android:imeOptions="actionDone"
+                        android:inputType="text"
+                        android:textColor="@android:color/tab_indicator_text"
+                        android:textSize="18sp" />
+
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/lightRed"/>
+
+                <RelativeLayout
+                    android:id="@+id/layoutExtraDetails"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingBottom="10dp"
+                    android:paddingTop="10dp">
+
+
+                    <TextView
+                        android:id="@+id/tvExtraDetails"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentTop="true"
+                        android:text="旅行城市"
+                        android:textSize="14sp"
+                        android:textStyle="normal|bold" />
+
+                    <EditText
+                        android:id="@+id/etDistrict"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/tvExtraDetails"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentLeft="true"
+                        android:layout_marginTop="10dp"
+                        android:background="@null"
+                        android:hint="上海市 上海市 静安区"
+                        android:imeOptions="actionDone"
+                        android:inputType="text"
+                        android:outlineProvider="none"
+                        android:padding="0dp"
+                        android:textColor="@android:color/tab_indicator_text"
+                        android:textSize="18sp" />
+                </RelativeLayout>
+
+                <View
+                    android:id="@+id/tvExtraDetailsLine"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/lightRed"/>
+
+                <RelativeLayout
+                    android:id="@+id/layoutCity"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingBottom="10dp"
+                    android:paddingTop="10dp">
+
+                    <EditText
+                        android:id="@+id/etContent"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/tvContent"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentLeft="true"
+                        android:layout_marginTop="10dp"
+                        android:background="@null"
+                        android:hint="e.g. London"
+                        android:imeOptions="actionDone"
+                        android:inputType="text|textMultiLine"
+                        android:padding="0dp"
+                        android:singleLine="false"
+                        android:textColor="@android:color/tab_indicator_text"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/tvContent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentTop="true"
+                        android:text="旅行故事正文"
+                        android:textSize="14sp"
+                        android:textStyle="normal|bold" />
+
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/lightRed"/>
+
+                <RelativeLayout
+                    android:id="@+id/layoutState"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp">
+
+                    <EditText
+                        android:id="@+id/etStateInput"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/tvPhoto"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentLeft="true"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="90dp"
+                        android:background="@null"
+                        android:hint="e.g. Washington"
+                        android:imeOptions="actionDone"
+                        android:inputType="text"
+                        android:padding="0dp"
+                        android:textColor="@android:color/tab_indicator_text"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/tvPhoto"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentTop="true"
+                        android:text="上传一张图片"
+                        android:textSize="14sp"
+                        android:textStyle="normal|bold" />
+
+                </RelativeLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/lightRed"/>
+
+                <RelativeLayout
+                    android:id="@+id/layoutPlace"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingBottom="10dp"
+                    android:paddingTop="10dp">
+
+                    <EditText
+                        android:id="@+id/etPlace"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/tvPlace"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentLeft="true"
+                        android:layout_marginTop="10dp"
+                        android:background="@null"
+                        android:hint="e.g 静安寺"
+                        android:imeOptions="actionDone"
+                        android:inputType="text"
+                        android:padding="0dp"
+                        android:textColor="@android:color/tab_indicator_text"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/tvPlace"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentTop="true"
+                        android:text="旅行故事中的景点"
+                        android:textSize="14sp"
+                        android:textStyle="normal|bold" />
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+
+        </ScrollView>
+
+        <LinearLayout
+            android:id="@+id/layoutTapInfo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:background="@color/lightRed"
+            android:orientation="vertical"
+            android:padding="10dp">
+
+            <TextView
+                android:id="@+id/tvInfo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="您发布的旅行故事必须符合中华人民共和国法律监管规定。"
+                android:textColor="@color/white" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/bPublish"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/layoutTapInfo"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginEnd="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginBottom="13dp"
+            android:background="@drawable/reg_host_proceed_button"
+            android:text="发布"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="16sp" />
+    </RelativeLayout>
+</FrameLayout>

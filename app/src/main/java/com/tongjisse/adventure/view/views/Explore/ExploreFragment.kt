@@ -1,12 +1,9 @@
-package com.tongjisse.adventure.view.views.ScenicSpot
+package com.tongjisse.adventure.view.views.Explore
 
 import android.content.Context
-import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
-import android.support.v7.widget.GridLayoutManager
-import android.text.Editable
-import android.text.TextWatcher
+import android.support.v4.app.Fragment
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -15,88 +12,55 @@ import android.widget.Toast
 import com.amap.api.location.AMapLocationClient
 import com.amap.api.location.AMapLocationClientOption
 import com.amap.api.location.AMapLocationListener
+import com.amap.api.services.weather.LocalWeatherForecastResult
+import com.tongjisse.adventure.R
+import com.amap.api.services.weather.WeatherSearch
+import com.amap.api.services.weather.WeatherSearchQuery
+import com.amap.api.services.weather.LocalWeatherLiveResult
 import com.lljjcoder.Interface.OnCityItemClickListener
 import com.lljjcoder.bean.CityBean
 import com.lljjcoder.bean.DistrictBean
 import com.lljjcoder.bean.ProvinceBean
 import com.lljjcoder.style.cityjd.JDCityConfig
 import com.lljjcoder.style.cityjd.JDCityPicker
-import com.tongjisse.adventure.R
-import com.tongjisse.adventure.data.network.ScenicSpotRepository
-import com.tongjisse.adventure.model.ScenicSpotGallery
-import com.tongjisse.adventure.presenter.ScenicSpotPresenter
-import com.tongjisse.adventure.utils.SensorManagerHelper
-import com.tongjisse.adventure.view.common.BaseFragmentWithPresenter
-import com.tongjisse.adventure.view.main.MainListAdapter
-import com.tongjisse.adventure.view.main.ScenicSpotView
-import kotlinx.android.synthetic.main.fragment_scenicspot.*
-import com.tongjisse.adventure.view.main.ScenicSpotGalleryAdapter
-import com.tongjisse.adventure.view.common.toast
-import com.tongjisse.adventure.view.common.bindToSwipeRefresh
-import kotlinx.android.synthetic.main.fragment_password.*
-import kotlinx.android.synthetic.main.fragment_scenicspot.ivIcon
-import kotlinx.android.synthetic.main.fragment_scenicspot.tvError
-import kotlinx.android.synthetic.main.fragment_scenicspot.tvLocation
-import java.util.*
+import kotlinx.android.synthetic.main.fragment_explore.*
+import kotlinx.android.synthetic.main.fragment_explore.tvLocation
+import kotlinx.android.synthetic.main.fragment_scenicspot_desc.*
 
-class FragmentScenicSpot :BaseFragmentWithPresenter(),ScenicSpotView{
+
+class ExploreFragment:Fragment(),WeatherSearch.OnWeatherSearchListener{
+    private lateinit var userSP: SharedPreferences
+    private lateinit var editor: SharedPreferences.Editor
+    private lateinit var mquery:WeatherSearchQuery
+    private lateinit var mweathersearch:WeatherSearch
+    var locationClient: AMapLocationClient? = null
+    var locationOption: AMapLocationClientOption? = null
     internal lateinit var cityPicker: JDCityPicker
     var mWheelType: JDCityConfig.ShowType = JDCityConfig.ShowType.PRO_CITY_DIS
     private val jdCityConfig = JDCityConfig.Builder().build()
-    private lateinit var userSP: SharedPreferences
-    private lateinit var editor: SharedPreferences.Editor
-    companion object {
-        var locationClient: AMapLocationClient? = null
-        var locationOption: AMapLocationClientOption? = null
-        var shakeJudge:Boolean=false
-    }
-    override var refresh by bindToSwipeRefresh(R.id.swipeRefreshView)
-    override val presenter by lazy{ ScenicSpotPresenter(this,ScenicSpotRepository.get())}
-
-    override fun show(items: List<ScenicSpotGallery>) {
-        if(shakeJudge){
-            shakeJudge=false
-            if(!items.isEmpty()){
-                val intent = Intent(context, ScenicSpotDetailActivity::class.java)
-                var recommendedSpot= items[getRandom(0,items.size).toInt()]
-                intent.putExtra("id", recommendedSpot.id);   //键值对
-                intent.putExtra("picAddr", recommendedSpot.imageurl);   //键值对
-                context!!.startActivity(intent)
-            }
-        }else {
-            if (!items.isEmpty()) {
-                ErrorLayout.visibility = View.GONE
-                val categoryItemAdapters = items.map(::ScenicSpotGalleryAdapter)
-                recyclerView.adapter = MainListAdapter(categoryItemAdapters)
-            } else {
-                ErrorLayout.visibility = View.VISIBLE
-                tvError.text = "在" + userSP.getString("DISTRICT_NAME", " ") + "似乎没有景点......"
-            }
-        }
-
-    }
-    override fun showError(error: Throwable) {
-        if(shakeJudge){
-            context!!.toast("看来没有和你有缘的景点呢～")
-        } else {
-            ErrorLayout.visibility = View.VISIBLE
-            tvError.text = "在" + userSP.getString("DISTRICT_NAME", " ") + "似乎没有景点......"
-            context!!.toast("Error:${error.message}")
-            error.printStackTrace()
-        }
-    }
-
+    val SUN = "晴"
+    val CLOUDY = "阴"
+    val SNOW = "雪"
+    val RAIN = "雨"
+    val SUN_CLOUD = "多云"
+    val THUNDER = "雷"
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val view = inflater.inflate(R.layout.fragment_scenicspot, container, false)
+        val view = inflater.inflate(R.layout.fragment_explore, container, false)
         initLocation()
-        //initLocation()
         userSP = context!!.getSharedPreferences("USER_INFO", Context.MODE_PRIVATE);
         editor = userSP.edit();
         return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        recyclerView.layoutManager= GridLayoutManager(context,2)
+        super.onViewCreated(view, savedInstanceState)
+        if(userSP.getString("DISTRICT_NAME","").equals(""))
+            locationClient!!.startLocation()//定位一次
+        else {
+            tvLikes.text=userSP.getString("DISTRICT_NAME","")+"的心愿单"
+            loadWeather(userSP.getString("DISTRICT_NAME",""))
+            tvLocation.text=userSP.getString("PROVINCE_NAME","")+" "+userSP.getString("CITY_NAME","")+" "+userSP.getString("DISTRICT_NAME","")
+        }
         jdCityConfig.showType = mWheelType
         cityPicker = JDCityPicker()
         //初始化数据
@@ -122,51 +86,72 @@ class FragmentScenicSpot :BaseFragmentWithPresenter(),ScenicSpotView{
                     editor.putString("DISTRICT_NAME", district.name)
                 }
                 editor.commit()
-                presenter.loadScenicSpots(userSP.getString("DISTRICT_NAME",""))
-
+                loadWeather(district!!.name)
+                tvLikes.text=district!!.name+"的心愿单"
             }
 
             override fun onCancel() {}
         })
-        swipeRefreshView.setOnRefreshListener {
-            swipeRefreshView.isRefreshing=true
-            locationClient!!.startLocation()
-        }
         tvLocation.setOnClickListener {
             showJD()
         }
         ivIcon.setOnClickListener {
+            tvTemperature.text="暂无温度"
+            tvWeather.text="正在获取天气......"
             locationClient!!.startLocation()
-        }
-        tvSearchAnywhere.addTextChangedListener(object : TextWatcher {
-            override fun afterTextChanged(s: Editable?) {
-                if(userSP.getString("DISTRICT_NAME","").equals("")){
-                    ErrorLayout.visibility=View.VISIBLE
-                    tvError.text="请选择你的目的地呀......"
-                }
-                presenter.loadScenicSpotsWithKeywords(userSP.getString("DISTRICT_NAME",""),tvSearchAnywhere.text.toString())
-            }
 
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-            }
-
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-            }
-        })
-        var sensorHelper = SensorManagerHelper(context)
-        sensorHelper.setOnShakeListener(object : SensorManagerHelper.OnShakeListener {
-            override fun onShake() {
-                shakeJudge=true
-                presenter.loadScenicSpots(userSP.getString("DISTRICT_NAME",""))
-            }
-        })
-        //presenter.onViewCreated()
-        if(userSP.getString("DISTRICT_NAME","").equals("")){
-            locationClient!!.startLocation()//定位一次
-        }else{
-            tvLocation.text=userSP.getString("PROVINCE_NAME","")+" "+userSP.getString("CITY_NAME","")+" "+userSP.getString("DISTRICT_NAME","")
-            presenter.loadScenicSpots(userSP.getString("DISTRICT_NAME",""))
         }
+
+    }
+
+    fun loadWeather(city:String){
+        mquery = WeatherSearchQuery(userSP.getString("DISTRICT_NAME",""), WeatherSearchQuery.WEATHER_TYPE_LIVE)
+        mweathersearch = WeatherSearch(context)
+        mweathersearch.setOnWeatherSearchListener(this)
+        mweathersearch.setQuery(mquery)
+        mweathersearch.searchWeatherAsyn() //异步搜索
+    }
+
+    override fun onWeatherForecastSearched(p0: LocalWeatherForecastResult?, p1: Int) {
+        //未使用，不作实现
+    }
+
+    override fun onWeatherLiveSearched(weatherLiveResult: LocalWeatherLiveResult?, rCode: Int) {
+        if (rCode == 1000) {
+            if (weatherLiveResult != null && weatherLiveResult.liveResult != null) {
+                var weatherlive = weatherLiveResult.liveResult
+                tvTemperature.text=weatherlive.temperature+"℃"
+                tvWeather.text=weatherlive.weather
+                ivWeather.setImageResource(getWeatherResId(weatherlive.weather))
+
+            } else {
+                //无结果显示
+                tvTemperature.text="暂无温度"
+                tvWeather.text="天气获取失败"
+                ivWeather.setImageResource(getWeatherResId("未知天气"))
+            }
+        } else {
+            //这里错误
+            tvTemperature.text="暂无温度"
+            tvWeather.text="天气获取失败"
+            ivWeather.setImageResource(getWeatherResId("未知天气"))
+        }
+    }
+
+    fun getWeatherResId(weather:String):Int{
+        if(weather.contains(SNOW))
+            return R.drawable.snow
+        if(weather.contains(CLOUDY))
+            return R.drawable.cloudy
+        if(weather.contains(SUN))
+            return R.drawable.sun
+        if(weather.contains(RAIN))
+            return R.drawable.rain
+        if(weather.contains(THUNDER))
+            return R.drawable.thunder
+        if(weather.contains(SUN_CLOUD))
+            return R.drawable.sun_cloud
+        return R.drawable.cloudy
     }
     private fun showJD() {
         cityPicker.showCityPicker()
@@ -202,24 +187,22 @@ class FragmentScenicSpot :BaseFragmentWithPresenter(),ScenicSpotView{
                 editor.putString("LATITUDE",location.latitude.toString())
                 editor.putString("LONGTITUDE",location.longitude.toString())
                 editor.commit()
-                presenter.loadScenicSpots(location.district)
+                loadWeather(location.district)
+                tvLikes.text=location.district+"的心愿单"
             } else {
                 //定位失败
                 Toast.makeText(activity, "定位失败，请检查GPS定位是否打开", Toast.LENGTH_LONG).show()
-                errorLayout.visibility=View.VISIBLE
-                tvError.text="定位失败，请检查GPS定位是否打开..."
                 Log.e("Locate",location.errorCode.toString()+" "+location.errorInfo)
+                loadWeather(" ")
             }
 
         } else {
             Toast.makeText(activity, "定位失败，请检查GPS定位是否打开", Toast.LENGTH_LONG).show()
-            errorLayout.visibility=View.VISIBLE
-            tvError.text="定位失败，请检查GPS定位是否打开..."
+            loadWeather(" ")
         }
         locationClient!!.stopLocation()
-
-
     }
+
     private fun initLocation() {
         //初始化client
         locationClient = AMapLocationClient(context)
@@ -230,10 +213,4 @@ class FragmentScenicSpot :BaseFragmentWithPresenter(),ScenicSpotView{
         locationClient!!.setLocationListener(locationListener)
     }
 
-    fun getRandom(min: Int, max: Int): String {
-        val random = Random()
-        val s = random.nextInt(max) % (max - min + 1) + min
-        return s.toString()
-
-    }
 }

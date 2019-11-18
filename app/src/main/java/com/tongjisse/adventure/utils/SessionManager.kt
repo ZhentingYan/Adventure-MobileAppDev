@@ -21,8 +21,6 @@ class SessionManager(private val context: Context?) {
     fun createLoginSession(id: Int, email: String, firstName: String, lastName: String, phoneNum: String) {
         editor.putBoolean(IS_LOGIN, true)
 
-        editor.putInt(USER_ID, id)
-
         editor.putString(EMAIL, email)
 
         editor.putString(FIRST_NAME, firstName)
@@ -61,7 +59,6 @@ class SessionManager(private val context: Context?) {
 
     companion object {
         val SESSION_SP = "SESSION_SP"
-        val USER_ID = "USER_ID"
         val EMAIL = "EMAIL"
         val FIRST_NAME = "FIRST_NAME"
         val LAST_NAME = "LAST_NAME"

@@ -13,6 +13,7 @@ import android.widget.TextView
 import com.tongjisse.adventure.R
 import android.view.LayoutInflater
 import android.widget.ImageView
+import com.tongjisse.adventure.view.views.Explore.ExploreFragment
 import com.tongjisse.adventure.view.views.MyAdventure.MyAdventureFragment
 import com.tongjisse.adventure.view.views.ScenicSpot.FragmentScenicSpot
 import kotlinx.android.synthetic.main.tab_item.view.*
@@ -83,27 +84,31 @@ class MenuActivity : AppCompatActivity() {
             img.setImageResource(tabPics[i])
             tab.setCustomView(view)
             sectionTab.addTab(tab)
-            if(i==4){
+            if(i==0){
                 tv.setTextColor(Color.parseColor("#FF6666"))
             }
         }
-        sectionTab.getTabAt(4)!!.select();
+        sectionTab.getTabAt(0)!!.select();
         val scenicSpotFragment = FragmentScenicSpot()
         val myAdventureFragment = MyAdventureFragment()
-
+        val exploreFragment=ExploreFragment()
         val fragmentManager = supportFragmentManager
         val fragmentTransaction = fragmentManager.beginTransaction()
-        fragmentTransaction.add(R.id.sectionFragmentReplace, myAdventureFragment, "MyAdventureFragment")
+        fragmentTransaction.add(R.id.sectionFragmentReplace, exploreFragment, "exploreFragment")
         fragmentTransaction.hide(scenicSpotFragment)
-        fragmentTransaction.show(myAdventureFragment)
+        fragmentTransaction.hide(myAdventureFragment)
+        fragmentTransaction.show(exploreFragment)
         fragmentTransaction.commit()
-        thisFragment=myAdventureFragment
+        thisFragment=exploreFragment
         sectionTab.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab) {
 
                 when (tab.position) {
                     4 //Explore
                     -> {
+                        if (!myAdventureFragment.isAdded()) {
+                            fragmentManager.beginTransaction().add(R.id.sectionFragmentReplace, myAdventureFragment).commit()
+                        }
                         fragmentManager.beginTransaction().hide(thisFragment)
                                 .show(myAdventureFragment).commit()
                         thisFragment=myAdventureFragment
@@ -117,6 +122,11 @@ class MenuActivity : AppCompatActivity() {
                                 .show(scenicSpotFragment)
                                 .commit()
                         thisFragment=scenicSpotFragment
+                    }
+                    0->{
+                        fragmentManager.beginTransaction().hide(thisFragment)
+                                .show(exploreFragment).commit()
+                        thisFragment=exploreFragment
                     }
                 }
 

@@ -55,7 +55,7 @@
         android:layout_marginTop="77dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="1750063@tongji.edu.cn"
+        android:text="test@admin.com"
         android:textColor="#ffffff"
         android:textCursorDrawable="@null" />
 
@@ -70,7 +70,7 @@
         android:layout_alignParentRight="true"
         android:ems="10"
         android:inputType="textPassword"
-        android:text="123456789"
+        android:text="admin123"
         android:textColor="#ffffff"
         android:textCursorDrawable="@null" />
 
