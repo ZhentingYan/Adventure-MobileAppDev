@@ -52,7 +52,7 @@ class PhoneNumFragment : Fragment() {
     }
 
     private fun addNewUserInfo(firstName:String,lastName:String,password:String,emailAddress: String,phoneNum: String) {
-        val userInfo=UserInfo(firstName,lastName,password,emailAddress,phoneNum)
+        val userInfo=UserInfo(firstName,lastName,password,emailAddress,phoneNum,null)
         userDao.addInfo(userInfo)
     }
 

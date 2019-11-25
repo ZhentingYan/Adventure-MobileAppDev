@@ -26,7 +26,7 @@ public class DatabaseTest extends Activity {
         setContentView(R.layout.activity_welcome);
         OrmLiteHelper.createInstance(this);
         mOrmDao = new UserInfoDao();
-        Log.d("CC", "onCreate: "+"Ss");
+        Log.d("CC", "onCreate: "+"Ss"+this);
         initOrmInfo();
 //        mOrmDao.delAllInfo();
 //        queryEmail("1e");
@@ -37,7 +37,6 @@ public class DatabaseTest extends Activity {
     @After
     private void del(){
         mOrmDao.delAllInfo();
-        queryEmail("1e");
     }
 
     @Test

@@ -24,7 +24,7 @@ public class UserInfoDao {
                 Log.d(TAG, "UserInfoDao: " + "NULL!");
             }
             userDao.createIfNotExists(new UserInfo("FNAME", "LNAME",
-                    "admin123", "test@admin.com", "18918911111"));
+                    "admin123", "test@admin.com", "18918911111",null));
         } catch (SQLException e) {
             e.printStackTrace();
         }
