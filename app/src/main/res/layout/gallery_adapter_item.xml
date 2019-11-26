@@ -20,7 +20,7 @@
             android:layout_height="wrap_content">
 
             <ImageView
-                android:id="@+id/ivPhoto"
+                android:id="@+id/ivWish"
                 android:layout_width="170dp"
                 android:layout_height="170dp"
                 android:background="@drawable/image_view_background"
@@ -30,13 +30,13 @@
                 android:id="@+id/imageView"
                 android:layout_width="28dp"
                 android:layout_height="28dp"
-                android:layout_alignEnd="@+id/ivPhoto"
+                android:layout_alignEnd="@+id/ivWish"
                 android:layout_alignParentStart="false"
                 android:layout_alignParentLeft="false"
                 android:layout_alignParentTop="false"
                 android:layout_alignParentEnd="false"
-                android:layout_alignParentRight="@id/ivPhoto"
-                android:layout_alignParentBottom="@id/ivPhoto"
+                android:layout_alignParentRight="@id/ivWish"
+                android:layout_alignParentBottom="@id/ivWish"
                 android:layout_centerInParent="false"
                 android:layout_centerHorizontal="false"
                 android:layout_centerVertical="false"
@@ -48,8 +48,8 @@
             android:id="@+id/tvSceneName"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@id/ivPhoto"
-            android:layout_alignEnd="@+id/ivPhoto"
+            android:layout_below="@id/ivWish"
+            android:layout_alignEnd="@+id/ivWish"
             android:layout_marginTop="3dp"
             android:text="同济大学嘉定校区"
             android:textColor="@color/bank_FF6C6C6C"
@@ -65,7 +65,7 @@
                 <ImageView
                     android:layout_width="18dp"
                     android:layout_height="match_parent"
-                    android:layout_below="@id/ivPhoto"
+                    android:layout_below="@id/ivWish"
                     android:layout_alignParentStart="true"
                     app:srcCompat="@drawable/scene_logo" />
 
@@ -93,7 +93,7 @@
                 android:id="@+id/ivDistance"
                 android:layout_width="18dp"
                 android:layout_height="match_parent"
-                android:layout_below="@id/ivPhoto"
+                android:layout_below="@id/ivWish"
                 android:layout_alignParentStart="true"
                 app:srcCompat="@drawable/julilujing" />
 
@@ -101,7 +101,7 @@
                 android:id="@+id/tvDistance"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/ivPhoto"
+                android:layout_below="@id/ivWish"
                 android:layout_marginStart="5dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginRight="17dp"

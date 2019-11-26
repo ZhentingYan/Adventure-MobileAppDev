@@ -38,7 +38,7 @@
             tools:context="googleplayservices.samples.android.teamtreehouse.com.airbnb.ExploreTab.HomeDescActivity">
 
             <ImageView
-                android:id="@+id/ivPhoto"
+                android:id="@+id/ivWish"
                 android:layout_width="match_parent"
                 android:layout_height="300dp"
                 android:background="@drawable/image_view_background">

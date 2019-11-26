@@ -22,5 +22,4 @@ interface AmapApi {
                                    @Query("city") city:String?,
                                    @Query("keywords") keywords:String?
     ): Single<DataWrapper<List<ScenicSpotDto>>>
-
 }

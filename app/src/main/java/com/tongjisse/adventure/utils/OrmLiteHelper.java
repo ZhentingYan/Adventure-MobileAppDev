@@ -9,6 +9,7 @@ import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.support.ConnectionSource;
 import com.j256.ormlite.table.TableUtils;
 import com.tongjisse.adventure.model.bean.UserInfo;
+import com.tongjisse.adventure.model.bean.WishList;
 
 import java.sql.SQLException;
 import java.util.HashMap;
@@ -71,6 +72,8 @@ public class OrmLiteHelper extends OrmLiteSqliteOpenHelper {
     public void onCreate(SQLiteDatabase database, ConnectionSource connectionSource) {
         try {
             TableUtils.createTable(connectionSource, UserInfo.class);
+            TableUtils.createTable(connectionSource, WishList.class);
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -79,6 +82,7 @@ public class OrmLiteHelper extends OrmLiteSqliteOpenHelper {
     public void onUpgrade(SQLiteDatabase database, ConnectionSource connectionSource, int oldVersion, int newVersion) {
         try {
             TableUtils.dropTable(connectionSource, UserInfo.class, true);
+            TableUtils.dropTable(connectionSource, WishList.class,true);
             onCreate(database, connectionSource);
         } catch (SQLException e) {
             e.printStackTrace();

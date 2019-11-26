@@ -1,8 +1,6 @@
 package com.tongjisse.adventure.view.main
 
-import android.content.Context
 import android.support.v7.widget.RecyclerView
-import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
@@ -11,14 +9,11 @@ import com.tongjisse.adventure.view.common.ItemAdapter
 import com.tongjisse.adventure.R
 import com.tongjisse.adventure.view.common.bindView
 import com.tongjisse.adventure.view.common.loadImage
-import kotlinx.android.synthetic.main.gallery_adapter_item.*
 import android.content.Intent
 import com.tongjisse.adventure.view.views.ScenicSpot.ScenicSpotDetailActivity
 import com.amap.api.maps.AMapUtils
 import com.amap.api.maps.model.LatLng
-import android.content.SharedPreferences
-import com.amap.api.location.AMapLocationClient
-import com.tongjisse.adventure.view.views.ScenicSpot.FragmentScenicSpot
+import com.tongjisse.adventure.view.views.ScenicSpot.ScenicSpotFragment
 
 
 class ScenicSpotGalleryAdapter(
@@ -30,7 +25,7 @@ class ScenicSpotGalleryAdapter(
         ivPhoto.loadImage(scenicSpot.imageurl)
 
         //Log.e("test",scenicSpot.name)
-        val location = FragmentScenicSpot.locationClient!!.getLastKnownLocation()
+        val location = ScenicSpotFragment.locationClient!!.getLastKnownLocation()
         val userPoint=LatLng(location.latitude,location.longitude)
         val placePoint=LatLng(scenicSpot.latitude.toDouble(),scenicSpot.longitude.toDouble())
         val distance = AMapUtils.calculateLineDistance(userPoint,placePoint)
@@ -46,7 +41,6 @@ class ScenicSpotGalleryAdapter(
             val intent = Intent(it.context, ScenicSpotDetailActivity::class.java)
             intent.putExtra("id", scenicSpot.id);   //键值对
             intent.putExtra("picAddr", scenicSpot.imageurl);   //键值对
-
             it.context.startActivity(intent)
         }
     }
@@ -57,7 +51,7 @@ class ScenicSpotGalleryAdapter(
     class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
 
         val tvSceneName by bindView<TextView>(R.id.tvSceneName)
-        val ivPhoto by bindView<ImageView>(R.id.ivPhoto)
+        val ivPhoto by bindView<ImageView>(R.id.ivWish)
         val tvDistance by bindView<TextView>(R.id.tvDistance)
         val tvType by bindView<TextView>(R.id.tvType)
 

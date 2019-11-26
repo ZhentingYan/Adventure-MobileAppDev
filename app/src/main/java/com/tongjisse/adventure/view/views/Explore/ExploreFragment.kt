@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v7.widget.GridLayoutManager
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -23,16 +24,19 @@ import com.lljjcoder.bean.DistrictBean
 import com.lljjcoder.bean.ProvinceBean
 import com.lljjcoder.style.cityjd.JDCityConfig
 import com.lljjcoder.style.cityjd.JDCityPicker
+import com.tongjisse.adventure.dao.WishListDao
+import com.tongjisse.adventure.view.main.MainListAdapter
 import kotlinx.android.synthetic.main.fragment_explore.*
 import kotlinx.android.synthetic.main.fragment_explore.tvLocation
-import kotlinx.android.synthetic.main.fragment_scenicspot_desc.*
-
+import com.tongjisse.adventure.view.main.MainWishListAdapter
+import com.tongjisse.adventure.view.views.Main.MenuActivity
 
 class ExploreFragment:Fragment(),WeatherSearch.OnWeatherSearchListener{
     private lateinit var userSP: SharedPreferences
     private lateinit var editor: SharedPreferences.Editor
     private lateinit var mquery:WeatherSearchQuery
     private lateinit var mweathersearch:WeatherSearch
+    private val wishListDao=WishListDao()
     var locationClient: AMapLocationClient? = null
     var locationOption: AMapLocationClientOption? = null
     internal lateinit var cityPicker: JDCityPicker
@@ -53,6 +57,7 @@ class ExploreFragment:Fragment(),WeatherSearch.OnWeatherSearchListener{
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        mainRecyclerView.layoutManager= GridLayoutManager(context,1)
         super.onViewCreated(view, savedInstanceState)
         if(userSP.getString("DISTRICT_NAME","").equals(""))
             locationClient!!.startLocation()//定位一次
@@ -87,6 +92,7 @@ class ExploreFragment:Fragment(),WeatherSearch.OnWeatherSearchListener{
                 }
                 editor.commit()
                 loadWeather(district!!.name)
+                showUserWishLists()
                 tvLikes.text=district!!.name+"的心愿单"
             }
 
@@ -101,6 +107,16 @@ class ExploreFragment:Fragment(),WeatherSearch.OnWeatherSearchListener{
             locationClient!!.startLocation()
 
         }
+        sceneLayout.setOnClickListener{
+            MenuActivity.sectionTab.getTabAt(1)!!.select();
+        }
+        storyLayout.setOnClickListener{
+            MenuActivity.sectionTab.getTabAt(2)!!.select();
+        }
+        mainRecyclerView.setOnClickListener {
+            MenuActivity.sectionTab.getTabAt(3)!!.select();
+        }
+        showUserWishLists()
 
     }
 
@@ -188,6 +204,7 @@ class ExploreFragment:Fragment(),WeatherSearch.OnWeatherSearchListener{
                 editor.putString("LONGTITUDE",location.longitude.toString())
                 editor.commit()
                 loadWeather(location.district)
+                showUserWishLists()
                 tvLikes.text=location.district+"的心愿单"
             } else {
                 //定位失败
@@ -213,4 +230,31 @@ class ExploreFragment:Fragment(),WeatherSearch.OnWeatherSearchListener{
         locationClient!!.setLocationListener(locationListener)
     }
 
+    fun showUserWishLists(){
+        val user=userSP.getString("EMAIL","")
+        val district=userSP.getString("DISTRICT_NAME","")
+        var userWishList=wishListDao.queryByUserAndDistrict(user,district)
+        //筛选不符合用户所在地的心愿列表
+        if(userWishList!=null) {
+
+            if (userWishList.size != 0) {
+                mainErrorLayout.visibility = View.GONE
+                mainRecyclerView.visibility=View.VISIBLE
+                svWishList.visibility=View.VISIBLE
+                val categoryItemAdapters = userWishList.map(::MainWishListAdapter)
+                mainRecyclerView.adapter = MainListAdapter(categoryItemAdapters)
+            } else {
+                mainErrorLayout.visibility = View.VISIBLE
+                mainRecyclerView.visibility=View.GONE
+                svWishList.visibility=View.GONE
+
+                tvError.text = "在" + userSP.getString("DISTRICT_NAME", " ") + "你还没有心愿哦......"
+            }
+        }else{
+            mainErrorLayout.visibility = View.VISIBLE
+            mainRecyclerView.visibility=View.GONE
+            svWishList.visibility=View.GONE
+            tvError.text = "在" + userSP.getString("DISTRICT_NAME", " ") + "你还没有心愿哦......"
+        }
+    }
 }

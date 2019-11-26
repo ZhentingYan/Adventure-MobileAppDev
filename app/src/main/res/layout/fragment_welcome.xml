@@ -37,7 +37,7 @@
         android:id="@+id/tvWelcome"
         android:layout_width="272dp"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/ivPhoto"
+        android:layout_below="@+id/ivWish"
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentEnd="true"
@@ -68,7 +68,7 @@
         android:textSize="18sp" />
 
     <ImageView
-        android:id="@+id/ivPhoto"
+        android:id="@+id/ivWish"
         android:layout_width="108dp"
         android:layout_height="101dp"
         android:layout_alignParentStart="true"

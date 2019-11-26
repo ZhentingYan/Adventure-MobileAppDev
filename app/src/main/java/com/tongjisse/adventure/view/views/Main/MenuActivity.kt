@@ -5,9 +5,7 @@ import android.os.Bundle
 import android.support.design.widget.TabLayout
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
-import android.util.Log
 import android.util.TypedValue
-import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import com.tongjisse.adventure.R
@@ -15,15 +13,18 @@ import android.view.LayoutInflater
 import android.widget.ImageView
 import com.tongjisse.adventure.view.views.Explore.ExploreFragment
 import com.tongjisse.adventure.view.views.MyAdventure.MyAdventureFragment
-import com.tongjisse.adventure.view.views.ScenicSpot.FragmentScenicSpot
+import com.tongjisse.adventure.view.views.ScenicSpot.ScenicSpotFragment
+import com.tongjisse.adventure.view.views.WishList.WishListFragment
 import kotlinx.android.synthetic.main.tab_item.view.*
 
 
 class MenuActivity : AppCompatActivity() {
    // internal var exploreFragment: ExploreFragment
     lateinit var thisFragment:Fragment
+    companion object {
+        lateinit var sectionTab: TabLayout
+    }
     private fun changeTabsFont(tabLayout: TabLayout) {
-
         val vg = tabLayout.getChildAt(0) as ViewGroup
         val tabsCount = vg.childCount
         for (j in 0 until tabsCount) {
@@ -69,7 +70,8 @@ class MenuActivity : AppCompatActivity() {
         fragmentTransaction.show(exploreFragment)
         fragmentTransaction.commit()
 */
-        val sectionTab = findViewById(R.id.sectionTab) as TabLayout
+        sectionTab = findViewById(R.id.sectionTab) as TabLayout
+
         val tabName= arrayOf("探索","景点","故事","心愿单","我的")
         val tabPics=arrayOf(R.drawable.explore_logo,R.drawable.scene_logo,R.drawable.story_logo,R.drawable.likes_logo,R.drawable.profile_logo)
        // sectionTab.addTab(sectionTab.newTab().setText("Explore"))
@@ -89,8 +91,9 @@ class MenuActivity : AppCompatActivity() {
             }
         }
         sectionTab.getTabAt(0)!!.select();
-        val scenicSpotFragment = FragmentScenicSpot()
+        val scenicSpotFragment = ScenicSpotFragment()
         val myAdventureFragment = MyAdventureFragment()
+        val wishListFragment = WishListFragment()
         val exploreFragment=ExploreFragment()
         val fragmentManager = supportFragmentManager
         val fragmentTransaction = fragmentManager.beginTransaction()
@@ -109,22 +112,34 @@ class MenuActivity : AppCompatActivity() {
                         if (!myAdventureFragment.isAdded()) {
                             fragmentManager.beginTransaction().add(R.id.sectionFragmentReplace, myAdventureFragment).commit()
                         }
-                        fragmentManager.beginTransaction().hide(thisFragment)
+                        fragmentManager.beginTransaction().remove(thisFragment)
                                 .show(myAdventureFragment).commit()
                         thisFragment=myAdventureFragment
+                    }
+                    3 //Explore
+                    -> {
+                        if (!wishListFragment.isAdded()) {
+                            fragmentManager.beginTransaction().add(R.id.sectionFragmentReplace, wishListFragment).commit()
+                        }
+                        fragmentManager.beginTransaction().remove(thisFragment)
+                                .show(wishListFragment).commit()
+                        thisFragment=wishListFragment
                     }
 
                     1 -> {
                         if (!scenicSpotFragment.isAdded()) {
                             fragmentManager.beginTransaction().add(R.id.sectionFragmentReplace, scenicSpotFragment).commit()
                         }
-                        fragmentManager.beginTransaction().hide(thisFragment)
+                        fragmentManager.beginTransaction().remove(thisFragment)
                                 .show(scenicSpotFragment)
                                 .commit()
                         thisFragment=scenicSpotFragment
                     }
                     0->{
-                        fragmentManager.beginTransaction().hide(thisFragment)
+                        if (!exploreFragment.isAdded()) {
+                            fragmentManager.beginTransaction().add(R.id.sectionFragmentReplace, exploreFragment).commit()
+                        }
+                        fragmentManager.beginTransaction().remove(thisFragment)
                                 .show(exploreFragment).commit()
                         thisFragment=exploreFragment
                     }

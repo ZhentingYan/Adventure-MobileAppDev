@@ -145,7 +145,7 @@
 
 
                     <ImageView
-                        android:id="@+id/ivPhoto"
+                        android:id="@+id/ivWish"
                         android:layout_width="150dp"
                         android:layout_height="150dp"
                         android:background="@drawable/image_view_background"
@@ -156,8 +156,8 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_below="@id/ivPhoto"
-                        android:layout_alignEnd="@+id/ivPhoto"
+                        android:layout_below="@id/ivWish"
+                        android:layout_alignEnd="@+id/ivWish"
                         android:layout_marginTop="3dp"
                         android:text="景点"
                         android:textAlignment="center"
@@ -224,38 +224,46 @@
                 android:textSize="19dp"
                 android:textStyle="bold" />
 
-            <android.support.v7.widget.RecyclerView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/linear_layout_background"
+            <com.tongjisse.adventure.view.common.InnerScrollView
+                android:id="@+id/svWishList"
+                android:layout_width="wrap_content"
+                android:layout_height="170dp"
                 android:visibility="gone">
 
-            </android.support.v7.widget.RecyclerView>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:layout_gravity="center"
-                android:background="@drawable/linear_layout_background">
-
-                <ImageView
-                    android:id="@+id/ivDemon"
-                    android:layout_width="150dp"
-                    android:layout_height="150dp"
-                    android:layout_centerInParent="true"
-                    app:srcCompat="@drawable/undraw_traveling_t8y2" />
-
-                <TextView
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/mainRecyclerView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:background="@drawable/linear_layout_background"
+                    android:visibility="gone"></android.support.v7.widget.RecyclerView>
+            </com.tongjisse.adventure.view.common.InnerScrollView>
 
-                    android:layout_below="@id/ivDemon"
-                    android:layout_alignParentStart="true"
-                    android:text="在这个城市，你的心愿单还是空的哦！"
-                    android:textAlignment="center" />
+            <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:id="@+id/mainErrorLayout"
+                    android:layout_gravity="center"
+                    android:background="@drawable/linear_layout_background">
 
-            </RelativeLayout>
+                    <ImageView
+                        android:id="@+id/ivDemon"
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
+                        android:layout_centerInParent="true"
+                        app:srcCompat="@drawable/undraw_traveling_t8y2" />
+
+                    <TextView
+                        android:id="@+id/tvError"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/ivDemon"
+                        android:layout_alignParentStart="true"
+                        android:text="在这个城市，你的心愿单还是空的哦！"
+                        android:textAlignment="center" />
+
+                </RelativeLayout>
+
         </LinearLayout>
 
         <LinearLayout

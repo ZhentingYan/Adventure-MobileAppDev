@@ -33,13 +33,12 @@ import kotlinx.android.synthetic.main.fragment_scenicspot.*
 import com.tongjisse.adventure.view.main.ScenicSpotGalleryAdapter
 import com.tongjisse.adventure.view.common.toast
 import com.tongjisse.adventure.view.common.bindToSwipeRefresh
-import kotlinx.android.synthetic.main.fragment_password.*
 import kotlinx.android.synthetic.main.fragment_scenicspot.ivIcon
 import kotlinx.android.synthetic.main.fragment_scenicspot.tvError
 import kotlinx.android.synthetic.main.fragment_scenicspot.tvLocation
 import java.util.*
 
-class FragmentScenicSpot :BaseFragmentWithPresenter(),ScenicSpotView{
+class ScenicSpotFragment :BaseFragmentWithPresenter(),ScenicSpotView{
     internal lateinit var cityPicker: JDCityPicker
     var mWheelType: JDCityConfig.ShowType = JDCityConfig.ShowType.PRO_CITY_DIS
     private val jdCityConfig = JDCityConfig.Builder().build()
@@ -206,14 +205,14 @@ class FragmentScenicSpot :BaseFragmentWithPresenter(),ScenicSpotView{
             } else {
                 //定位失败
                 Toast.makeText(activity, "定位失败，请检查GPS定位是否打开", Toast.LENGTH_LONG).show()
-                errorLayout.visibility=View.VISIBLE
+                ErrorLayout.visibility=View.VISIBLE
                 tvError.text="定位失败，请检查GPS定位是否打开..."
                 Log.e("Locate",location.errorCode.toString()+" "+location.errorInfo)
             }
 
         } else {
             Toast.makeText(activity, "定位失败，请检查GPS定位是否打开", Toast.LENGTH_LONG).show()
-            errorLayout.visibility=View.VISIBLE
+            ErrorLayout.visibility=View.VISIBLE
             tvError.text="定位失败，请检查GPS定位是否打开..."
         }
         locationClient!!.stopLocation()

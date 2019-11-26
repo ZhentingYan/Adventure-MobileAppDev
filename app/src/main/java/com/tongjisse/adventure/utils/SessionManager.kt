@@ -13,12 +13,27 @@ class SessionManager(private val context: Context?) {
     val isLoggedIn: Boolean
         get() = sessionSP.getBoolean(IS_LOGIN, false)
 
+    val email:String
+        get()=sessionSP.getString("EMAIL","")
+
+    val firstName:String
+        get()=sessionSP.getString("FIRST_NAME","")
+    val lastName:String
+        get()=sessionSP.getString("LAST_NAME","")
+    val phoneNum:String
+
+        get()=sessionSP.getString("PHONE_NUM","")
+
+    val district:String
+        get()=sessionSP.getString("DISTRICT_NAME","")
+
     init {
         sessionSP = this.context!!.getSharedPreferences(SESSION_SP, Context.MODE_PRIVATE)
         editor = sessionSP.edit()
     }
 
-    fun createLoginSession(id: Int, email: String, firstName: String, lastName: String, phoneNum: String) {
+
+    fun createLoginSession(email: String, firstName: String, lastName: String, phoneNum: String?) {
         editor.putBoolean(IS_LOGIN, true)
 
         editor.putString(EMAIL, email)
@@ -58,7 +73,7 @@ class SessionManager(private val context: Context?) {
     }
 
     companion object {
-        val SESSION_SP = "SESSION_SP"
+        val SESSION_SP = "USER_INFO"
         val EMAIL = "EMAIL"
         val FIRST_NAME = "FIRST_NAME"
         val LAST_NAME = "LAST_NAME"
