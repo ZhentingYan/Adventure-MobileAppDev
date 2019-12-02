@@ -50,6 +50,7 @@ class SensorManagerHelper(private val context: Context?) : SensorEventListener {
 
     /**
      * 停止检测
+     * @author ZhentingYan
      */
     fun stop() {
         sensorManager!!.unregisterListener(this)
@@ -69,6 +70,7 @@ class SensorManagerHelper(private val context: Context?) : SensorEventListener {
      * 重力感应器感应获得变化数据
      * android.hardware.SensorEventListener#onSensorChanged(android.hardware
      * .SensorEvent)
+     * @author ZhentingYan
      */
     override fun onSensorChanged(event: SensorEvent) {
         // 现在检测时间

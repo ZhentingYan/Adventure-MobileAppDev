@@ -6,9 +6,11 @@ import android.view.MotionEvent
 import android.view.View
 import android.widget.ScrollView
 
+/**
+ * InnerScrollView帮助解决内外层ScrollView嵌套导致内层ScrollView无法滑动的问题
+ * @author ZhentingYan
+ */
 class InnerScrollView(context: Context, attrs: AttributeSet) : ScrollView(context, attrs) {
-    /**
-     */
     var parentScrollView: ScrollView? = null
     private var lastScrollDelta = 0
     internal var mTop = 10

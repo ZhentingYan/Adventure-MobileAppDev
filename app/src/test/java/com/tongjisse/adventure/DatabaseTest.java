@@ -1,13 +1,11 @@
 package com.tongjisse.adventure;
 
 import android.app.Activity;
-import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 
-import com.tongjisse.adventure.R;
-import com.tongjisse.adventure.dao.UserInfoDao;
-import com.tongjisse.adventure.model.bean.UserInfo;
+import com.tongjisse.adventure.data.bean.UserInfo;
+import com.tongjisse.adventure.model.dao.UserInfoDao;
 import com.tongjisse.adventure.utils.OrmLiteHelper;
 
 import org.junit.After;

@@ -1,8 +1,8 @@
 package com.tongjisse.adventure.view.views
 
-import android.util.AttributeSet;
-import android.widget.FrameLayout;
-import android.content.Context;
+import android.content.Context
+import android.util.AttributeSet
+import android.widget.FrameLayout
 
 class SquareFrameLayout @JvmOverloads constructor(
         context: Context,

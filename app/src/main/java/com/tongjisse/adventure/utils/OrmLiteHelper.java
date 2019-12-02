@@ -8,8 +8,8 @@ import com.j256.ormlite.android.apptools.OrmLiteSqliteOpenHelper;
 import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.support.ConnectionSource;
 import com.j256.ormlite.table.TableUtils;
-import com.tongjisse.adventure.model.bean.UserInfo;
-import com.tongjisse.adventure.model.bean.WishList;
+import com.tongjisse.adventure.data.bean.UserInfo;
+import com.tongjisse.adventure.data.bean.WishList;
 
 import java.sql.SQLException;
 import java.util.HashMap;
@@ -27,7 +27,7 @@ public class OrmLiteHelper extends OrmLiteSqliteOpenHelper {
     }
 
     public static void createInstance(Context context) {
-        Log.d(TAG, "createInstance: "+"helper created");
+        Log.d(TAG, "createInstance: " + "helper created");
         if (sORMLITEHELPER == null) {
             synchronized (OrmLiteHelper.class) {
                 if (sORMLITEHELPER == null) {
@@ -47,6 +47,7 @@ public class OrmLiteHelper extends OrmLiteSqliteOpenHelper {
 //        }
         return sORMLITEHELPER;
     }
+
     public Dao getDao(Class clazz) throws SQLException {
         Dao dao = null;
         String className = clazz.getSimpleName();
@@ -60,6 +61,7 @@ public class OrmLiteHelper extends OrmLiteSqliteOpenHelper {
         }
         return dao;
     }
+
     @Override
     public void close() {
         for (String key : daos.keySet()) {
@@ -68,6 +70,7 @@ public class OrmLiteHelper extends OrmLiteSqliteOpenHelper {
         }
         super.close();
     }
+
     @Override
     public void onCreate(SQLiteDatabase database, ConnectionSource connectionSource) {
         try {
@@ -78,11 +81,12 @@ public class OrmLiteHelper extends OrmLiteSqliteOpenHelper {
             e.printStackTrace();
         }
     }
+
     @Override
     public void onUpgrade(SQLiteDatabase database, ConnectionSource connectionSource, int oldVersion, int newVersion) {
         try {
             TableUtils.dropTable(connectionSource, UserInfo.class, true);
-            TableUtils.dropTable(connectionSource, WishList.class,true);
+            TableUtils.dropTable(connectionSource, WishList.class, true);
             onCreate(database, connectionSource);
         } catch (SQLException e) {
             e.printStackTrace();

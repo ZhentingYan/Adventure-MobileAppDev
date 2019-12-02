@@ -14,12 +14,12 @@ interface AmapApi {
 
     @GET("/v3/place/text")
     fun getScenicSpots(@Query("types") types: String?,
-                       @Query("city") city:String?
+                       @Query("city") city: String?
     ): Single<DataWrapper<List<ScenicSpotDto>>>
 
     @GET("/v3/place/text")
     fun getScenicSpotsWithKeywords(@Query("types") types: String?,
-                                   @Query("city") city:String?,
-                                   @Query("keywords") keywords:String?
+                                   @Query("city") city: String?,
+                                   @Query("keywords") keywords: String?
     ): Single<DataWrapper<List<ScenicSpotDto>>>
 }

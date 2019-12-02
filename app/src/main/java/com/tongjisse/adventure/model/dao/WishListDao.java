@@ -1,11 +1,9 @@
-package com.tongjisse.adventure.dao;
+package com.tongjisse.adventure.model.dao;
 
-import android.content.Context;
 import android.util.Log;
 
 import com.j256.ormlite.dao.Dao;
-import com.tongjisse.adventure.model.bean.UserInfo;
-import com.tongjisse.adventure.model.bean.WishList;
+import com.tongjisse.adventure.data.bean.WishList;
 import com.tongjisse.adventure.utils.OrmLiteHelper;
 
 import java.sql.SQLException;
@@ -130,17 +128,19 @@ public class WishListDao {
         }
         return null;
     }
-    public List<WishList> queryByUserAndDistrict(String user,String district) {
+
+    public List<WishList> queryByUserAndDistrict(String user, String district) {
         try {
-            return wishDao.queryBuilder().where().eq("user",user).and().eq("district",district).query();
+            return wishDao.queryBuilder().where().eq("user", user).and().eq("district", district).query();
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return null;
     }
+
     public List<WishList> queryByUser(String user) {
         try {
-            return wishDao.queryForEq("user",user);
+            return wishDao.queryForEq("user", user);
         } catch (SQLException e) {
             e.printStackTrace();
         }

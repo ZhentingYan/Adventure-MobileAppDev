@@ -1,4 +1,4 @@
-package com.tongjisse.adventure.model.bean
+package com.tongjisse.adventure.data.bean
 
 import com.j256.ormlite.field.DatabaseField
 import com.j256.ormlite.table.DatabaseTable
@@ -6,8 +6,8 @@ import com.j256.ormlite.table.DatabaseTable
 
 @DatabaseTable(tableName = "wish_list")
 class WishList(
-        @DatabaseField(generatedId=true)
-        var id:Int,
+        @DatabaseField(generatedId = true)
+        var id: Int,
         @DatabaseField(columnName = "user", canBeNull = false)
         var user: String,
         @DatabaseField(columnName = "scene", canBeNull = false)
@@ -20,15 +20,15 @@ class WishList(
         var photo: String,
         @DatabaseField(columnName = "district", canBeNull = false)
         var district: String
-        ) {
+) {
     // OrmLite 必须有无参数构造函数
     constructor() : this(
-            id=0,
+            id = 0,
             user = "",
             scene = "",
             state = 0,
             poi = "",
-            photo="",
+            photo = "",
             district = ""
     )
 }

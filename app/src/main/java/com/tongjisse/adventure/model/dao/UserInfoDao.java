@@ -1,10 +1,9 @@
-package com.tongjisse.adventure.dao;
+package com.tongjisse.adventure.model.dao;
 
-import android.content.Context;
 import android.util.Log;
 
 import com.j256.ormlite.dao.Dao;
-import com.tongjisse.adventure.model.bean.UserInfo;
+import com.tongjisse.adventure.data.bean.UserInfo;
 import com.tongjisse.adventure.utils.OrmLiteHelper;
 
 import java.sql.SQLException;
@@ -17,7 +16,7 @@ public class UserInfoDao {
 
     public UserInfoDao() {
         OrmLiteHelper helper = OrmLiteHelper.getInstance();
-        Log.d(TAG, "UserInfoDao: "+"inited" + UserInfo.class + helper);
+        Log.d(TAG, "UserInfoDao: " + "inited" + UserInfo.class + helper);
         try {
             userDao = helper.getDao(UserInfo.class);
             if (userDao == null) {
@@ -95,7 +94,7 @@ public class UserInfoDao {
             if (tempUserList.size() < 1) {
                 return null;
             } else {
-                Log.d(TAG, "queryInfoByEmail: "+tempUserList.toString()+tempUserList.size());
+                Log.d(TAG, "queryInfoByEmail: " + tempUserList.toString() + tempUserList.size());
                 return tempUserList.get(0);
             }
         } catch (SQLException e) {

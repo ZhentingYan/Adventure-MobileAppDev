@@ -6,11 +6,11 @@ import android.support.design.widget.TabLayout
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
 import android.util.TypedValue
+import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import com.tongjisse.adventure.R
-import android.view.LayoutInflater
-import android.widget.ImageView
 import com.tongjisse.adventure.view.views.Explore.ExploreFragment
 import com.tongjisse.adventure.view.views.MyAdventure.MyAdventureFragment
 import com.tongjisse.adventure.view.views.ScenicSpot.ScenicSpotFragment
@@ -19,11 +19,13 @@ import kotlinx.android.synthetic.main.tab_item.view.*
 
 
 class MenuActivity : AppCompatActivity() {
-   // internal var exploreFragment: ExploreFragment
-    lateinit var thisFragment:Fragment
+    // internal var exploreFragment: ExploreFragment
+    lateinit var thisFragment: Fragment
+
     companion object {
         lateinit var sectionTab: TabLayout
     }
+
     private fun changeTabsFont(tabLayout: TabLayout) {
         val vg = tabLayout.getChildAt(0) as ViewGroup
         val tabsCount = vg.childCount
@@ -72,12 +74,12 @@ class MenuActivity : AppCompatActivity() {
 */
         sectionTab = findViewById(R.id.sectionTab) as TabLayout
 
-        val tabName= arrayOf("探索","景点","故事","心愿单","我的")
-        val tabPics=arrayOf(R.drawable.explore_logo,R.drawable.scene_logo,R.drawable.story_logo,R.drawable.likes_logo,R.drawable.profile_logo)
-       // sectionTab.addTab(sectionTab.newTab().setText("Explore"))
-       // sectionTab.addTab(sectionTab.newTab().setText("Profile"))
+        val tabName = arrayOf("探索", "景点", "故事", "心愿单", "我的")
+        val tabPics = arrayOf(R.drawable.explore_logo, R.drawable.scene_logo, R.drawable.story_logo, R.drawable.likes_logo, R.drawable.profile_logo)
+        // sectionTab.addTab(sectionTab.newTab().setText("Explore"))
+        // sectionTab.addTab(sectionTab.newTab().setText("Profile"))
         //changeTabsFont(sectionTab)
-        for(i in 0..4){
+        for (i in 0..4) {
             val tab = sectionTab.newTab()
             val view = LayoutInflater.from(this).inflate(R.layout.tab_item, null)
             val tv = view.findViewById(R.id.tvSection) as TextView
@@ -86,7 +88,7 @@ class MenuActivity : AppCompatActivity() {
             img.setImageResource(tabPics[i])
             tab.setCustomView(view)
             sectionTab.addTab(tab)
-            if(i==0){
+            if (i == 0) {
                 tv.setTextColor(Color.parseColor("#FF6666"))
             }
         }
@@ -94,7 +96,7 @@ class MenuActivity : AppCompatActivity() {
         val scenicSpotFragment = ScenicSpotFragment()
         val myAdventureFragment = MyAdventureFragment()
         val wishListFragment = WishListFragment()
-        val exploreFragment=ExploreFragment()
+        val exploreFragment = ExploreFragment()
         val fragmentManager = supportFragmentManager
         val fragmentTransaction = fragmentManager.beginTransaction()
         fragmentTransaction.add(R.id.sectionFragmentReplace, exploreFragment, "exploreFragment")
@@ -102,7 +104,7 @@ class MenuActivity : AppCompatActivity() {
         fragmentTransaction.hide(myAdventureFragment)
         fragmentTransaction.show(exploreFragment)
         fragmentTransaction.commit()
-        thisFragment=exploreFragment
+        thisFragment = exploreFragment
         sectionTab.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab) {
 
@@ -112,36 +114,36 @@ class MenuActivity : AppCompatActivity() {
                         if (!myAdventureFragment.isAdded()) {
                             fragmentManager.beginTransaction().add(R.id.sectionFragmentReplace, myAdventureFragment).commit()
                         }
-                        fragmentManager.beginTransaction().remove(thisFragment)
+                        fragmentManager.beginTransaction().hide(thisFragment)
                                 .show(myAdventureFragment).commit()
-                        thisFragment=myAdventureFragment
+                        thisFragment = myAdventureFragment
                     }
                     3 //Explore
                     -> {
                         if (!wishListFragment.isAdded()) {
                             fragmentManager.beginTransaction().add(R.id.sectionFragmentReplace, wishListFragment).commit()
                         }
-                        fragmentManager.beginTransaction().remove(thisFragment)
+                        fragmentManager.beginTransaction().hide(thisFragment)
                                 .show(wishListFragment).commit()
-                        thisFragment=wishListFragment
+                        thisFragment = wishListFragment
                     }
 
                     1 -> {
                         if (!scenicSpotFragment.isAdded()) {
                             fragmentManager.beginTransaction().add(R.id.sectionFragmentReplace, scenicSpotFragment).commit()
                         }
-                        fragmentManager.beginTransaction().remove(thisFragment)
+                        fragmentManager.beginTransaction().hide(thisFragment)
                                 .show(scenicSpotFragment)
                                 .commit()
-                        thisFragment=scenicSpotFragment
+                        thisFragment = scenicSpotFragment
                     }
-                    0->{
+                    0 -> {
                         if (!exploreFragment.isAdded()) {
                             fragmentManager.beginTransaction().add(R.id.sectionFragmentReplace, exploreFragment).commit()
                         }
-                        fragmentManager.beginTransaction().remove(thisFragment)
+                        fragmentManager.beginTransaction().hide(thisFragment)
                                 .show(exploreFragment).commit()
-                        thisFragment=exploreFragment
+                        thisFragment = exploreFragment
                     }
                 }
 
@@ -158,7 +160,6 @@ class MenuActivity : AppCompatActivity() {
             }
 
         })
-
 
 
     }

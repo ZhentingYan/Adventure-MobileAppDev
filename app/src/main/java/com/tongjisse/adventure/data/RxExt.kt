@@ -4,7 +4,6 @@ import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
-import io.reactivex.internal.operators.single.SingleDoOnSuccess
 import io.reactivex.schedulers.Schedulers
 
 fun <T> Single<T>.applySchedulers(): Single<T> = this
@@ -18,4 +17,4 @@ operator fun CompositeDisposable.plusAssign(disposable: Disposable) {
 fun <T> Single<T>.subscribeBy(
         onError: ((Throwable) -> Unit)? = null,
         onSuccess: (T) -> Unit
-): Disposable = subscribe(onSuccess, { onError?.invoke(it)} )
+): Disposable = subscribe(onSuccess, { onError?.invoke(it) })
