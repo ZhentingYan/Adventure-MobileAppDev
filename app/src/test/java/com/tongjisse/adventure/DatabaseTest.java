@@ -1,13 +1,11 @@
 package com.tongjisse.adventure;
 
 import android.app.Activity;
-import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 
-import com.tongjisse.adventure.R;
-import com.tongjisse.adventure.dao.UserInfoDao;
-import com.tongjisse.adventure.model.bean.UserInfo;
+import com.tongjisse.adventure.data.bean.UserInfo;
+import com.tongjisse.adventure.model.dao.UserInfoDao;
 import com.tongjisse.adventure.utils.OrmLiteHelper;
 
 import org.junit.After;
@@ -26,7 +24,7 @@ public class DatabaseTest extends Activity {
         setContentView(R.layout.activity_welcome);
         OrmLiteHelper.createInstance(this);
         mOrmDao = new UserInfoDao();
-        Log.d("CC", "onCreate: "+"Ss"+this);
+        Log.d("CC", "onCreate: "+"Ss");
         initOrmInfo();
 //        mOrmDao.delAllInfo();
 //        queryEmail("1e");
@@ -37,6 +35,7 @@ public class DatabaseTest extends Activity {
     @After
     private void del(){
         mOrmDao.delAllInfo();
+        queryEmail("1e");
     }
 
     @Test

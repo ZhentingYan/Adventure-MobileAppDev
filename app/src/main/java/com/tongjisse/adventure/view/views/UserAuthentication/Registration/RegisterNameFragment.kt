@@ -2,17 +2,13 @@ package com.tongjisse.adventure.view.views.UserAuthentication.Registration
 
 import android.graphics.Color
 import android.os.Bundle
-import android.support.v4.app.FragmentManager
-import android.support.v4.app.FragmentTransaction
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.EditText
-import kotlinx.android.synthetic.main.fragment_register_name.*
 import com.tongjisse.adventure.R
+import kotlinx.android.synthetic.main.fragment_register_name.*
 
 
 /**
@@ -40,6 +36,7 @@ class RegisterNameFragment : android.support.v4.app.Fragment() {
         etFirstName.addTextChangedListener(textWatcher)
         etLastName.addTextChangedListener(textWatcher)
     }
+
 
     //Method to check if users can proceed based on the results of the EditTexts
     fun registrationProceed() {

@@ -4,11 +4,11 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
-import com.tongjisse.adventure.R
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
-import com.tongjisse.adventure.view.views.UserAuthentication.Login.LogInFragment
+import com.tongjisse.adventure.R
+import com.tongjisse.adventure.view.views.UserAuthentication.Login.WelcomeLoginFragment
 import com.tongjisse.adventure.view.views.UserAuthentication.Registration.RegisterNameFragment
 
 class WelcomeFragment : Fragment() {
@@ -25,7 +25,7 @@ class WelcomeFragment : Fragment() {
         tvLogIn.setOnClickListener {
             val fragmentManager = fragmentManager
             val fragmentTransaction = fragmentManager!!.beginTransaction()
-            val logInFragment = LogInFragment()
+            val logInFragment = WelcomeLoginFragment()
             fragmentTransaction.replace(R.id.progressFragment, logInFragment)
             fragmentTransaction.addToBackStack(null)
             fragmentTransaction.commit()

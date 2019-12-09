@@ -1,6 +1,5 @@
 package com.tongjisse.adventure.view.views.UserAuthentication.Registration
 
-import android.app.AlertDialog
 import android.app.DatePickerDialog
 import android.graphics.Color
 import android.os.Bundle
@@ -11,13 +10,10 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.DatePicker
-import android.widget.EditText
+import com.tongjisse.adventure.R
+import kotlinx.android.synthetic.main.fragment_register_age.*
 import java.text.SimpleDateFormat
 import java.util.*
-import kotlinx.android.synthetic.main.fragment_register_age.*
-import com.tongjisse.adventure.R
 
 class RegisterAgeFragment : Fragment() {
     internal lateinit var newDate: Calendar

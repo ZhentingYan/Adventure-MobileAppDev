@@ -25,7 +25,7 @@
         android:layout_alignParentEnd="true"/>
 
     <TextView
-        android:id="@+id/tvDesc"
+        android:id="@+id/tvPublisher"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/tvTitle"
@@ -52,7 +52,7 @@
         android:id="@+id/tvPhone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/tvDesc"
+        android:layout_below="@+id/tvPublisher"
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
         android:layout_marginTop="14dp"

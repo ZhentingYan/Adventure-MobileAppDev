@@ -1,11 +1,11 @@
 # Adventure-MobileAppDev
-###开发进度
+## 开发进度
+表头|完成内容|
+---|:--:|---:
+2019.12.02|完成项目的重构；修复了用户第一次进入应用后定位失败造成闪退的Bug；修复了距离显示的问题；增加了MyProfile界面的逻辑；增加了大部分函数的规范注释；抽象出了AMapHelper、CityPikerHelper、SessionManager；项目使用MVP架构，若业务逻辑触及Model则一个View对应一个Presenter|
+12.09.19|完成几乎所有功能，界面显示略有问题|
 
-2019.11.11  完成登陆界面、注册界面、欢迎界面（没有加入数据库，但是加入了逻辑验证，如：是否满足密码长度、电话号码是否为标准格式、邮箱验证等）、GalleryAdapterItem（适用于景点）、StoryAdapterItem（适用于故事）、MyAdventure Layout布局、Profile Layout（未完成调整也没有汉化）
-
----
-
-2019.11.17
-
-完成数据库操作，添加用户表，完成登录验证。修复了符号错误的bug。
+## 说明
+可参照ScenicSpotFragment参考编写Story模块，如果需要调用用户当前登录信息，可以声明mSessionManager变量，在OnViewCreated中实例化。
+在Presenter中声明Dao变量，进行业务逻辑处理，然后调用View的显示函数。
 

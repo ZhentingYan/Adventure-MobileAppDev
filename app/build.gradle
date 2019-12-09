@@ -51,13 +51,13 @@ dependencies {
     //搜索功能
     implementation 'com.amap.api:search:latest.integration'
     implementation 'liji.library.dev:citypickerview:5.0.0'
+//    implementation files('./thirdParty/ormlite-android-5.1.jar')
     //ORMLite
     implementation group: 'com.j256.ormlite', name: 'ormlite-android', version: '5.1'
     implementation 'com.j256.ormlite:ormlite-core:5.1'
-    //选择图片
-    implementation 'com.lzy.widget:imagepicker:0.6.1'
-
-    configurations {
-        all*.exclude group: 'com.android.support', module: 'support-v4'
+    //implementation 'com.lzy.widget:imagepicker:0.6.1'  //指定版本
+    api('com.cysion:ImagePicker:1.0.8'){
+        exclude group: 'com.android.support'
     }
+
 }

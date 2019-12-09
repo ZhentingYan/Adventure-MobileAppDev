@@ -4,29 +4,20 @@ package com.tongjisse.adventure.view.views.UserAuthentication.Registration
 import android.graphics.Color
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import android.support.v4.app.FragmentManager
-import android.support.v4.app.FragmentTransaction
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.EditText
 import android.widget.Toast
-
 import com.tongjisse.adventure.R
-import com.tongjisse.adventure.dao.UserInfoDao
-
-import java.util.regex.Matcher
-import java.util.regex.Pattern
+import com.tongjisse.adventure.model.dao.UserInfoDao
 import kotlinx.android.synthetic.main.fragment_register_email.*
-
+import java.util.regex.Pattern
 
 
 class RegisterEmailFragment : Fragment() {
-    private val userDao=UserInfoDao()
+    private val userDao = UserInfoDao()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_register_email, container, false)
@@ -55,10 +46,9 @@ class RegisterEmailFragment : Fragment() {
             bRegProceed.setTextColor(Color.parseColor("#ff6666"))
             bRegProceed.setOnClickListener {
                 EMAIL = etEmail.text.toString()
-                if(userDao.queryInfoByEmail(EMAIL)!=null){
-                    Toast.makeText(context,"该邮箱已被注册",Toast.LENGTH_SHORT).show()
-                }
-                else {
+                if (userDao.queryInfoByEmail(EMAIL) != null) {
+                    Toast.makeText(context, "该邮箱已被注册", Toast.LENGTH_SHORT).show()
+                } else {
                     val fragmentManager = fragmentManager
                     val fragmentTransaction = fragmentManager!!.beginTransaction()
                     val registerPasswordFragment = RegisterPasswordFragment()

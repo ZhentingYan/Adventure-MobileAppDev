@@ -2,43 +2,116 @@ package com.tongjisse.adventure.utils
 
 import android.content.Context
 import android.content.Intent
-import android.content.SharedPreferences
 import com.tongjisse.adventure.view.views.Welcome.WelcomeActivity
 
+/**
+ * SessionManager Used for quick SharedPreferences Get and Set
+ * @author ZhentingYan
+ */
+
 class SessionManager(private val context: Context?) {
-    private val sessionSP: SharedPreferences
-    private val editor: SharedPreferences.Editor
-    private val IS_LOGIN = "IS_LOGIN"
+    //SharedPreferencesUtils Instance
+    var utils = SharedPreferencesUtils.getInstance(context)
+    /**
+     * A set of param members with getters and setters
+     * @author ZhentingYan
+     */
+    var isLoggedIn: Boolean = false
+        get() = utils.readBoolean(IS_LOGIN, false)
+        set(value) {
+            utils.writeBoolean(IS_LOGIN, value)
+            field = value
+        }
+    var email: String = ""
+        get() = utils.readString(EMAIL, "")
+        set(value) {
+            utils.writeString(EMAIL, value)
+            field = value
+        }
+    var firstName: String = ""
+        get() = utils.readString(FIRST_NAME, "")
+        set(value) {
+            utils.writeString(FIRST_NAME, value)
+            field = value
+        }
+    var lastName: String = ""
+        get() = utils.readString(LAST_NAME, "")
+        set(value) {
+            utils.writeString(LAST_NAME, value)
+            field = value
+        }
+    var phoneNum: String = ""
+        get() = utils.readString(PHONE_NUM, "")
+        set(value) {
+            utils.writeString(PHONE_NUM, value)
+            field = value
+        }
+    var district: String = ""
+        get() = utils.readString(DISTRICT_NAME, "")
+        set(value) {
+            utils.writeString(DISTRICT_NAME, value)
+            field = value
+        }
+    var province: String = ""
+        get() = utils.readString(PROVINCE_NAME, "")
+        set(value) {
+            utils.writeString(PROVINCE_NAME, value)
+            field = value
+        }
+    var city: String = ""
+        get() = utils.readString(CITY_NAME, "")
+        set(value) {
+            utils.writeString(CITY_NAME, value)
+            field = value
+        }
+    var defaultAddress: String = ""
+        get() = this.province + " " + this.city + " " + this.district
 
-    val isLoggedIn: Boolean
-        get() = sessionSP.getBoolean(IS_LOGIN, false)
+    var longitude: String = ""
+        get() = utils.readString(LONGITUDE, "")
+        set(value) {
+            utils.writeString(LONGITUDE, value)
+            field = value
+        }
+    var latitude: String = ""
+        get() = utils.readString(LATITUDE, "")
+        set(value) {
+            utils.writeString(LATITUDE, value)
+            field = value
+        }
 
-    init {
-        sessionSP = this.context!!.getSharedPreferences(SESSION_SP, Context.MODE_PRIVATE)
-        editor = sessionSP.edit()
+    /**
+     * Call this Function when user successfully log in
+     * @author ZhentingYan
+     */
+    fun createLoginSession(email: String, firstName: String, lastName: String, phoneNum: String) {
+        this.isLoggedIn = true
+        this.email = email
+        this.firstName = firstName
+        this.lastName = lastName
+        this.phoneNum = phoneNum
     }
 
-    fun createLoginSession(id: Int, email: String, firstName: String, lastName: String, phoneNum: String) {
-        editor.putBoolean(IS_LOGIN, true)
-
-        editor.putInt(USER_ID, id)
-
-        editor.putString(EMAIL, email)
-
-        editor.putString(FIRST_NAME, firstName)
-
-        editor.putString(LAST_NAME, lastName)
-
-        editor.putString(PHONE_NUM, phoneNum)
-
-        editor.apply()
+    /**
+     * Call this Function when location info has changed
+     * @author ZhentingYan
+     */
+    fun refineLocation(province: String, city: String, district: String, longitude: String, latitude: String) {
+        this.province = province
+        this.city = city
+        this.district = district
+        this.longitude = longitude
+        this.latitude = latitude
     }
 
+    /**
+     * Call this Function when user log out
+     * @author ZhentingYan
+     */
     fun logoutUser() {
         // Clearing all data from Shared Preferences
-        editor.clear()
-        editor.apply()
-        // After logout redirect user to Loing Activity
+        utils.clearAll();
+        // After logout redirect user to LogIn Activity
         val intent = Intent(context, WelcomeActivity::class.java)
         // Add new Flag to start new Activity
         // Closing all the Activities
@@ -47,24 +120,17 @@ class SessionManager(private val context: Context?) {
         context!!.startActivity(intent)
     }
 
-    fun checkLogin() {
-        // Check login status
-        if (isLoggedIn) {
-            //Loading Menu Activity未完成
-            /*
-            val intent = Intent(context, LoadingMenuActivity::class.java)
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
-            context.startActivity(intent)
-            */
-        }
-    }
-
+    //Common used final Strings
     companion object {
-        val SESSION_SP = "SESSION_SP"
-        val USER_ID = "USER_ID"
         val EMAIL = "EMAIL"
         val FIRST_NAME = "FIRST_NAME"
         val LAST_NAME = "LAST_NAME"
         val PHONE_NUM = "PHONE_NUM"
+        val DISTRICT_NAME = "DISTRICT_NAME"
+        val IS_LOGIN = "IS_LOGIN"
+        val PROVINCE_NAME = "PROVINCE_NAME"
+        val CITY_NAME = "CITY_NAME"
+        val LATITUDE = "LATITUDE"
+        val LONGITUDE = "LONGITUDE"
     }
 }

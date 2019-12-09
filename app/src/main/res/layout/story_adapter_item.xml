@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/layoutStory"
+    android:id="@+id/layoutHome"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:padding="20dp">
 
     <ImageView
-        android:id="@+id/imgStory"
+        android:id="@+id/ivStory"
         android:layout_width="wrap_content"
         android:layout_height="202dp"
         android:scaleType="fitXY" />
@@ -18,41 +17,42 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-<!--        <TextView-->
-<!--            android:id="@+id/storyTime"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:text="Entire House "-->
-<!--            android:textStyle="normal|bold"/>-->
-
-<!--        <TextView-->
-<!--            android:id="@+id/storySeperate"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:text=" - "-->
-<!--            android:textStyle="normal|bold"/>-->
         <TextView
-            android:id="@+id/storyPlace"
+            android:id="@+id/tvFirstName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Shanghai, China"
+            android:text="严"
+            android:textStyle="normal|bold" />
+
+        <TextView
+            android:id="@+id/tvSeperate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" "
+            android:textStyle="normal|bold" />
+
+        <TextView
+            android:id="@+id/tvLastName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="祯颋"
             android:textStyle="normal|bold" />
     </LinearLayout>
 
     <TextView
-        android:id="@+id/storyTitle"
+        android:id="@+id/tvStoryTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Joshua Tree Homesteader Cabin"
-        android:textSize="20sp"
-        android:textStyle="normal|bold"
         android:ellipsize="end"
-        android:maxLines="2"/>
+        android:maxLines="2"
+        android:text="Shanghai Disneyland One-day Trip"
+        android:textSize="20sp"
+        android:textStyle="normal|bold" />
 
     <TextView
-        android:id="@+id/storyTime"
+        android:id="@+id/tvDate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="2020/13/13"
+        android:text="2019年11月16日"
         android:textSize="14sp" />
 </LinearLayout>
