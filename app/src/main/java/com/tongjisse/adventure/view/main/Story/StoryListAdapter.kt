@@ -28,7 +28,7 @@ class StoryListAdapter(
         firstName.text = storyList.user.firstName
         lastName.text = storyList.user.lastName
         title.text = storyList.title
-        date.text = storyList.time
+        date.text = storyList.time.split(" ").get(0)
         ivStory.loadImage(storyList.photo.path)
 
 

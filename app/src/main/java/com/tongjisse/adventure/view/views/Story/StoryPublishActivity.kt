@@ -22,6 +22,7 @@ import com.tongjisse.adventure.data.bean.UserInfo
 import com.tongjisse.adventure.presenter.Story.StoryPublishPresenter
 import com.tongjisse.adventure.utils.GlideImageLoaderHelper
 import com.tongjisse.adventure.utils.SessionManager
+import com.tongjisse.adventure.utils.TimeUtils
 import com.tongjisse.adventure.view.common.BaseActivityWithPresenter
 import com.tongjisse.adventure.view.common.loadImage
 import com.tongjisse.adventure.view.common.toast
@@ -103,7 +104,7 @@ class StoryPublishActivity : BaseActivityWithPresenter(), StoryPublishView {
             story.title = etTitle.text.toString()
             story.place = etPlace.text.toString()
             story.content = etContent.text.toString()
-            story.time = getNow()
+            story.time = TimeUtils.getNow()
 
             addStory(story)
         }
@@ -205,13 +206,5 @@ class StoryPublishActivity : BaseActivityWithPresenter(), StoryPublishView {
         applicationContext.toast("受到神秘力量的影响，获取用户信息失败......")
     }
 
-    fun getNow(): String {
-        if (android.os.Build.VERSION.SDK_INT >= 24) {
-            return SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS").format(Date())
-        } else {
-            var tms = Calendar.getInstance()
-            return tms.get(Calendar.YEAR).toString() + "-" + tms.get(Calendar.MONTH).toString() + "-" + tms.get(Calendar.DAY_OF_MONTH).toString() + " " + tms.get(Calendar.HOUR_OF_DAY).toString() + ":" + tms.get(Calendar.MINUTE).toString() + ":" + tms.get(Calendar.SECOND).toString() + "." + tms.get(Calendar.MILLISECOND).toString()
-        }
 
-    }
 }
