@@ -56,6 +56,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
+                    android:fontFamily="serif"
                     android:text="我在："
                     android:textSize="14dp" />
 
@@ -63,6 +64,7 @@
                     android:id="@+id/tvLocation"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="serif"
                     android:text="上海市 上海市"
                     android:textSize="14dp" />
 
@@ -102,6 +104,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="#f5f5f5"
+                        android:fontFamily="serif"
                         android:hint="你想要去当地的什么景点呢？"
                         android:textSize="14dp" />
                 </LinearLayout>
@@ -146,7 +149,8 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="正在为您探索附近的景点......"
-                android:textSize="19dp" />
+                android:textSize="19dp"
+                android:fontFamily="serif" />
         </LinearLayout>
 
     </RelativeLayout>

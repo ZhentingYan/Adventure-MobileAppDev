@@ -12,7 +12,9 @@ class StoryListPresenter(
     fun showStoryList(email: String) {
         try {
             var userStoryList = storyDao.queryStoryByEmail(email)
-            listView.getUserStoryListsSuccess(userStoryList)
+            if(userStoryList!=null)
+                listView.getUserStoryListsSuccess(userStoryList)
+            else listView.getUserStoryListsFailed(null)
         } catch (error: SQLException) {
             listView.getUserStoryListsFailed(error)
         }

@@ -5,5 +5,5 @@ import java.sql.SQLException
 
 interface StoryListView {
     fun getUserStoryListsSuccess(userStoryLists: List<StoryList>)
-    fun getUserStoryListsFailed(error: SQLException)
+    fun getUserStoryListsFailed(error: SQLException?)
 }

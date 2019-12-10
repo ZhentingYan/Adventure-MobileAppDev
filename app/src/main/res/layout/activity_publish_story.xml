@@ -2,6 +2,7 @@
 
 
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/rootLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -40,6 +41,7 @@
                         android:layout_alignParentStart="true"
                         android:layout_alignParentLeft="true"
                         android:layout_alignParentTop="true"
+                        android:fontFamily="serif"
                         android:text="发布您的旅行故事"
                         android:textSize="30sp"
                         android:textStyle="normal|bold" />
@@ -55,37 +57,29 @@
 
 
                     <TextView
-<<<<<<< HEAD
-                        android:id="@+id/tvCountry"
-=======
                         android:id="@+id/tvTitle"
->>>>>>> 07c9524f5977b3d98e481c08f7ea7e5c9196886f
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentStart="true"
                         android:layout_alignParentLeft="true"
                         android:layout_alignParentTop="true"
+                        android:fontFamily="serif"
                         android:text="标题"
                         android:textSize="14sp"
                         android:textStyle="normal|bold" />
 
                     <EditText
-<<<<<<< HEAD
-                        android:id="@+id/etCountryInput"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/tvCountry"
-=======
                         android:id="@+id/etTitle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_below="@id/tvTitle"
->>>>>>> 07c9524f5977b3d98e481c08f7ea7e5c9196886f
                         android:layout_marginTop="10dp"
                         android:background="@null"
+                        android:fontFamily="serif"
                         android:hint="e.g 逆风如解意，容易莫摧残"
                         android:imeOptions="actionDone"
                         android:inputType="text"
+                        android:singleLine="false"
                         android:textColor="@android:color/tab_indicator_text"
                         android:textSize="18sp" />
 
@@ -116,26 +110,35 @@
                         android:layout_alignParentStart="true"
                         android:layout_alignParentLeft="true"
                         android:layout_alignParentTop="true"
+                        android:fontFamily="serif"
                         android:text="旅行城市"
                         android:textSize="14sp"
                         android:textStyle="normal|bold" />
 
-                    <EditText
-                        android:id="@+id/etDistrict"
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_below="@+id/tvExtraDetails"
-                        android:layout_alignParentStart="true"
-                        android:layout_alignParentLeft="true"
-                        android:layout_marginTop="10dp"
-                        android:background="@null"
-                        android:hint="上海市 上海市 静安区"
-                        android:imeOptions="actionDone"
-                        android:inputType="text"
-                        android:outlineProvider="none"
-                        android:padding="0dp"
-                        android:textColor="@android:color/tab_indicator_text"
-                        android:textSize="18sp" />
+                        android:layout_below="@id/tvExtraDetails"
+                        android:paddingEnd="20dp">
+
+                        <ImageView
+                            android:id="@+id/ivLocation"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_marginTop="15dp"
+                            app:srcCompat="@drawable/location" />
+
+                        <TextView
+                            android:id="@+id/tvDistrictSelect"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="5dp"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginTop="17dp"
+                            android:fontFamily="serif"
+                            android:text="上海市 上海市 嘉定区" />
+
+                    </LinearLayout>
                 </RelativeLayout>
 
                 <View
@@ -165,6 +168,7 @@
                         android:layout_alignParentLeft="true"
                         android:layout_marginTop="10dp"
                         android:background="@null"
+                        android:fontFamily="serif"
                         android:hint="e.g. London"
                         android:imeOptions="actionDone"
                         android:inputType="text|textMultiLine"
@@ -180,6 +184,7 @@
                         android:layout_alignParentStart="true"
                         android:layout_alignParentLeft="true"
                         android:layout_alignParentTop="true"
+                        android:fontFamily="serif"
                         android:text="旅行故事正文"
                         android:textSize="14sp"
                         android:textStyle="normal|bold" />
@@ -203,24 +208,6 @@
                     android:paddingTop="10dp"
                     android:paddingBottom="10dp">
 
-<<<<<<< HEAD
-                    <EditText
-                        android:id="@+id/etStateInput"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/tvPhoto"
-                        android:layout_alignParentStart="true"
-                        android:layout_alignParentLeft="true"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginBottom="90dp"
-                        android:background="@null"
-                        android:hint="e.g. Washington"
-                        android:imeOptions="actionDone"
-                        android:inputType="text"
-                        android:padding="0dp"
-                        android:textColor="@android:color/tab_indicator_text"
-                        android:textSize="18sp" />
-=======
                     <ImageView
                         android:id="@+id/ivPickImg"
                         android:layout_width="70dp"
@@ -229,7 +216,6 @@
                         android:layout_marginTop="10dp"
                         android:scaleType="centerCrop"
                         android:src="@drawable/selector_image_add" />
->>>>>>> 07c9524f5977b3d98e481c08f7ea7e5c9196886f
 
                     <TextView
                         android:id="@+id/tvPhoto"
@@ -238,6 +224,7 @@
                         android:layout_alignParentStart="true"
                         android:layout_alignParentLeft="true"
                         android:layout_alignParentTop="true"
+                        android:fontFamily="serif"
                         android:text="上传一张图片"
                         android:textSize="14sp"
                         android:textStyle="normal|bold" />
@@ -269,6 +256,7 @@
                         android:layout_alignParentLeft="true"
                         android:layout_marginTop="10dp"
                         android:background="@null"
+                        android:fontFamily="serif"
                         android:hint="e.g 静安寺"
                         android:imeOptions="actionDone"
                         android:inputType="text"
@@ -283,7 +271,8 @@
                         android:layout_alignParentStart="true"
                         android:layout_alignParentLeft="true"
                         android:layout_alignParentTop="true"
-                        android:text="旅行故事中的景点"
+                        android:fontFamily="serif"
+                        android:text="故事中的景点"
                         android:textSize="14sp"
                         android:textStyle="normal|bold" />
 

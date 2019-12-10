@@ -26,22 +26,6 @@
                 android:background="@drawable/image_view_background"
                 android:scaleType="fitXY" />
 
-            <ImageView
-                android:id="@+id/imageView"
-                android:layout_width="28dp"
-                android:layout_height="28dp"
-                android:layout_alignEnd="@+id/ivWish"
-                android:layout_alignParentStart="false"
-                android:layout_alignParentLeft="false"
-                android:layout_alignParentTop="false"
-                android:layout_alignParentEnd="false"
-                android:layout_alignParentRight="@id/ivWish"
-                android:layout_alignParentBottom="@id/ivWish"
-                android:layout_centerInParent="false"
-                android:layout_centerHorizontal="false"
-                android:layout_centerVertical="false"
-                app:srcCompat="@drawable/unliked" />
-
         </RelativeLayout>
 
         <TextView
@@ -51,6 +35,7 @@
             android:layout_below="@id/ivWish"
             android:layout_alignEnd="@+id/ivWish"
             android:layout_marginTop="3dp"
+            android:fontFamily="serif"
             android:text="同济大学嘉定校区"
             android:textColor="@color/bank_FF6C6C6C"
             android:textSize="15dp"
@@ -78,6 +63,7 @@
                         android:layout_width="146dp"
                         android:layout_height="match_parent"
                         android:layout_marginStart="5dp"
+                        android:fontFamily="serif"
                         android:textSize="14dp"
                         tools:text="测试测试" />
                 </ScrollView>
@@ -99,7 +85,7 @@
 
             <TextView
                 android:id="@+id/tvDistance"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/ivWish"
                 android:layout_marginStart="5dp"
@@ -107,6 +93,7 @@
                 android:layout_marginRight="17dp"
                 android:layout_toLeftOf="@+id/tvSceneName"
                 android:layout_toEndOf="@+id/ivAddress"
+                android:fontFamily="serif"
                 android:text="30m"
                 android:textSize="14dp" />
 

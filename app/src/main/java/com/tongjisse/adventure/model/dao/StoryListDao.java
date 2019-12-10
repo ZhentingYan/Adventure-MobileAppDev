@@ -92,7 +92,7 @@ public class StoryListDao {
         UserInfoDao userDao = new UserInfoDao();
         UserInfo user = userDao.queryInfoByEmail(email);
         List<StoryList> tempStoryLists = queryStoryByUser(user);
-        if (tempStoryLists.size() < 1) {
+        if (tempStoryLists==null || tempStoryLists.size() < 1) {
             return null;
         } else {
             Log.d(TAG, "queryInfoByUser: "+ tempStoryLists.toString()+ tempStoryLists.size());

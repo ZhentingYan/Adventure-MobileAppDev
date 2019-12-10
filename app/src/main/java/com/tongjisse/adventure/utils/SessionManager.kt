@@ -2,6 +2,7 @@ package com.tongjisse.adventure.utils
 
 import android.content.Context
 import android.content.Intent
+import android.provider.ContactsContract
 import com.tongjisse.adventure.view.views.Welcome.WelcomeActivity
 
 /**
@@ -79,17 +80,31 @@ class SessionManager(private val context: Context?) {
             utils.writeString(LATITUDE, value)
             field = value
         }
+    var age: Int = 0
+        get() = utils.readInteger(AGE, 0)
+        set(value) {
+            utils.writeInteger(AGE, value)
+            field = value
+        }
+    var password: String = ""
+        get() = utils.readString(PASSWORD, "")
+        set(value) {
+            utils.writeString(PASSWORD, value)
+            field = value
+        }
 
     /**
      * Call this Function when user successfully log in
      * @author ZhentingYan
      */
-    fun createLoginSession(email: String, firstName: String, lastName: String, phoneNum: String) {
+    fun createLoginSession(email: String, firstName: String, lastName: String, phoneNum: String,age:Int,password:String) {
         this.isLoggedIn = true
         this.email = email
         this.firstName = firstName
         this.lastName = lastName
         this.phoneNum = phoneNum
+        this.age=age
+        this.password=password
     }
 
     /**
@@ -132,5 +147,7 @@ class SessionManager(private val context: Context?) {
         val CITY_NAME = "CITY_NAME"
         val LATITUDE = "LATITUDE"
         val LONGITUDE = "LONGITUDE"
+        val PASSWORD="PASSWORD"
+        val AGE="AGE"
     }
 }

@@ -20,13 +20,8 @@ class ScenicSpotDetailPresenter(
         val result = this.repository.getScenicSpotDetails(id)
         subscription += result
                 .applySchedulers()
-<<<<<<< HEAD
-                // .doOnSubscribe{view.refresh=true}
-                // .doFinally{view.refresh=false}
-=======
                 // .doOnSubscribe{listView.refresh=true}
                 // .doFinally{listView.refresh=false}
->>>>>>> 07c9524f5977b3d98e481c08f7ea7e5c9196886f
                 .subscribeBy(
                         onSuccess = view::show,
                         onError = view::showError

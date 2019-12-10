@@ -44,11 +44,18 @@ class StoryListFragment : BaseFragmentWithPresenter(), StoryListView {
         }
     }
 
-    override fun getUserStoryListsFailed(error: SQLException) {
-        ErrorLayout.visibility = View.VISIBLE
-        storyRecyclerView.visibility = View.GONE
-        tvError.text = "加载游记失败......"
-        context!!.toast("加载游记失败，错误信息:${error.message}")
+    override fun getUserStoryListsFailed(error: SQLException?) {
+        if(error!=null){
+            ErrorLayout.visibility = View.VISIBLE
+            storyRecyclerView.visibility = View.GONE
+            tvError.text = "加载游记失败......"
+            context!!.toast("加载游记失败，错误信息:${error.message}")
+        }else{
+            ErrorLayout.visibility = View.VISIBLE
+            storyRecyclerView.visibility = View.GONE
+            tvError.text = "在${mSessionManager.district}还没有游记哦～"
+        }
+
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -57,7 +64,7 @@ class StoryListFragment : BaseFragmentWithPresenter(), StoryListView {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        storyRecyclerView.layoutManager = GridLayoutManager(context, 3)
+        storyRecyclerView.layoutManager = GridLayoutManager(context, 1)
         mSessionManager = SessionManager(context)
         presenter.showStoryList(mSessionManager.email)
 

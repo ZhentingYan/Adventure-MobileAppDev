@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Adventure</string>
+    <string-array name="search_entries">
+        <item>标题</item>
+        <item>景点</item>
+    </string-array>
 </resources>

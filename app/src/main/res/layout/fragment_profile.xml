@@ -18,6 +18,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
+            android:fontFamily="serif"
             android:text="严 祯颋"
             android:textSize="24sp"
             android:textStyle="normal|bold" />
@@ -29,6 +30,7 @@
             android:layout_below="@+id/tvName"
             android:layout_alignParentStart="true"
             android:layout_alignParentLeft="true"
+            android:fontFamily="serif"
             android:text="查看或编辑您的档案"
             android:textColor="@color/black"
             android:textSize="17dp" />
@@ -40,6 +42,7 @@
             android:layout_alignParentStart="true"
             android:layout_alignParentLeft="true"
             android:layout_marginTop="14dp"
+            android:fontFamily="serif"
             android:text="今天你想去哪里？来Adventure探索您的未知之旅！"
             android:textSize="15dp" />
 
@@ -78,6 +81,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="25dp"
+                android:fontFamily="serif"
                 android:text="我的心愿单"
                 android:textSize="20dp" />
 
@@ -109,6 +113,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="25dp"
 
+                android:fontFamily="serif"
                 android:text="我的旅行故事"
                 android:textSize="20dp" />
 
@@ -139,6 +144,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="25dp"
+                android:fontFamily="serif"
                 android:text="摇一摇寻找神秘"
                 android:textSize="20dp" />
 
@@ -169,6 +175,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="25dp"
+                android:fontFamily="serif"
                 android:text="登出"
                 android:textSize="20dp" />
 

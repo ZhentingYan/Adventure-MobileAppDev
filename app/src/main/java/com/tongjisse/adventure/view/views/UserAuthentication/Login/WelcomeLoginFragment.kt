@@ -23,7 +23,7 @@ class WelcomeLoginFragment : BaseFragmentWithPresenter(), WelcomeLoginView {
     override val presenter by lazy { WelcomeLoginPresenter(this) }
     lateinit var mSessionManager: SessionManager
     override fun LoginSuccess(userInfo: UserInfo) {
-        mSessionManager.createLoginSession(userInfo.emailAddress, userInfo.firstName, userInfo.lastName, userInfo.phoneNum)
+        mSessionManager.createLoginSession(userInfo.emailAddress, userInfo.firstName, userInfo.lastName, userInfo.phoneNum,userInfo.age,userInfo.password)
         val intent = Intent(activity, MenuActivity::class.java)
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
         startActivity(intent)

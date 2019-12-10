@@ -33,7 +33,7 @@ class PhoneNumFragment : BaseFragmentWithPresenter(), RegisterView {
     }
 
     override fun RegisterSuccess(userInfo: UserInfo) {
-        mSessionManager.createLoginSession(userInfo.emailAddress, userInfo.firstName, userInfo.lastName, userInfo.phoneNum)
+        mSessionManager.createLoginSession(userInfo.emailAddress, userInfo.firstName, userInfo.lastName, userInfo.phoneNum,userInfo.age,userInfo.password)
         val intent = Intent(activity, MenuActivity::class.java)
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
         startActivity(intent)
@@ -67,7 +67,7 @@ class PhoneNumFragment : BaseFragmentWithPresenter(), RegisterView {
             PHONENUM = etPhone.text.toString()
             // Add to database
             presenter.registerUserInfo(RegisterNameFragment.FIRST_NAME, RegisterNameFragment.LAST_NAME,
-                    RegisterPasswordFragment.PASSWORD, RegisterEmailFragment.EMAIL, PHONENUM)
+                    RegisterPasswordFragment.PASSWORD, RegisterEmailFragment.EMAIL, PHONENUM,RegisterAgeFragment.AGE)
         }
 
         val textWatcher = object : TextWatcher {
@@ -91,6 +91,4 @@ class PhoneNumFragment : BaseFragmentWithPresenter(), RegisterView {
     companion object {
         lateinit var PHONENUM: String
     }
-
-
 }

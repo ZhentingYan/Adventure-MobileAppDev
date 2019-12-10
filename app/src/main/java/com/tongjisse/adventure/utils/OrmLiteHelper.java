@@ -8,10 +8,7 @@ import com.j256.ormlite.android.apptools.OrmLiteSqliteOpenHelper;
 import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.support.ConnectionSource;
 import com.j256.ormlite.table.TableUtils;
-<<<<<<< HEAD
-=======
 import com.tongjisse.adventure.data.bean.StoryList;
->>>>>>> 07c9524f5977b3d98e481c08f7ea7e5c9196886f
 import com.tongjisse.adventure.data.bean.UserInfo;
 import com.tongjisse.adventure.data.bean.WishList;
 
@@ -80,11 +77,7 @@ public class OrmLiteHelper extends OrmLiteSqliteOpenHelper {
         try {
             TableUtils.createTable(connectionSource, UserInfo.class);
             TableUtils.createTable(connectionSource, WishList.class);
-<<<<<<< HEAD
-
-=======
             TableUtils.createTable(connectionSource, StoryList.class);
->>>>>>> 07c9524f5977b3d98e481c08f7ea7e5c9196886f
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -95,10 +88,7 @@ public class OrmLiteHelper extends OrmLiteSqliteOpenHelper {
         try {
             TableUtils.dropTable(connectionSource, UserInfo.class, true);
             TableUtils.dropTable(connectionSource, WishList.class, true);
-<<<<<<< HEAD
-=======
             TableUtils.dropTable(connectionSource, StoryList.class, true);
->>>>>>> 07c9524f5977b3d98e481c08f7ea7e5c9196886f
             onCreate(database, connectionSource);
         } catch (SQLException e) {
             e.printStackTrace();

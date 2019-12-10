@@ -9,8 +9,8 @@ import java.sql.SQLException
 class RegisterPresenter(val view: RegisterView) : BasePresenter() {
     val userDao = UserInfoDao()
 
-    fun registerUserInfo(firstName: String, lastName: String, password: String, emailAddress: String, phoneNum: String) {
-        val userInfo = UserInfo(firstName, lastName, password, emailAddress, phoneNum)
+    fun registerUserInfo(firstName: String, lastName: String, password: String, emailAddress: String, phoneNum: String,age:Int) {
+        val userInfo = UserInfo(firstName, lastName, password, emailAddress, phoneNum,age)
         try {
             userDao.addInfo(userInfo)
             view.RegisterSuccess(userInfo)

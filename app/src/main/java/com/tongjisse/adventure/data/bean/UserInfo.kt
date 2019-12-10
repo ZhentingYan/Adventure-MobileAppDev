@@ -15,7 +15,9 @@ class UserInfo(
         @DatabaseField(id = true, columnName = "emailAddress", canBeNull = false, unique = true)
         var emailAddress: String,
         @DatabaseField(columnName = "phoneNum")
-        var phoneNum: String
+        var phoneNum: String,
+        @DatabaseField(columnName = "age")
+        var age: Int
 ) {
     // OrmLite 必须有无参数构造函数
     constructor() : this(
@@ -23,6 +25,7 @@ class UserInfo(
             lastName = "",
             password = "",
             emailAddress = "",
-            phoneNum = ""
+            phoneNum = "",
+            age=0
     )
 }

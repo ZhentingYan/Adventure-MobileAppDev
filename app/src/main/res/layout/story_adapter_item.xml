@@ -1,30 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/layoutHome"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:padding="20dp">
+    android:paddingStart="20dp"
+    android:paddingLeft="20dp"
+    android:paddingTop="20dp"
+    android:paddingEnd="20dp"
+    android:paddingRight="20dp">
 
     <ImageView
         android:id="@+id/ivStory"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="202dp"
-        android:scaleType="fitXY" />
+        android:scaleType="fitXY"
+        app:srcCompat="@drawable/travellers" />
+
+    <TextView
+        android:id="@+id/tvStoryTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:fontFamily="serif"
+        android:text="Shanghai Disneyland One-day Trip"
+        android:textSize="20sp"
+        android:textStyle="normal|bold" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
         android:orientation="horizontal">
 
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="match_parent"
+            app:srcCompat="@drawable/profile_logo" />
+
         <TextView
-<<<<<<< HEAD:app/src/main/res/layout/story_adapter_item.xml
-            android:id="@+id/tvFirstname"
-=======
             android:id="@+id/tvFirstName"
->>>>>>> 07c9524f5977b3d98e481c08f7ea7e5c9196886f:app/src/main/res/layout/story_adapter_item.xml
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:fontFamily="serif"
             android:text="严"
             android:textStyle="normal|bold" />
 
@@ -36,31 +56,32 @@
             android:textStyle="normal|bold" />
 
         <TextView
-<<<<<<< HEAD:app/src/main/res/layout/story_adapter_item.xml
-            android:id="@+id/tvLastname"
-=======
             android:id="@+id/tvLastName"
->>>>>>> 07c9524f5977b3d98e481c08f7ea7e5c9196886f:app/src/main/res/layout/story_adapter_item.xml
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="serif"
             android:text="祯颋"
             android:textStyle="normal|bold" />
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/tvStoryTitle"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ellipsize="end"
-        android:maxLines="2"
-        android:text="Shanghai Disneyland One-day Trip"
-        android:textSize="20sp"
-        android:textStyle="normal|bold" />
+        android:layout_marginTop="5dp">
 
-    <TextView
-        android:id="@+id/tvDate"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="2019年11月16日"
-        android:textSize="14sp" />
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            app:srcCompat="@drawable/story_logo" />
+
+        <TextView
+            android:id="@+id/tvDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:text="2019年11月16日"
+            android:textSize="14sp"
+            android:fontFamily="serif" />
+    </LinearLayout>
+
 </LinearLayout>

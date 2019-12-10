@@ -1,8 +1,10 @@
 package com.tongjisse.adventure.view.views.Story
 
 import android.app.Activity
+import android.content.Intent
 import android.content.Intent.getIntent
 import android.os.Bundle
+import android.view.View
 import android.view.Window
 import com.tongjisse.adventure.R
 import com.tongjisse.adventure.data.bean.StoryList
@@ -40,6 +42,16 @@ class StoryDetailActivity : BaseActivityWithPresenter(), StoryDetailView {
         mSessionManager = SessionManager(applicationContext)
         presenter.getStory(intent.getStringExtra("id"))
         show()
+        if(mSessionManager.email.equals(story.user.emailAddress))
+          llOwner.visibility= View.VISIBLE
+        ivDelete.setOnClickListener {
+            presenter.delStoryList(story)
+        }
+        ivEdit.setOnClickListener {
+            val intent = Intent(it.context, StoryPublishActivity::class.java)
+            intent.putExtra("story", story)
+            it.context.startActivity(intent)
+        }
     }
 
     override fun onDestroy() {
@@ -51,7 +63,7 @@ class StoryDetailActivity : BaseActivityWithPresenter(), StoryDetailView {
         val intent = getIntent()
         intent.putExtra("del", true)
         setResult(Activity.RESULT_OK, intent)
-        finish()
+        this.finish()
     }
 
     override fun addStorySuccess(detail: StoryList) {

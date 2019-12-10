@@ -5,11 +5,17 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.View
 import android.view.Window
 import android.widget.AdapterView
 import android.widget.Toast
 import com.isseiaoki.simplecropview.FreeCropImageView
+import com.lljjcoder.Interface.OnCityItemClickListener
+import com.lljjcoder.bean.CityBean
+import com.lljjcoder.bean.DistrictBean
+import com.lljjcoder.bean.ProvinceBean
 import com.lzy.imagepicker.ImagePicker
 import com.lzy.imagepicker.ImagePicker.REQUEST_CODE_PREVIEW
 import com.lzy.imagepicker.bean.ImageItem
@@ -20,6 +26,7 @@ import com.tongjisse.adventure.R
 import com.tongjisse.adventure.data.bean.StoryList
 import com.tongjisse.adventure.data.bean.UserInfo
 import com.tongjisse.adventure.presenter.Story.StoryPublishPresenter
+import com.tongjisse.adventure.utils.CityPickerHelper
 import com.tongjisse.adventure.utils.GlideImageLoaderHelper
 import com.tongjisse.adventure.utils.SessionManager
 import com.tongjisse.adventure.utils.TimeUtils
@@ -29,6 +36,8 @@ import com.tongjisse.adventure.view.common.toast
 import com.tongjisse.adventure.view.main.Story.StoryPublishView
 import com.tongjisse.adventure.view.views.Image.SelectDialog
 import kotlinx.android.synthetic.main.activity_publish_story.*
+import kotlinx.android.synthetic.main.activity_publish_story.bPublish
+import kotlinx.android.synthetic.main.fragment_story.*
 import java.sql.SQLException
 import java.text.SimpleDateFormat
 import java.util.*
@@ -40,10 +49,11 @@ class StoryPublishActivity : BaseActivityWithPresenter(), StoryPublishView {
     private val REQUEST_CODE_PREVIEW = 101
     private var selImage: ArrayList<ImageItem>? = null //当前选择的所有图片
     private val maxImgCount = 1               //允许选择图片最大数
-
     private var story = StoryList()
     private lateinit var user: UserInfo
     private lateinit var mSessionManager: SessionManager
+    private lateinit var mCityPickerHelper:CityPickerHelper
+    private var isEdit=false
     override val presenter by lazy { StoryPublishPresenter(this) }
 
 
@@ -52,8 +62,16 @@ class StoryPublishActivity : BaseActivityWithPresenter(), StoryPublishView {
         requestWindowFeature(Window.FEATURE_NO_TITLE)
         setContentView(R.layout.activity_publish_story)
         mSessionManager = SessionManager(applicationContext)
-        presenter.getUser(mSessionManager.email)
+        mCityPickerHelper= CityPickerHelper(applicationContext,object: OnCityItemClickListener(){
+            override fun onSelected(province: ProvinceBean?, city: CityBean?, district: DistrictBean?) {
+                mSessionManager.refineLocation(province!!.name, city!!.name, district!!.name, mSessionManager.longitude, mSessionManager.latitude)
+                tvDistrictSelect.text = mSessionManager.defaultAddress
+            }
+            override fun onCancel() {
 
+            }
+        })
+        presenter.getUser(mSessionManager.email)
         ivPickImg.setOnClickListener() {
             if (!imgAdded) {
                 val names = ArrayList<String>()
@@ -94,10 +112,37 @@ class StoryPublishActivity : BaseActivityWithPresenter(), StoryPublishView {
                 startActivityForResult(intentPreview, REQUEST_CODE_PREVIEW)
             }
         }
+        if(getIntent().getSerializableExtra("story")!=null){
+            isEdit=true
+            story=getIntent().getSerializableExtra("story") as StoryList
+            TODO("写一个activityInit函数，函数里面用从Intent传来的story进行界面的初始化，包括地址等")
+            activityInit(story)
+        }
+        etSearchStory.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+                //这里应该细化，根据Spinner选择
+                if (mSessionManager.district.equals("")) {
+                    mCityPickerHelper.showJD()
+                } else {
+                    when(spType.selectedItem.toString()){
+                        TODO("根据用户的选择，加载不同的故事")
+                        "标题"-> presenter.loadSharedSpacesWithTitle(etSearchAnywhere.text.toString(),mSessionManager.district)
+                        "景点"-> presenter.loadSharedSpacesWithType(etSearchAnywhere.text.toString(),mSessionManager.district)
+                    }
+                }
+            }
 
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+                //Not need to override
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                //Not need to override
+            }
+        })
         bPublish.setOnClickListener() {
             story.user = user
-            story.poi = etDistrict.text.toString()
+            story.poi = tvDistrictSelect.text.toString()
             if(selImage!=null) {
                 story.photo = selImage!!.get(0)
             }
@@ -105,13 +150,15 @@ class StoryPublishActivity : BaseActivityWithPresenter(), StoryPublishView {
             story.place = etPlace.text.toString()
             story.content = etContent.text.toString()
             story.time = TimeUtils.getNow()
-
+            TODO("这里需要区分，如果isEdit==true那么应该是update，如果==false那么是addStory")
             addStory(story)
         }
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
+        if(!mSessionManager.district.equals(""))
+            tvDistrictSelect.text=mSessionManager.defaultAddress
+        else tvDistrictSelect.text="无定位信息，请选择地址"
+        tvDistrictSelect.setOnClickListener {
+            mCityPickerHelper.showJD()
+        }
     }
 
     fun addStory(story: StoryList) {
@@ -205,6 +252,4 @@ class StoryPublishActivity : BaseActivityWithPresenter(), StoryPublishView {
     override fun userSqlError(error: SQLException) {
         applicationContext.toast("受到神秘力量的影响，获取用户信息失败......")
     }
-
-
 }

@@ -18,10 +18,7 @@ class WelcomeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_welcome)
-<<<<<<< HEAD
-=======
         initImagePicker()
->>>>>>> 07c9524f5977b3d98e481c08f7ea7e5c9196886f
         mSessionManager = SessionManager(this)
         /**
          * 如果SharedPreferences存在Session信息，则直接登陆
@@ -34,8 +31,6 @@ class WelcomeActivity : AppCompatActivity() {
             startActivity(intent)
             applicationContext!!.toast("${mSessionManager.firstName + mSessionManager.lastName}，欢迎探索Adventure")
         } else supportFragmentManager.beginTransaction().replace(R.id.progressFragment, WelcomeFragment()).commit()
-<<<<<<< HEAD
-=======
     }
 
     private fun initImagePicker() {
@@ -50,6 +45,5 @@ class WelcomeActivity : AppCompatActivity() {
         imagePicker.focusHeight = 800                      //裁剪框的高度。单位像素（圆形自动取宽高最小值）
         //imagePicker.outPutX = 1000                         //保存文件的宽度。单位像素
         //imagePicker.outPutY = 1000                         //保存文件的高度。单位像素
->>>>>>> 07c9524f5977b3d98e481c08f7ea7e5c9196886f
     }
 }
