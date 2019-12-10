@@ -37,7 +37,6 @@ import com.tongjisse.adventure.view.main.Story.StoryPublishView
 import com.tongjisse.adventure.view.views.Image.SelectDialog
 import kotlinx.android.synthetic.main.activity_publish_story.*
 import kotlinx.android.synthetic.main.activity_publish_story.bPublish
-import kotlinx.android.synthetic.main.fragment_story.*
 import java.sql.SQLException
 import java.text.SimpleDateFormat
 import java.util.*
@@ -118,28 +117,6 @@ class StoryPublishActivity : BaseActivityWithPresenter(), StoryPublishView {
             TODO("写一个activityInit函数，函数里面用从Intent传来的story进行界面的初始化，包括地址等")
             activityInit(story)
         }
-        etSearchStory.addTextChangedListener(object : TextWatcher {
-            override fun afterTextChanged(s: Editable?) {
-                //这里应该细化，根据Spinner选择
-                if (mSessionManager.district.equals("")) {
-                    mCityPickerHelper.showJD()
-                } else {
-                    when(spType.selectedItem.toString()){
-                        TODO("根据用户的选择，加载不同的故事")
-                        "标题"-> presenter.loadSharedSpacesWithTitle(etSearchAnywhere.text.toString(),mSessionManager.district)
-                        "景点"-> presenter.loadSharedSpacesWithType(etSearchAnywhere.text.toString(),mSessionManager.district)
-                    }
-                }
-            }
-
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-                //Not need to override
-            }
-
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                //Not need to override
-            }
-        })
         bPublish.setOnClickListener() {
             story.user = user
             story.poi = tvDistrictSelect.text.toString()
