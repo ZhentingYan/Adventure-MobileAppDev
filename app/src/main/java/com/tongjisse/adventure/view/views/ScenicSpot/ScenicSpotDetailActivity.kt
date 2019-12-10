@@ -17,7 +17,14 @@ import com.tongjisse.adventure.view.common.BaseActivityWithPresenter
 import com.tongjisse.adventure.view.common.loadImage
 import com.tongjisse.adventure.view.common.toast
 import com.tongjisse.adventure.view.main.ScenicSpot.ScenicSpotDetailView
+<<<<<<< HEAD
 import kotlinx.android.synthetic.main.fragment_scenicspot_desc.*
+=======
+import kotlinx.android.synthetic.main.activity_story_detail.*
+import kotlinx.android.synthetic.main.fragment_scenicspot_desc.*
+import kotlinx.android.synthetic.main.fragment_scenicspot_desc.tvPlaceTitle
+import kotlinx.android.synthetic.main.fragment_scenicspot_desc.tvPublisher
+>>>>>>> 07c9524f5977b3d98e481c08f7ea7e5c9196886f
 import java.sql.SQLException
 import java.text.DecimalFormat
 
@@ -39,6 +46,12 @@ class ScenicSpotDetailActivity : BaseActivityWithPresenter(), ScenicSpotDetailVi
      * Called by presenter when ScenicSpotDetials are got successfully
      * @param items:List<ScenicSpotDetail>
      * @author ZhentingYan
+<<<<<<< HEAD
+=======
+     *
+     * Comment: Fix error caused by parameter name's conflict
+     * @Modified: FeifanWang
+>>>>>>> 07c9524f5977b3d98e481c08f7ea7e5c9196886f
      */
     override fun show(items: List<ScenicSpotDetail>) {
         val detail = items[0]
@@ -47,7 +60,11 @@ class ScenicSpotDetailActivity : BaseActivityWithPresenter(), ScenicSpotDetailVi
         tvPublisher.text = detail.intro
         tvType.text = detail.type
         ivWish.loadImage(imageUrl)
+<<<<<<< HEAD
         tvStoryTitle.text = detail.name
+=======
+        tvPlaceTitle.text = detail.name
+>>>>>>> 07c9524f5977b3d98e481c08f7ea7e5c9196886f
         if (mSessionManager.latitude.equals("") || mSessionManager.longitude.equals("")) {
             tvDistance.text = "获取距离失败..."
         } else {

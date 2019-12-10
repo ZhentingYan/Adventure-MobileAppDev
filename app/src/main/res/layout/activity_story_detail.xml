@@ -37,7 +37,11 @@
             tools:context="googleplayservices.samples.android.teamtreehouse.com.airbnb.ExploreTab.HomeDescActivity">
 
             <ImageView
+<<<<<<< HEAD
                 android:id="@+id/ivWish"
+=======
+                android:id="@+id/ivStory"
+>>>>>>> 07c9524f5977b3d98e481c08f7ea7e5c9196886f
                 android:layout_width="match_parent"
                 android:layout_height="300dp"
                 android:background="@drawable/image_view_background">
@@ -116,7 +120,11 @@
                         android:textStyle="normal|bold" />
 
                     <TextView
+<<<<<<< HEAD
                         android:id="@+id/tvPublisher"
+=======
+                        android:id="@+id/tvStoryPublisher"
+>>>>>>> 07c9524f5977b3d98e481c08f7ea7e5c9196886f
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="10dp"

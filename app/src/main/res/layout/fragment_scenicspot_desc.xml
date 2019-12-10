@@ -70,7 +70,11 @@
 
 
                         <TextView
+<<<<<<< HEAD
                             android:id="@+id/tvStoryTitle"
+=======
+                            android:id="@+id/tvPlaceTitle"
+>>>>>>> 07c9524f5977b3d98e481c08f7ea7e5c9196886f
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="10dp"
@@ -83,7 +87,11 @@
                             android:id="@+id/tvPublishTime"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+<<<<<<< HEAD
                             android:layout_below="@id/tvStoryTitle"
+=======
+                            android:layout_below="@id/tvPlaceTitle"
+>>>>>>> 07c9524f5977b3d98e481c08f7ea7e5c9196886f
                             android:layout_marginTop="20dp"
                             android:layout_marginBottom="10dp"
                             android:text="景点类型"

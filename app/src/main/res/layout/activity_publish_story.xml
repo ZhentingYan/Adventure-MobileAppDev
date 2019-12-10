@@ -55,7 +55,11 @@
 
 
                     <TextView
+<<<<<<< HEAD
                         android:id="@+id/tvCountry"
+=======
+                        android:id="@+id/tvTitle"
+>>>>>>> 07c9524f5977b3d98e481c08f7ea7e5c9196886f
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentStart="true"
@@ -66,10 +70,17 @@
                         android:textStyle="normal|bold" />
 
                     <EditText
+<<<<<<< HEAD
                         android:id="@+id/etCountryInput"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_below="@id/tvCountry"
+=======
+                        android:id="@+id/etTitle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/tvTitle"
+>>>>>>> 07c9524f5977b3d98e481c08f7ea7e5c9196886f
                         android:layout_marginTop="10dp"
                         android:background="@null"
                         android:hint="e.g 逆风如解意，容易莫摧残"
@@ -192,6 +203,7 @@
                     android:paddingTop="10dp"
                     android:paddingBottom="10dp">
 
+<<<<<<< HEAD
                     <EditText
                         android:id="@+id/etStateInput"
                         android:layout_width="match_parent"
@@ -208,6 +220,16 @@
                         android:padding="0dp"
                         android:textColor="@android:color/tab_indicator_text"
                         android:textSize="18sp" />
+=======
+                    <ImageView
+                        android:id="@+id/ivPickImg"
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:layout_below="@+id/tvPhoto"
+                        android:layout_marginTop="10dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/selector_image_add" />
+>>>>>>> 07c9524f5977b3d98e481c08f7ea7e5c9196886f
 
                     <TextView
                         android:id="@+id/tvPhoto"

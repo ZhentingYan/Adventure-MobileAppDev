@@ -18,7 +18,11 @@
         android:orientation="horizontal">
 
         <TextView
+<<<<<<< HEAD:app/src/main/res/layout/story_adapter_item.xml
             android:id="@+id/tvFirstname"
+=======
+            android:id="@+id/tvFirstName"
+>>>>>>> 07c9524f5977b3d98e481c08f7ea7e5c9196886f:app/src/main/res/layout/story_adapter_item.xml
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="严"
@@ -32,7 +36,11 @@
             android:textStyle="normal|bold" />
 
         <TextView
+<<<<<<< HEAD:app/src/main/res/layout/story_adapter_item.xml
             android:id="@+id/tvLastname"
+=======
+            android:id="@+id/tvLastName"
+>>>>>>> 07c9524f5977b3d98e481c08f7ea7e5c9196886f:app/src/main/res/layout/story_adapter_item.xml
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="祯颋"

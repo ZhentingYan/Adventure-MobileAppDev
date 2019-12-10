@@ -14,6 +14,10 @@ import com.tongjisse.adventure.R
 import com.tongjisse.adventure.view.views.Explore.ExploreFragment
 import com.tongjisse.adventure.view.views.MyAdventure.MyAdventureFragment
 import com.tongjisse.adventure.view.views.ScenicSpot.ScenicSpotFragment
+<<<<<<< HEAD
+=======
+import com.tongjisse.adventure.view.views.Story.StoryListFragment
+>>>>>>> 07c9524f5977b3d98e481c08f7ea7e5c9196886f
 import com.tongjisse.adventure.view.views.WishList.WishListFragment
 import kotlinx.android.synthetic.main.tab_item.view.*
 
@@ -21,11 +25,19 @@ import kotlinx.android.synthetic.main.tab_item.view.*
 class MenuActivity : AppCompatActivity() {
     // internal var exploreFragment: ExploreFragment
     lateinit var thisFragment: Fragment
+<<<<<<< HEAD
 
     companion object {
         lateinit var sectionTab: TabLayout
     }
 
+=======
+
+    companion object {
+        lateinit var sectionTab: TabLayout
+    }
+
+>>>>>>> 07c9524f5977b3d98e481c08f7ea7e5c9196886f
     private fun changeTabsFont(tabLayout: TabLayout) {
         val vg = tabLayout.getChildAt(0) as ViewGroup
         val tabsCount = vg.childCount
@@ -96,6 +108,10 @@ class MenuActivity : AppCompatActivity() {
         val scenicSpotFragment = ScenicSpotFragment()
         val myAdventureFragment = MyAdventureFragment()
         val wishListFragment = WishListFragment()
+<<<<<<< HEAD
+=======
+        val storyListFragment = StoryListFragment()
+>>>>>>> 07c9524f5977b3d98e481c08f7ea7e5c9196886f
         val exploreFragment = ExploreFragment()
         val fragmentManager = supportFragmentManager
         val fragmentTransaction = fragmentManager.beginTransaction()
@@ -126,8 +142,19 @@ class MenuActivity : AppCompatActivity() {
                         fragmentManager.beginTransaction().hide(thisFragment)
                                 .show(wishListFragment).commit()
                         thisFragment = wishListFragment
+<<<<<<< HEAD
+=======
                     }
-
+                    2 // StoryList
+                    -> {
+                        if (!storyListFragment.isAdded()) {
+                            fragmentManager.beginTransaction().add(R.id.sectionFragmentReplace, storyListFragment).commit()
+                        }
+                        fragmentManager.beginTransaction().hide(thisFragment)
+                                .show(storyListFragment).commit()
+                        thisFragment = storyListFragment
+>>>>>>> 07c9524f5977b3d98e481c08f7ea7e5c9196886f
+                    }
                     1 -> {
                         if (!scenicSpotFragment.isAdded()) {
                             fragmentManager.beginTransaction().add(R.id.sectionFragmentReplace, scenicSpotFragment).commit()
