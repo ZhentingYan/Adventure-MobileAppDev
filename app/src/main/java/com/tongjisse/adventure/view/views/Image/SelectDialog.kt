@@ -21,8 +21,9 @@ import android.widget.TextView
 import com.tongjisse.adventure.R
 
 /**
- * 选择对话框
+ * Select dialog
  *
+ * @author Feifan Wang
  */
 
 class SelectDialog : Dialog, OnClickListener, OnItemClickListener {
@@ -37,10 +38,8 @@ class SelectDialog : Dialog, OnClickListener, OnItemClickListener {
     private var mOtherItemColor: Int = 0
 
 
-    /**
-     * 取消事件监听接口
-     *
-     */
+
+    // 取消事件监听接口
     private var mCancelListener: SelectDialogCancelListener? = null
 
     interface SelectDialogListener {
@@ -60,13 +59,6 @@ class SelectDialog : Dialog, OnClickListener, OnItemClickListener {
         setCanceledOnTouchOutside(true)
     }
 
-    /**
-     * @param activity 调用弹出菜单的activity
-     * @param theme 主题
-     * @param listener 菜单项单击事件
-     * @param cancelListener 取消事件
-     * @param names 菜单项名称
-     */
     constructor(activity: Activity, theme: Int, listener: SelectDialogListener, cancelListener: SelectDialogCancelListener, names: List<String>) : super(activity, theme) {
         mActivity = activity
         mListener = listener
@@ -77,13 +69,6 @@ class SelectDialog : Dialog, OnClickListener, OnItemClickListener {
         setCanceledOnTouchOutside(false)
     }
 
-    /**
-     * @param activity 调用弹出菜单的activity
-     * @param theme 主题
-     * @param listener 菜单项单击事件
-     * @param names 菜单项名称
-     * @param title 菜单标题文字
-     */
     constructor(activity: Activity, theme: Int, listener: SelectDialogListener, names: List<String>, title: String) : super(activity, theme) {
         mActivity = activity
         mListener = listener
@@ -116,7 +101,7 @@ class SelectDialog : Dialog, OnClickListener, OnItemClickListener {
         val wl = window.attributes
         wl.x = 0
         wl.y = mActivity!!.windowManager.defaultDisplay.height
-        // 以下这两句是为了保证按钮可以水平满屏
+        // 保证按钮可以水平满屏
         wl.width = LayoutParams.MATCH_PARENT
         wl.height = LayoutParams.WRAP_CONTENT
 
@@ -136,7 +121,6 @@ class SelectDialog : Dialog, OnClickListener, OnItemClickListener {
 
 
         mMBtn_Cancel!!.setOnClickListener { v ->
-            // TODO Auto-generated method stub
             if (mCancelListener != null) {
                 mCancelListener!!.onCancelClick(v)
             }
@@ -172,17 +156,14 @@ class SelectDialog : Dialog, OnClickListener, OnItemClickListener {
         }
 
         override fun getCount(): Int {
-            // TODO Auto-generated method stub
             return mStrings.size
         }
 
         override fun getItem(position: Int): Any {
-            // TODO Auto-generated method stub
             return mStrings[position]
         }
 
         override fun getItemId(position: Int): Long {
-            // TODO Auto-generated method stub
             return position.toLong()
         }
 
@@ -225,6 +206,9 @@ class SelectDialog : Dialog, OnClickListener, OnItemClickListener {
 
     /**
      * 设置列表项的文本颜色
+     *
+     * @param firstItemColor: Int
+     * @param otherItemColor: Int
      */
     fun setItemColor(firstItemColor: Int, otherItemColor: Int) {
         mFirstItemColor = firstItemColor

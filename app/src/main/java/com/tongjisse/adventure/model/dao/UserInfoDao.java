@@ -3,6 +3,8 @@ package com.tongjisse.adventure.model.dao;
 import android.util.Log;
 
 import com.j256.ormlite.dao.Dao;
+import com.lzy.imagepicker.bean.ImageItem;
+import com.tongjisse.adventure.R;
 import com.tongjisse.adventure.data.bean.UserInfo;
 import com.tongjisse.adventure.utils.OrmLiteHelper;
 
@@ -11,6 +13,11 @@ import java.util.List;
 
 import static android.support.constraint.Constraints.TAG;
 
+/**
+ * UserInfo database operation
+ *
+ * @author Feifan Wang
+ */
 public class UserInfoDao {
     private Dao<UserInfo, Long> userDao;
 
@@ -22,8 +29,10 @@ public class UserInfoDao {
             if (userDao == null) {
                 Log.d(TAG, "UserInfoDao: " + "NULL!");
             }
+            // 新建测试账户
             userDao.createIfNotExists(new UserInfo("FNAME", "LNAME",
-                    "admin123", "test@admin.com", "18918911111",18));
+                    "admin123", "test@admin.com", "18918911111",
+                    18, new ImageItem()));
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -86,6 +95,7 @@ public class UserInfoDao {
      * 通过Email查
      *
      * @param email
+     * @return UserInfo
      */
     public UserInfo queryInfoByEmail(String email) {
         try {
@@ -107,6 +117,7 @@ public class UserInfoDao {
      * 通过id获取
      *
      * @param id
+     * @return UserInfo
      */
     public UserInfo queryInfoById(long id) {
         try {
@@ -119,6 +130,8 @@ public class UserInfoDao {
 
     /**
      * 获取user_info表的全部内容
+     *
+     * @return List<UserInfo>
      */
     public List<UserInfo> query() {
         try {

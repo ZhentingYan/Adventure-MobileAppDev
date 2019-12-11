@@ -3,6 +3,11 @@ package com.tongjisse.adventure.utils
 import java.text.SimpleDateFormat
 import java.util.*
 
+/**
+ * Help to get current time
+ *
+ * @author Feifan Wang
+ */
 class TimeUtils {
     companion object {
         fun getNow(): String {

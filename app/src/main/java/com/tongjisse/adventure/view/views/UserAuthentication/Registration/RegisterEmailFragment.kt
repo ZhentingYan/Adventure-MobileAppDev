@@ -11,13 +11,20 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import com.tongjisse.adventure.R
+import com.tongjisse.adventure.data.bean.UserInfo
 import com.tongjisse.adventure.model.dao.UserInfoDao
+import com.tongjisse.adventure.presenter.Presenter
+import com.tongjisse.adventure.presenter.UserAuthentication.RegisterPresenter
+import com.tongjisse.adventure.view.common.BaseFragmentWithPresenter
+import com.tongjisse.adventure.view.common.toast
+import com.tongjisse.adventure.view.main.UserAuthenticatioon.RegisterView
 import kotlinx.android.synthetic.main.fragment_register_email.*
+import java.sql.SQLException
 import java.util.regex.Pattern
 
+class RegisterEmailFragment : BaseFragmentWithPresenter(), RegisterView {
 
-class RegisterEmailFragment : Fragment() {
-    private val userDao = UserInfoDao()
+    override val presenter by lazy { RegisterPresenter(this) }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_register_email, container, false)
@@ -39,6 +46,36 @@ class RegisterEmailFragment : Fragment() {
         etEmail.addTextChangedListener(textWatcher)
     }
 
+    /**
+     * Email has not been used
+     *
+     * @param userInfo: UserInfo
+     * @author Feifan Wang
+     */
+    override fun RegisterSuccess(userInfo: UserInfo?) {
+        val fragmentManager = fragmentManager
+        val fragmentTransaction = fragmentManager!!.beginTransaction()
+        val registerPasswordFragment = RegisterPasswordFragment()
+        fragmentTransaction.replace(R.id.progressFragment, registerPasswordFragment)
+        fragmentTransaction.addToBackStack(null)
+        fragmentTransaction.commit()
+    }
+
+    /**
+     * Email has been used or SQL error
+     *
+     * @param error: SQLException
+     * @author Feifan Wang
+     */
+    override fun RegisterFailed(error: SQLException?) {
+        if (error == null) {
+            context!!.toast("该邮箱已被注册", Toast.LENGTH_SHORT)
+        } else {
+            context!!.toast("注册失败，请记录报错信息:${error!!.message}")
+        }
+    }
+
+
     fun registrationProceed() {
         if (isValidEmail(etEmail.text.toString().trim { it <= ' ' })) {
             bRegProceed.isEnabled = true
@@ -46,16 +83,7 @@ class RegisterEmailFragment : Fragment() {
             bRegProceed.setTextColor(Color.parseColor("#ff6666"))
             bRegProceed.setOnClickListener {
                 EMAIL = etEmail.text.toString()
-                if (userDao.queryInfoByEmail(EMAIL) != null) {
-                    Toast.makeText(context, "该邮箱已被注册", Toast.LENGTH_SHORT).show()
-                } else {
-                    val fragmentManager = fragmentManager
-                    val fragmentTransaction = fragmentManager!!.beginTransaction()
-                    val registerPasswordFragment = RegisterPasswordFragment()
-                    fragmentTransaction.replace(R.id.progressFragment, registerPasswordFragment)
-                    fragmentTransaction.addToBackStack(null)
-                    fragmentTransaction.commit()
-                }
+                presenter.checkEmail(EMAIL)
             }
         } else {
             bRegProceed.isEnabled = false
@@ -63,6 +91,7 @@ class RegisterEmailFragment : Fragment() {
             bRegProceed.setTextColor(Color.parseColor("#ff6666"))
         }
     }
+
 
     companion object {
         lateinit var EMAIL: String

@@ -7,6 +7,7 @@ import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.lzy.imagepicker.bean.ImageItem
 import com.tongjisse.adventure.R
 import kotlinx.android.synthetic.main.fragment_register_name.*
 

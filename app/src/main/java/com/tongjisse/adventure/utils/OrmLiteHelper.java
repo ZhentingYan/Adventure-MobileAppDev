@@ -18,6 +18,11 @@ import java.util.Map;
 
 import static android.support.constraint.Constraints.TAG;
 
+/**
+ * Set up OrmLite
+ *
+ * @author Feifan Wang
+ */
 public class OrmLiteHelper extends OrmLiteSqliteOpenHelper {
     private static final String TAB_NAME = "orm_lite_table_name";
     private static OrmLiteHelper sORMLITEHELPER;
@@ -27,6 +32,10 @@ public class OrmLiteHelper extends OrmLiteSqliteOpenHelper {
         super(context, TAB_NAME, null, 1);
     }
 
+    /**
+     * 新建 OrmLiteHelper 实例，使用单例模式
+     *
+     */
     public static void createInstance(Context context) {
         Log.d(TAG, "createInstance: " + "helper created");
         if (sORMLITEHELPER == null) {
@@ -38,14 +47,11 @@ public class OrmLiteHelper extends OrmLiteSqliteOpenHelper {
         }
     }
 
+    /**
+     * 获取 OrmLiteHelper 实例
+     *
+     */
     public static OrmLiteHelper getInstance() {
-//        if (sORMLITEHELPER == null) {
-//            synchronized (OrmLiteHelper.class) {
-//                if (sORMLITEHELPER == null) {
-//                    sORMLITEHELPER = new OrmLiteHelper(context);
-//                }
-//            }
-//        }
         return sORMLITEHELPER;
     }
 
@@ -72,6 +78,10 @@ public class OrmLiteHelper extends OrmLiteSqliteOpenHelper {
         super.close();
     }
 
+    /**
+     * 新建表
+     *
+     */
     @Override
     public void onCreate(SQLiteDatabase database, ConnectionSource connectionSource) {
         try {
@@ -83,6 +93,10 @@ public class OrmLiteHelper extends OrmLiteSqliteOpenHelper {
         }
     }
 
+    /**
+     * 删除表并重建数据库
+     *
+     */
     @Override
     public void onUpgrade(SQLiteDatabase database, ConnectionSource connectionSource, int oldVersion, int newVersion) {
         try {

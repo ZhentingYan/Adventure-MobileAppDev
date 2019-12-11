@@ -31,7 +31,6 @@ import kotlinx.android.synthetic.main.fragment_story.*
 import kotlinx.android.synthetic.main.story_adapter_item.*
 import java.sql.SQLException
 
-
 class StoryListFragment : BaseFragmentWithPresenter(), StoryListView {
 
     private val SHOW_BY_PLACE = 1
@@ -41,34 +40,6 @@ class StoryListFragment : BaseFragmentWithPresenter(), StoryListView {
     lateinit var mSessionManager: SessionManager
     override val presenter by lazy { StoryListPresenter(this) }
     lateinit var mCityPickerHelper: CityPickerHelper
-
-    override fun getStoryListsSuccess(userStoryLists: List<StoryList>) {
-        if (userStoryLists != null && userStoryLists.isNotEmpty()) {
-            ErrorLayout.visibility = View.GONE
-            storyRecyclerView.visibility = View.VISIBLE
-            Log.d(tag, "is not empty?")
-            val categoryItemAdapters = userStoryLists.map(::StoryListAdapter)
-            storyRecyclerView.adapter = MainListAdapter(categoryItemAdapters)
-        } else {
-            ErrorLayout.visibility = View.VISIBLE
-            storyRecyclerView.visibility = View.GONE
-            tvError.text = "你还没有游记哦......快记录旅行途中有趣的故事吧！"
-        }
-    }
-
-    override fun getStoryListsFailed(error: SQLException?) {
-        if (error != null) {
-            ErrorLayout.visibility = View.VISIBLE
-            storyRecyclerView.visibility = View.GONE
-            tvError.text = "加载游记失败......"
-            context!!.toast("加载游记失败，错误信息:${error.message}")
-        } else {
-            ErrorLayout.visibility = View.VISIBLE
-            storyRecyclerView.visibility = View.GONE
-            tvError.text = "在${mSessionManager.district}还没有游记哦～"
-        }
-
-    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_story, container, false)
@@ -106,6 +77,7 @@ class StoryListFragment : BaseFragmentWithPresenter(), StoryListView {
             intent.putExtra("email", mSessionManager.email)
             startActivity(intent)
         }
+
         etSearchStory.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
                 //这里应该细化，根据Spinner选择
@@ -138,12 +110,48 @@ class StoryListFragment : BaseFragmentWithPresenter(), StoryListView {
         })
     }
 
+    override fun getStoryListsSuccess(userStoryLists: List<StoryList>) {
+        if (userStoryLists != null && userStoryLists.isNotEmpty()) {
+            ErrorLayout.visibility = View.GONE
+            storyRecyclerView.visibility = View.VISIBLE
+            val categoryItemAdapters = userStoryLists.map(::StoryListAdapter)
+            storyRecyclerView.adapter = MainListAdapter(categoryItemAdapters)
+        } else {
+            ErrorLayout.visibility = View.VISIBLE
+            storyRecyclerView.visibility = View.GONE
+            tvError.text = "你还没有游记哦......快记录旅行途中有趣的故事吧！"
+        }
+    }
+
+    override fun getStoryListsFailed(error: SQLException?) {
+        if (error != null) {
+            ErrorLayout.visibility = View.VISIBLE
+            storyRecyclerView.visibility = View.GONE
+            tvError.text = "加载游记失败......"
+            context!!.toast("加载游记失败，错误信息:${error.message}")
+        } else {
+            ErrorLayout.visibility = View.VISIBLE
+            storyRecyclerView.visibility = View.GONE
+            tvError.text = "在${mSessionManager.district}还没有游记哦～"
+        }
+    }
+
+
+    /**
+     * 保持在返回该 Fragment 时数据最新
+     *
+     * @author Feifan Wang
+     */
     override fun onResume() {
-        // 及时刷新
         super.onResume()
         loadStoryLists()
     }
 
+    /**
+     * 根据搜索条件加载界面
+     *
+     * @author Feifan Wang
+     */
     fun loadStoryLists() {
         when (showType) {
             SHOW_BY_PLACE -> {

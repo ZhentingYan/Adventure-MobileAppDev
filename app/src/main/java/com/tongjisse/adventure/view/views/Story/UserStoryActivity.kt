@@ -20,7 +20,12 @@ import kotlinx.android.synthetic.main.activity_owned_stories.ErrorLayout
 import kotlinx.android.synthetic.main.activity_owned_stories.tvError
 import java.sql.SQLException
 
-class UserStoryActivity : BaseActivityWithPresenter(),UserStoryView{
+/**
+ * Display user's all stories
+ *
+ * @author Feifan Wang
+ */
+class UserStoryActivity : BaseActivityWithPresenter(), UserStoryView {
 
     private lateinit var mSessionManager: SessionManager
     override val presenter by lazy { UserStoryPresenter(this) }

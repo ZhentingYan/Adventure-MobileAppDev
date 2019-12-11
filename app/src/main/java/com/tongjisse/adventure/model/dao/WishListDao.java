@@ -11,6 +11,11 @@ import java.util.List;
 
 import static android.support.constraint.Constraints.TAG;
 
+/**
+ * WishList database operation
+ *
+ * @author Feifan Wang
+ */
 public class WishListDao {
     private Dao<WishList, Long> wishDao;
 
@@ -81,32 +86,11 @@ public class WishListDao {
         }
     }
 
-
-//    /**
-//     * 通过Email查
-//     *
-//     * @param email
-//     */
-//    public UserInfo queryInfoByEmail(String email) {
-//        try {
-//            List<UserInfo> tempUserList = userDao.queryBuilder()
-//                    .where().eq("emailAddress", email).query();
-//            if (tempUserList.size() < 1) {
-//                return null;
-//            } else {
-//                Log.d(TAG, "queryInfoByEmail: "+tempUserList.toString()+tempUserList.size());
-//                return tempUserList.get(0);
-//            }
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
-//        return null;
-//    }
-
     /**
      * 通过id获取
      *
      * @param id
+     * @return WishList
      */
     public WishList queryWishById(long id) {
         try {
@@ -119,6 +103,8 @@ public class WishListDao {
 
     /**
      * 获取wish_list表的全部内容
+     *
+     * @return List<WishList>
      */
     public List<WishList> query() {
         try {
@@ -129,6 +115,13 @@ public class WishListDao {
         return null;
     }
 
+    /**
+     * 通过user在限制的district中查
+     *
+     * @param user: String
+     * @param district: String
+     * @return List<WishList>
+     */
     public List<WishList> queryByUserAndDistrict(String user, String district) {
         try {
             return wishDao.queryBuilder().where().eq("user", user).and().eq("district", district).query();
@@ -138,6 +131,12 @@ public class WishListDao {
         return null;
     }
 
+    /**
+     * 通过user查
+     *
+     * @param user: String
+     * @return List<WishList>
+     */
     public List<WishList> queryByUser(String user) {
         try {
             return wishDao.queryForEq("user", user);
