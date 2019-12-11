@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rootLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ff6666"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:orientation="vertical"
+                android:padding="20dp">
+
+                <TextView
+                    android:id="@+id/tvTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="25dp"
+                    android:layout_marginBottom="20dp"
+                    android:text="准备好添加头像了吗"
+                    android:textColor="#ffffff"
+                    android:textSize="30sp"
+                    android:textStyle="normal|bold" />
+
+                <TextView
+                    android:id="@+id/tvPhotoDesc"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginBottom="30dp"
+                    android:text="请选择一张图片作为您的头像吧，我们的用户希望看到那些发布绝佳旅行故事的人们拥有什么样的容貌。"
+                    android:textColor="#ffffff"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="上传预览:"
+                    android:textColor="#ffffff"
+                    android:textSize="18sp" />
+
+                <ImageView
+                    android:id="@+id/ivPreview"
+                    android:layout_width="350dp"
+                    android:layout_height="350dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/bg_draw1"
+                    app:srcCompat="@drawable/undraw_traveling_t8y2" />
+
+
+            </LinearLayout>
+        </ScrollView>
+
+
+        <Button
+            android:id="@+id/bNext"
+            style="@style/Widget.AppCompat.Button"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginEnd="29dp"
+            android:layout_marginRight="29dp"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/reg_proceed_button_fail"
+            android:elevation="12dp"
+            android:text=">"
+            android:textAllCaps="false"
+            android:textColor="#ff6666"
+            android:textSize="30sp" />
+
+    </RelativeLayout>
+
+</FrameLayout>
+

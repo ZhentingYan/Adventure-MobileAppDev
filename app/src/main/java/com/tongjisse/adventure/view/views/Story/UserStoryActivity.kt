@@ -35,19 +35,19 @@ class UserStoryActivity : BaseActivityWithPresenter(),UserStoryView{
         srStories.setOnRefreshListener {
             srStories.isRefreshing = true
             presenter.loadUserStoryList(mSessionManager.email)
-            srStories.isRefreshing = false
         }
     }
 
     override fun getUserStoryListsSuccess(userStoryLists: List<StoryList>) {
+        srStories.isRefreshing = false
         if (userStoryLists.isNotEmpty()) {
             ErrorLayout.visibility = View.GONE
-            rvListing.visibility = View.VISIBLE
+            srStories.visibility = View.VISIBLE
             val categoryItemAdapters = userStoryLists.map(::StoryListAdapter)
             rvListing.adapter = MainListAdapter(categoryItemAdapters)
         } else {
             ErrorLayout.visibility = View.VISIBLE
-            rvListing.visibility = View.GONE
+            srStories.visibility = View.GONE
             tvError.text = "你还没有游记哦......快记录旅行途中有趣的故事吧！"
         }
     }
