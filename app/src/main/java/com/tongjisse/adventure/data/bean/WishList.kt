@@ -2,6 +2,7 @@ package com.tongjisse.adventure.data.bean
 
 import com.j256.ormlite.field.DatabaseField
 import com.j256.ormlite.table.DatabaseTable
+import java.io.Serializable
 
 
 @DatabaseTable(tableName = "wish_list")
@@ -20,7 +21,7 @@ class WishList(
         var photo: String,
         @DatabaseField(columnName = "district", canBeNull = false)
         var district: String
-) {
+):Serializable {
     // OrmLite 必须有无参数构造函数
     constructor() : this(
             id = 0,

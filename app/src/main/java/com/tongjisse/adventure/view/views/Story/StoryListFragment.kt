@@ -33,14 +33,20 @@ import java.sql.SQLException
 
 
 class StoryListFragment : BaseFragmentWithPresenter(), StoryListView {
+
+    private val SHOW_BY_PLACE = 1
+    private val SHOW_BY_TITLE = 2
+    private val SHOW_BY_SCENE = 3
+    private var showType = SHOW_BY_PLACE
     lateinit var mSessionManager: SessionManager
     override val presenter by lazy { StoryListPresenter(this) }
-    lateinit var mCityPickerHelper:CityPickerHelper
-    override fun getUserStoryListsSuccess(userStoryLists: List<StoryList>) {
+    lateinit var mCityPickerHelper: CityPickerHelper
+
+    override fun getStoryListsSuccess(userStoryLists: List<StoryList>) {
         if (userStoryLists != null && userStoryLists.isNotEmpty()) {
             ErrorLayout.visibility = View.GONE
             storyRecyclerView.visibility = View.VISIBLE
-            Log.d(tag,"is not empty?")
+            Log.d(tag, "is not empty?")
             val categoryItemAdapters = userStoryLists.map(::StoryListAdapter)
             storyRecyclerView.adapter = MainListAdapter(categoryItemAdapters)
         } else {
@@ -50,13 +56,13 @@ class StoryListFragment : BaseFragmentWithPresenter(), StoryListView {
         }
     }
 
-    override fun getUserStoryListsFailed(error: SQLException?) {
-        if(error!=null){
+    override fun getStoryListsFailed(error: SQLException?) {
+        if (error != null) {
             ErrorLayout.visibility = View.VISIBLE
             storyRecyclerView.visibility = View.GONE
             tvError.text = "加载游记失败......"
             context!!.toast("加载游记失败，错误信息:${error.message}")
-        }else{
+        } else {
             ErrorLayout.visibility = View.VISIBLE
             storyRecyclerView.visibility = View.GONE
             tvError.text = "在${mSessionManager.district}还没有游记哦～"
@@ -72,38 +78,52 @@ class StoryListFragment : BaseFragmentWithPresenter(), StoryListView {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         storyRecyclerView.layoutManager = GridLayoutManager(context, 1)
         mSessionManager = SessionManager(context)
-        mCityPickerHelper= CityPickerHelper(context,object: OnCityItemClickListener(){
+        mCityPickerHelper = CityPickerHelper(context, object : OnCityItemClickListener() {
             override fun onSelected(province: ProvinceBean?, city: CityBean?, district: DistrictBean?) {
                 mSessionManager.refineLocation(province!!.name, city!!.name, district!!.name, mSessionManager.longitude, mSessionManager.latitude)
                 tvLocation.text = mSessionManager.defaultAddress
             }
+
             override fun onCancel() {
 
             }
         })
-        presenter.showStoryList(mSessionManager.email)
 
         swipeRefreshView.setOnRefreshListener {
             swipeRefreshView.isRefreshing = true
-            presenter.showStoryList(mSessionManager.email)
+            loadStoryLists()
             swipeRefreshView.isRefreshing = false
         }
 
-        bPublish.setOnClickListener(){
+        presenter.loadStoriesByDistrict(mSessionManager.defaultAddress)
+
+        tvLocation.setOnClickListener {
+            mCityPickerHelper.showJD()
+        }
+
+        bPublish.setOnClickListener() {
             val intent = Intent(context, StoryPublishActivity::class.java)
-            intent.putExtra("email",mSessionManager.email)
-            startActivityForResult(intent,1)
+            intent.putExtra("email", mSessionManager.email)
+            startActivity(intent)
         }
         etSearchStory.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
                 //这里应该细化，根据Spinner选择
                 if (mSessionManager.district.equals("")) {
                     mCityPickerHelper.showJD()
+                } else if (etSearchStory.text.toString().split(" ").get(0) == "") {
+                    showType = SHOW_BY_PLACE
+                    presenter.loadStoriesByDistrict(mSessionManager.defaultAddress)
                 } else {
-                    when(spType.selectedItem.toString()){
-                        TODO("根据用户的选择，加载不同的故事")
-                            "标题"-> presenter.loadSharedSpacesWithTitle(etSearchAnywhere.text.toString(),mSessionManager.district)
-                        "景点"-> presenter.loadSharedSpacesWithType(etSearchAnywhere.text.toString(),mSessionManager.district)
+                    when (spType.selectedItem.toString()) {
+                        "标题" -> {
+                            showType = SHOW_BY_TITLE
+                            presenter.loadStoriesByTitle(etSearchStory.text.toString(), mSessionManager.defaultAddress)
+                        }
+                        "景点" -> {
+                            showType = SHOW_BY_SCENE
+                            presenter.loadStoriesByScene(etSearchStory.text.toString(), mSessionManager.defaultAddress)
+                        }
                     }
                 }
             }
@@ -118,15 +138,22 @@ class StoryListFragment : BaseFragmentWithPresenter(), StoryListView {
         })
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        when(requestCode){
-            1->{
-                if(resultCode==RESULT_OK){
-                    if(data!!.getBooleanExtra("isSucceed",true)){
+    override fun onResume() {
+        // 及时刷新
+        super.onResume()
+        loadStoryLists()
+    }
 
-                    }
-                }
+    fun loadStoryLists() {
+        when (showType) {
+            SHOW_BY_PLACE -> {
+                presenter.loadStoriesByDistrict(mSessionManager.defaultAddress)
+            }
+            SHOW_BY_TITLE -> {
+                presenter.loadStoriesByTitle(etSearchStory.text.toString(), mSessionManager.defaultAddress)
+            }
+            SHOW_BY_SCENE -> {
+                presenter.loadStoriesByScene(etSearchStory.text.toString(), mSessionManager.defaultAddress)
             }
         }
     }

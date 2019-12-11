@@ -19,9 +19,9 @@ public class StoryListDao {
         OrmLiteHelper helper = OrmLiteHelper.getInstance();
         try {
             storyDao = helper.getDao(StoryList.class);
-            Log.d(TAG, "StoryListDao: "+storyDao);
+            Log.d(TAG, "StoryListDao: " + storyDao);
             if (storyDao == null) {
-                Log.d(TAG, "UserInfoDao: " + "NULL!");
+                Log.d(TAG, "StoryListDao: " + "NULL!");
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -37,7 +37,7 @@ public class StoryListDao {
         if (storyDao == null)
             return;
         try {
-            storyList.setId(storyList.getTime()+ storyList.getUser().toString());
+            storyList.setId(storyList.getTime() + storyList.getUser().toString());
             storyDao.createIfNotExists(storyList);
         } catch (SQLException e) {
             e.printStackTrace();
@@ -49,7 +49,7 @@ public class StoryListDao {
      *
      * @param storyList
      */
-    public void delInfo(StoryList storyList) {
+    public void delStory(StoryList storyList) {
         try {
             storyDao.delete(storyList);
         } catch (SQLException e) {
@@ -92,10 +92,9 @@ public class StoryListDao {
         UserInfoDao userDao = new UserInfoDao();
         UserInfo user = userDao.queryInfoByEmail(email);
         List<StoryList> tempStoryLists = queryStoryByUser(user);
-        if (tempStoryLists==null || tempStoryLists.size() < 1) {
+        if (tempStoryLists == null || tempStoryLists.size() < 1) {
             return null;
         } else {
-            Log.d(TAG, "queryInfoByUser: "+ tempStoryLists.toString()+ tempStoryLists.size());
             return tempStoryLists;
         }
     }
@@ -113,7 +112,65 @@ public class StoryListDao {
             if (tempStoryLists.size() < 1) {
                 return null;
             } else {
-                Log.d(TAG, "queryInfoByUser: "+ tempStoryLists.toString()+ tempStoryLists.size());
+                Log.d(TAG, "queryStoryByUser: " + tempStoryLists.toString() + tempStoryLists.size());
+                return tempStoryLists;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public List<StoryList> queryStoryByDistrict(String district) {
+        try {
+            List<StoryList> tempStoryLists = storyDao.queryBuilder()
+                    .where()
+                    .eq("district", district)
+                    .query();
+            if (tempStoryLists.size() < 1) {
+                return null;
+            } else {
+                Log.d(TAG, "queryStoryByDistrict: " + tempStoryLists.toString() + tempStoryLists.size());
+                return tempStoryLists;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public List<StoryList> queryStoryByTitleWithDistrict(String title, String district) {
+        try {
+            List<StoryList> tempStoryLists = storyDao.queryBuilder()
+                    .where()
+                    .like("title", "%"+title+"%")
+                    .and()
+                    .eq("district", district)
+                    .query();
+            if (tempStoryLists.size() < 1) {
+                return null;
+            } else {
+                Log.d(TAG, "queryStoryByTitleWithDistrict: " + tempStoryLists.toString() + tempStoryLists.size());
+                return tempStoryLists;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public List<StoryList> queryStoryBySceneWithDistrict(String scene, String district) {
+        try {
+            List<StoryList> tempStoryLists = storyDao.queryBuilder()
+                    .where()
+                    .like("scene", "%" + scene + "%")
+                    .and()
+                    .eq("district", district)
+                    .query();
+            if (tempStoryLists.size() < 1) {
+                return null;
+            } else {
+                Log.d(TAG, "queryStoryBySceneWithDistrict: " + tempStoryLists.toString() + tempStoryLists.size());
                 return tempStoryLists;
             }
         } catch (SQLException e) {
@@ -129,7 +186,7 @@ public class StoryListDao {
      */
     public StoryList queryStoryById(String id) {
         try {
-            return storyDao.queryForEq("id",id).get(0);
+            return storyDao.queryForEq("id", id).get(0);
         } catch (SQLException e) {
             e.printStackTrace();
         }

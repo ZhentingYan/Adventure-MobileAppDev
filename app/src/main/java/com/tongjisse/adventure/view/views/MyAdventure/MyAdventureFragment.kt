@@ -9,7 +9,9 @@ import android.view.ViewGroup
 import com.tongjisse.adventure.R
 import com.tongjisse.adventure.utils.SessionManager
 import com.tongjisse.adventure.view.common.toast
+import com.tongjisse.adventure.view.main.Story.UserStoryView
 import com.tongjisse.adventure.view.views.Main.MenuActivity
+import com.tongjisse.adventure.view.views.Story.UserStoryActivity
 import kotlinx.android.synthetic.main.fragment_profile.*
 
 class MyAdventureFragment : Fragment() {
@@ -25,7 +27,8 @@ class MyAdventureFragment : Fragment() {
             mSessionManager.logoutUser()
         }
         llMyStory.setOnClickListener {
-            MenuActivity.sectionTab.getTabAt(2)!!.select();
+            val intent = Intent(context, UserStoryActivity::class.java)
+            startActivity(intent)
         }
         llShake.setOnClickListener {
             MenuActivity.sectionTab.getTabAt(1)!!.select();

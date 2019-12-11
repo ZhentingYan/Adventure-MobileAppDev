@@ -8,7 +8,8 @@ interface StoryDetailView {
     fun show()
     fun showError(error: Throwable)
     fun getStorySuccess(detail: StoryList)
-    fun deleteStoryListSuccess(detail: StoryList)
-    fun addStorySuccess(detail: StoryList)
+    fun getStoryFailed(error:SQLException?)
+    fun delStorySuccess()
+    fun delStoryFailed(error:SQLException)
     fun showSqlError(error: SQLException)
 }

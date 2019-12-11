@@ -43,7 +43,6 @@ import java.util.*
 import kotlin.collections.ArrayList
 
 class StoryPublishActivity : BaseActivityWithPresenter(), StoryPublishView {
-    private var imgAdded = false
     private val REQUEST_CODE_SELECT = 100
     private val REQUEST_CODE_PREVIEW = 101
     private var selImage: ArrayList<ImageItem>? = null //当前选择的所有图片
@@ -61,7 +60,7 @@ class StoryPublishActivity : BaseActivityWithPresenter(), StoryPublishView {
         requestWindowFeature(Window.FEATURE_NO_TITLE)
         setContentView(R.layout.activity_publish_story)
         mSessionManager = SessionManager(applicationContext)
-        mCityPickerHelper= CityPickerHelper(applicationContext,object: OnCityItemClickListener(){
+        mCityPickerHelper= CityPickerHelper(this,object: OnCityItemClickListener(){
             override fun onSelected(province: ProvinceBean?, city: CityBean?, district: DistrictBean?) {
                 mSessionManager.refineLocation(province!!.name, city!!.name, district!!.name, mSessionManager.longitude, mSessionManager.latitude)
                 tvDistrictSelect.text = mSessionManager.defaultAddress
@@ -71,9 +70,9 @@ class StoryPublishActivity : BaseActivityWithPresenter(), StoryPublishView {
             }
         })
         presenter.getUser(mSessionManager.email)
+
         ivPickImg.setOnClickListener() {
-            if (!imgAdded) {
-                val names = ArrayList<String>()
+            val names = ArrayList<String>()
                 names.add("拍照")
                 names.add("相册")
                 showDialog(object : SelectDialog.SelectDialogListener {
@@ -102,33 +101,36 @@ class StoryPublishActivity : BaseActivityWithPresenter(), StoryPublishView {
                         }
                     }
                 }, names)
-            } else {
-                //打开预览
-                val intentPreview = Intent(this, ImagePreviewDelActivity::class.java)
-                intentPreview.putExtra(ImagePicker.EXTRA_IMAGE_ITEMS, selImage)
-                intentPreview.putExtra(ImagePicker.EXTRA_SELECTED_IMAGE_POSITION, 1)
-                intentPreview.putExtra(ImagePicker.EXTRA_FROM_ITEMS, true)
-                startActivityForResult(intentPreview, REQUEST_CODE_PREVIEW)
-            }
+        }
+        ivPickedImg.setOnClickListener(){
+            //打开预览
+            val intentPreview = Intent(this, ImagePreviewDelActivity::class.java)
+            intentPreview.putExtra(ImagePicker.EXTRA_IMAGE_ITEMS, selImage)
+            intentPreview.putExtra(ImagePicker.EXTRA_SELECTED_IMAGE_POSITION, 0)
+            intentPreview.putExtra(ImagePicker.EXTRA_FROM_ITEMS, true)
+            startActivityForResult(intentPreview, REQUEST_CODE_PREVIEW)
         }
         if(getIntent().getSerializableExtra("story")!=null){
             isEdit=true
             story=getIntent().getSerializableExtra("story") as StoryList
-            TODO("写一个activityInit函数，函数里面用从Intent传来的story进行界面的初始化，包括地址等")
             activityInit(story)
         }
         bPublish.setOnClickListener() {
             story.user = user
-            story.poi = tvDistrictSelect.text.toString()
+            story.district = tvDistrictSelect.text.toString()
             if(selImage!=null) {
                 story.photo = selImage!!.get(0)
             }
             story.title = etTitle.text.toString()
-            story.place = etPlace.text.toString()
+            story.scene = etPlace.text.toString()
             story.content = etContent.text.toString()
             story.time = TimeUtils.getNow()
-            TODO("这里需要区分，如果isEdit==true那么应该是update，如果==false那么是addStory")
-            addStory(story)
+
+            if(isEdit) {
+                updateStory(story)
+            } else {
+                addStory(story)
+            }
         }
         if(!mSessionManager.district.equals(""))
             tvDistrictSelect.text=mSessionManager.defaultAddress
@@ -138,14 +140,24 @@ class StoryPublishActivity : BaseActivityWithPresenter(), StoryPublishView {
         }
     }
 
-    fun addStory(story: StoryList) {
+    private fun activityInit(story: StoryList) {
+        etTitle.setText(story.title)
+        tvDistrictSelect.setText(story.district)
+        etContent.setText(story.content)
+        ivPickImg.visibility=View.GONE
+        ivPickedImg.loadImage(story.photo.path)
+        ivPickedImg.visibility=View.VISIBLE
+        etPlace.setText(story.scene)
+    }
+
+    private fun addStory(story: StoryList) {
         var isCompleted = true
         when {
             story.title == "" -> {
                 Toast.makeText(this, "发布失败！标题怎么空了╰(*°▽°*)╯", Toast.LENGTH_SHORT).show()
                 isCompleted = false
             }
-            story.poi == "" -> {
+            story.district == "" -> {
                 Toast.makeText(this, "发布失败！您去哪里旅行了╰(*°▽°*)╯", Toast.LENGTH_SHORT).show()
                 isCompleted = false
             }
@@ -157,7 +169,7 @@ class StoryPublishActivity : BaseActivityWithPresenter(), StoryPublishView {
                 Toast.makeText(this, "发布失败！您的图片好像没有上传成功╰(*°▽°*)╯", Toast.LENGTH_SHORT).show()
                 isCompleted = false
             }
-            story.place == "" -> {
+            story.scene == "" -> {
                 Toast.makeText(this, "发布失败！请填写相关景点[○･｀Д´･ ○]", Toast.LENGTH_SHORT).show()
                 isCompleted = false
             }
@@ -166,6 +178,36 @@ class StoryPublishActivity : BaseActivityWithPresenter(), StoryPublishView {
             presenter.addStory(story)
         }
     }
+
+    private fun updateStory(story: StoryList) {
+        var isCompleted = true
+        when {
+            story.title == "" -> {
+                Toast.makeText(this, "修改失败！标题怎么空了╰(*°▽°*)╯", Toast.LENGTH_SHORT).show()
+                isCompleted = false
+            }
+            story.district == "" -> {
+                Toast.makeText(this, "修改失败！您去哪里旅行了╰(*°▽°*)╯", Toast.LENGTH_SHORT).show()
+                isCompleted = false
+            }
+            story.content == "" -> {
+                Toast.makeText(this, "修改失败！您游记的内容凭空消失了╰(*°▽°*)╯", Toast.LENGTH_SHORT).show()
+                isCompleted = false
+            }
+            story.photo == ImageItem() -> {
+                Toast.makeText(this, "修改失败！您的图片好像没有上传成功╰(*°▽°*)╯", Toast.LENGTH_SHORT).show()
+                isCompleted = false
+            }
+            story.scene == "" -> {
+                Toast.makeText(this, "修改失败！请填写相关景点[○･｀Д´･ ○]", Toast.LENGTH_SHORT).show()
+                isCompleted = false
+            }
+        }
+        if (isCompleted) {
+            presenter.updateStory(story)
+        }
+    }
+
 
     private fun showDialog(listener: SelectDialog.SelectDialogListener, names: List<String>): SelectDialog {
         val dialog = SelectDialog(this, R.style
@@ -181,9 +223,6 @@ class StoryPublishActivity : BaseActivityWithPresenter(), StoryPublishView {
     public override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         var images:ArrayList<ImageItem>?
-        if (data == null) {
-            applicationContext.toast("Intent Null", Toast.LENGTH_SHORT)
-        }
         if (resultCode == ImagePicker.RESULT_CODE_ITEMS) {
             //添加图片返回
             if (data != null && requestCode == REQUEST_CODE_SELECT) {
@@ -191,36 +230,46 @@ class StoryPublishActivity : BaseActivityWithPresenter(), StoryPublishView {
                 applicationContext.toast(images.toString(), Toast.LENGTH_SHORT)
                 if (images.size!=0) {
                     selImage = images
-                    imgAdded = true
                 }
             }
         } else if (resultCode == ImagePicker.RESULT_CODE_BACK) {
             //预览图片返回
             if (data != null && requestCode == REQUEST_CODE_PREVIEW) {
                 images = data.getSerializableExtra(ImagePicker.EXTRA_IMAGE_ITEMS) as ArrayList<ImageItem>
-                if (images.size!=0) {
-                    selImage = images
+                if (images.isEmpty()){
+                    selImage=null
                 }
             }
         }
         if (selImage != null) {
-            ImagePicker.getInstance().imageLoader.displayImage(this, selImage!!.get(0).path, ivPickImg, 0, 0)
+            ivPickedImg.visibility=View.VISIBLE
+            ivPickImg.visibility=View.GONE
+            ImagePicker.getInstance().imageLoader.displayImage(this, selImage!!.get(0).path, ivPickedImg, 0, 0)
         } else {
-            applicationContext.toast("添加的图片受到神秘东方力量影响！添加失败，请重试QAQ", Toast.LENGTH_SHORT)
+            ivPickedImg.visibility=View.GONE
+            ivPickImg.visibility=View.VISIBLE
+            applicationContext.toast("添加的图片受到神秘东方力量影响，居然消失了！", Toast.LENGTH_SHORT)
         }
     }
 
     override fun addStorySuccess() {
-        var intent = Intent()
-        intent.putExtra("isSucceed", true)
-        setResult(Activity.RESULT_OK, intent)
         applicationContext.toast("发表游记成功！记得多分享你旅途中的故事哦o(^_^)o")
         finish()
     }
 
-    override fun addStoryFailed(error: Throwable) {
+    override fun addStoryFailed(error: SQLException) {
         applicationContext.toast("发表游记失败！请检查格式是否正确QAQ")
     }
+
+    override fun updateStorySuccess() {
+        applicationContext.toast("修改游记成功！期待您的游记越来越好哦o(^_^)o")
+        finish()
+    }
+
+    override fun updateStoryFailed(error: SQLException) {
+        applicationContext.toast("修改游记失败！请检查格式是否正确QAQ")
+    }
+
 
     override fun getUserInfo(user: UserInfo) {
         this.user = user

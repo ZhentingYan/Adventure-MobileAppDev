@@ -21,7 +21,7 @@ class UserProfileActivity :BaseActivityWithPresenter(),ProfileView{
     }
 
     override fun showUpdateProfileSuccess() {
-        mSessionManager.createLoginSession(mSessionManager.email,etFirstName.text.toString(),etLastName.text.toString(),etPhoneNum.text.toString(),etAge.text.toString(),etPassword.text.toString())
+        mSessionManager.createLoginSession(mSessionManager.email,etFirstName.text.toString(),etLastName.text.toString(),etPhoneNum.text.toString(),etAge.text.toString().toInt(),etPassword.text.toString())
         tvUserName.text="${mSessionManager.firstName} ${mSessionManager.lastName}"
         etPassword.isEnabled = false
         etFirstName.isEnabled = false
@@ -35,6 +35,7 @@ class UserProfileActivity :BaseActivityWithPresenter(),ProfileView{
         requestWindowFeature(Window.FEATURE_NO_TITLE)
         setContentView(R.layout.user_profile_edit_activity)
         mSessionManager=SessionManager(applicationContext)
+        tvUserName.text="${mSessionManager.firstName} ${mSessionManager.lastName}"
         etPassword.setText(mSessionManager.password)
         etEmail.setText(mSessionManager.email)
         etFirstName.setText(mSessionManager.firstName)

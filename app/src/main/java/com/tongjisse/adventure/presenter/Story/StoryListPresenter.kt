@@ -9,14 +9,37 @@ class StoryListPresenter(
         val listView: StoryListView
 ) : BasePresenter() {
     val storyDao = StoryListDao()
-    fun showStoryList(email: String) {
+
+    fun loadStoriesByDistrict(district: String){
+        try{
+            var stories = storyDao.queryStoryByDistrict(district)
+            if (stories != null)
+                listView.getStoryListsSuccess(stories)
+            else listView.getStoryListsFailed(null)
+        }catch (error: SQLException) {
+            listView.getStoryListsFailed(error)
+        }
+    }
+
+    fun loadStoriesByTitle(title: String, district: String) {
         try {
-            var userStoryList = storyDao.queryStoryByEmail(email)
-            if(userStoryList!=null)
-                listView.getUserStoryListsSuccess(userStoryList)
-            else listView.getUserStoryListsFailed(null)
+            var stories = storyDao.queryStoryByTitleWithDistrict(title, district)
+            if (stories != null)
+                listView.getStoryListsSuccess(stories)
+            else listView.getStoryListsFailed(null)
         } catch (error: SQLException) {
-            listView.getUserStoryListsFailed(error)
+            listView.getStoryListsFailed(error)
+        }
+    }
+
+    fun loadStoriesByScene(scene: String, district: String) {
+        try {
+            var stories = storyDao.queryStoryBySceneWithDistrict(scene, district)
+            if (stories != null)
+                listView.getStoryListsSuccess(stories)
+            else listView.getStoryListsFailed(null)
+        } catch (error: SQLException) {
+            listView.getStoryListsFailed(error)
         }
     }
 }
