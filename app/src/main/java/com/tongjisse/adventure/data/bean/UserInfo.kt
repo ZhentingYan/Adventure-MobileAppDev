@@ -2,6 +2,7 @@ package com.tongjisse.adventure.data.bean
 
 import com.j256.ormlite.field.DatabaseField
 import com.j256.ormlite.table.DatabaseTable
+import java.io.Serializable
 
 
 @DatabaseTable(tableName = "user_info")
@@ -18,7 +19,7 @@ class UserInfo(
         var phoneNum: String,
         @DatabaseField(columnName = "age")
         var age: Int
-) {
+):Serializable {
     // OrmLite 必须有无参数构造函数
     constructor() : this(
             firstName = "",

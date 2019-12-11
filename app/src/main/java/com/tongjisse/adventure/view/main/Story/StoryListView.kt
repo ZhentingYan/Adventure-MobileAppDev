@@ -4,6 +4,6 @@ import com.tongjisse.adventure.data.bean.StoryList
 import java.sql.SQLException
 
 interface StoryListView {
-    fun getUserStoryListsSuccess(userStoryLists: List<StoryList>)
-    fun getUserStoryListsFailed(error: SQLException?)
+    fun getStoryListsSuccess(userStoryLists: List<StoryList>)
+    fun getStoryListsFailed(error: SQLException?)
 }

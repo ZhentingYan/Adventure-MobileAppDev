@@ -22,10 +22,10 @@ class StoryList (
         var user: UserInfo,
         @DatabaseField(columnName = "time")
         var time: String,
-        @DatabaseField(columnName = "place")
-        var place: String,
-        @DatabaseField(columnName = "poi")
-        var poi:String
+        @DatabaseField(columnName = "scene")
+        var scene: String,
+        @DatabaseField(columnName = "district")
+        var district:String
 ):Serializable{
     // OrmLite 必须有无参数构造函数
     constructor():this(
@@ -35,7 +35,7 @@ class StoryList (
             photo = ImageItem(),
             user = UserInfo(),
             time = "",
-            place = "",
-            poi=""
+            scene = "",
+            district=""
     )
 }

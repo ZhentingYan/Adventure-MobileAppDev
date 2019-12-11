@@ -16,17 +16,21 @@ class StoryDetailPresenter(
 
     fun delStoryList(storyList: StoryList) {
         try {
-            storyListDao.delInfo(storyList)
-            view.deleteStoryListSuccess(storyList)
+            storyListDao.delStory(storyList)
+            view.delStorySuccess()
         } catch (error: SQLException) {
-            view.showSqlError(error)
+            view.delStoryFailed(error)
         }
     }
 
     fun getStory(id : String){
         try {
             var story = storyListDao.queryStoryById(id)
-            view.getStorySuccess(story)
+            if(story!=null){
+                view.getStorySuccess(story)
+            } else {
+                view.getStoryFailed(null)
+            }
         } catch (error: SQLException){
             view.showSqlError(error)
         }

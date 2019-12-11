@@ -12,20 +12,30 @@ class StoryPublishPresenter(
 ) : BasePresenter() {
     val storyDao = StoryListDao()
     val userInfoDao = UserInfoDao()
-    fun addStory(story:StoryList){
-        try{
+
+    fun addStory(story: StoryList) {
+        try {
             storyDao.addStory(story)
             view.addStorySuccess()
-        } catch(error:Throwable) {
+        } catch (error: SQLException) {
             view.addStoryFailed(error)
         }
     }
 
-    fun getUser(email:String){
-        try{
-            var user=userInfoDao.queryInfoByEmail(email)
+    fun updateStory(story: StoryList) {
+        try {
+            storyDao.updateStory(story)
+            view.updateStorySuccess()
+        } catch (error: SQLException) {
+            view.updateStoryFailed(error)
+        }
+    }
+
+    fun getUser(email: String) {
+        try {
+            var user = userInfoDao.queryInfoByEmail(email)
             view.getUserInfo(user)
-        } catch (error:SQLException){
+        } catch (error: SQLException) {
             view.userSqlError(error)
         }
     }
