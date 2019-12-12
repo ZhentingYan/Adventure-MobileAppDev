@@ -69,7 +69,7 @@ class RegisterAgeFragment : Fragment() {
                 Log.d("blue", Integer.toString(AGE))
                 val fragmentManager = fragmentManager
                 val fragmentTransaction = fragmentManager!!.beginTransaction()
-                fragmentTransaction.replace(R.id.progressFragment, PhoneNumFragment())
+                fragmentTransaction.replace(R.id.progressFragment, RegisterAvatarFragment())
                 fragmentTransaction.addToBackStack(null)
                 fragmentTransaction.commit()
             }

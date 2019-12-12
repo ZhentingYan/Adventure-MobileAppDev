@@ -1,9 +1,11 @@
 package com.tongjisse.adventure;
 
 import android.app.Activity;
+import android.media.Image;
 import android.os.Bundle;
 import android.util.Log;
 
+import com.lzy.imagepicker.bean.ImageItem;
 import com.tongjisse.adventure.data.bean.UserInfo;
 import com.tongjisse.adventure.model.dao.UserInfoDao;
 import com.tongjisse.adventure.utils.OrmLiteHelper;
@@ -57,7 +59,7 @@ public class DatabaseTest extends Activity {
     }
     private void initOrmInfo() {
         for (int i = 0; i < 10; i++) {
-            UserInfo info = new UserInfo("name" + i,"la"+i, "psw"+i + 20,i+"e","2");
+            UserInfo info = new UserInfo("name" + i,"la"+i, "psw"+i + 20,i+"e","2",2,new ImageItem());
             mOrmDao.addInfo(info);
         }
         Log.d("INITDAO", "initOrmInfo: "+mOrmDao);

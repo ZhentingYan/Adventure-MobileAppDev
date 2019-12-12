@@ -20,20 +20,16 @@ import kotlinx.android.synthetic.main.fragment_scenicspot_desc.*
 import java.io.Serializable
 import java.sql.SQLException
 
+/**
+ * Detail of story Activity
+ *
+ * @author Feifan Wang
+ */
 class StoryDetailActivity : BaseActivityWithPresenter(), StoryDetailView {
 
     private lateinit var story: StoryList
     private lateinit var mSessionManager: SessionManager
     override val presenter by lazy { StoryDetailPresenter(this) }
-
-    override fun show() {
-        ivStory.loadImage(story.photo.path)
-        tvStoryTitle.text = story.title
-        tvPublishDate.text = story.time
-        tvStoryPublisher.text = story.user.firstName + story.user.lastName
-        tvContent.text = story.content
-        tvPlace.text = story.district
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,17 +38,31 @@ class StoryDetailActivity : BaseActivityWithPresenter(), StoryDetailView {
         val intent = getIntent()
         mSessionManager = SessionManager(applicationContext)
         presenter.getStory(intent.getStringExtra("id"))
-        show()
+        activityInit()
+
         if (mSessionManager.email.equals(story.user.emailAddress))
             llOwner.visibility = View.VISIBLE
         ivDelete.setOnClickListener {
-            presenter.delStoryList(story)
+            presenter.delStory(story)
         }
         ivEdit.setOnClickListener {
             val intent = Intent(it.context, StoryPublishActivity::class.java)
             intent.putExtra("story", story)
             it.context.startActivity(intent)
         }
+    }
+
+    /**
+     * 初始化数据
+     *
+     */
+    fun activityInit() {
+        ivStory.loadImage(story.photo.path)
+        tvStoryTitle.text = story.title
+        tvPublishDate.text = story.time
+        tvStoryPublisher.text = story.user.firstName + story.user.lastName
+        tvContent.text = story.content
+        tvPlace.text = story.district
     }
 
     override fun onDestroy() {
@@ -82,12 +92,7 @@ class StoryDetailActivity : BaseActivityWithPresenter(), StoryDetailView {
         }
     }
 
-    override fun showError(error: Throwable) {
-        error.printStackTrace()
-    }
-
-
-    override fun showSqlError(error: SQLException) {
+    override fun showSQLError(error: SQLException) {
         applicationContext.toast("游记信息获取失败,错误信息:${error.message}")
     }
 }

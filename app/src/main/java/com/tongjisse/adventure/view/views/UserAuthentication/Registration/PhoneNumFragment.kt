@@ -28,12 +28,13 @@ import java.util.regex.Pattern
 class PhoneNumFragment : BaseFragmentWithPresenter(), RegisterView {
     override val presenter by lazy { RegisterPresenter(this) }
     lateinit var mSessionManager: SessionManager
-    override fun RegisterFailed(error: SQLException) {
-        context!!.toast("注册失败，请记录报错信息:${error.message}")
+
+    override fun RegisterFailed(error: SQLException?) {
+        context!!.toast("注册失败，请记录报错信息:${error!!.message}")
     }
 
-    override fun RegisterSuccess(userInfo: UserInfo) {
-        mSessionManager.createLoginSession(userInfo.emailAddress, userInfo.firstName, userInfo.lastName, userInfo.phoneNum,userInfo.age,userInfo.password)
+    override fun RegisterSuccess(userInfo: UserInfo?) {
+        mSessionManager.createLoginSession(userInfo!!.emailAddress, userInfo.firstName, userInfo.lastName, userInfo.phoneNum,userInfo.age,userInfo.password)
         val intent = Intent(activity, MenuActivity::class.java)
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
         startActivity(intent)
@@ -66,8 +67,14 @@ class PhoneNumFragment : BaseFragmentWithPresenter(), RegisterView {
             //Generate random num
             PHONENUM = etPhone.text.toString()
             // Add to database
-            presenter.registerUserInfo(RegisterNameFragment.FIRST_NAME, RegisterNameFragment.LAST_NAME,
-                    RegisterPasswordFragment.PASSWORD, RegisterEmailFragment.EMAIL, PHONENUM,RegisterAgeFragment.AGE)
+            presenter.registerUserInfo(
+                    RegisterNameFragment.FIRST_NAME,
+                    RegisterNameFragment.LAST_NAME,
+                    RegisterPasswordFragment.PASSWORD,
+                    RegisterEmailFragment.EMAIL,
+                    PHONENUM,
+                    RegisterAgeFragment.AGE,
+                    RegisterAvatarFragment.AVATAR)
         }
 
         val textWatcher = object : TextWatcher {

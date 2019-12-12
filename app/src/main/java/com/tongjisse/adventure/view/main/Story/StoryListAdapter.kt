@@ -17,12 +17,16 @@ import com.tongjisse.adventure.view.common.loadImage
 import com.tongjisse.adventure.view.common.toast
 import com.tongjisse.adventure.view.views.Story.StoryDetailActivity
 
+/**
+ * Set up adapter for story recycler view
+ *
+ * @author Feifan Wang
+ */
 class StoryListAdapter(
         val storyList: StoryList
 ) : ItemAdapter<StoryListAdapter.ViewHolder>(R.layout.story_adapter_item) {
 
     val storyListDao = StoryListDao()
-
 
     override fun ViewHolder.onBindViewHolder() {
         firstName.text = storyList.user.firstName
@@ -43,7 +47,6 @@ class StoryListAdapter(
     override fun onCreateViewHolder(itemView: View): StoryListAdapter.ViewHolder {
         return ViewHolder(itemView)
     }
-
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val firstName by bindView<TextView>(R.id.tvFirstName)

@@ -5,11 +5,9 @@ import java.sql.SQLException
 
 interface StoryDetailView {
     // var refresh:Boolean
-    fun show()
-    fun showError(error: Throwable)
     fun getStorySuccess(detail: StoryList)
     fun getStoryFailed(error:SQLException?)
     fun delStorySuccess()
     fun delStoryFailed(error:SQLException)
-    fun showSqlError(error: SQLException)
+    fun showSQLError(error: SQLException)
 }

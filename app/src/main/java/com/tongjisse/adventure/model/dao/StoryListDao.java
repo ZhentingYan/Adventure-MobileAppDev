@@ -12,6 +12,11 @@ import java.util.List;
 
 import static android.support.constraint.Constraints.TAG;
 
+/**
+ * StoryList database operation
+ *
+ * @author Feifan Wang
+ */
 public class StoryListDao {
     private Dao<StoryList, Long> storyDao;
 
@@ -31,7 +36,7 @@ public class StoryListDao {
     /**
      * 增
      *
-     * @param storyList
+     * @param storyList: StoryList
      */
     public void addStory(StoryList storyList) {
         if (storyDao == null)
@@ -47,7 +52,7 @@ public class StoryListDao {
     /**
      * 删
      *
-     * @param storyList
+     * @param storyList: StoryList
      */
     public void delStory(StoryList storyList) {
         try {
@@ -72,7 +77,7 @@ public class StoryListDao {
     /**
      * 改
      *
-     * @param storyList
+     * @param storyList: StoryList
      */
     public void updateStory(StoryList storyList) {
         try {
@@ -85,7 +90,7 @@ public class StoryListDao {
     /**
      * 通过Email查
      *
-     * @param email
+     * @param email: String
      * @return List<StoryList>
      */
     public List<StoryList> queryStoryByEmail(String email) {
@@ -102,7 +107,7 @@ public class StoryListDao {
     /**
      * 通过User查
      *
-     * @param user
+     * @param user: UserInfo
      * @return List<StoryList>
      */
     public List<StoryList> queryStoryByUser(UserInfo user) {
@@ -121,6 +126,12 @@ public class StoryListDao {
         return null;
     }
 
+    /**
+     * 通过district查
+     *
+     * @param district: String
+     * @return List<StoryList>
+     */
     public List<StoryList> queryStoryByDistrict(String district) {
         try {
             List<StoryList> tempStoryLists = storyDao.queryBuilder()
@@ -139,11 +150,18 @@ public class StoryListDao {
         return null;
     }
 
+    /**
+     * 通过title在有限制的district内查
+     *
+     * @param title: String
+     * @param district: String
+     * @return List<StoryList>
+     */
     public List<StoryList> queryStoryByTitleWithDistrict(String title, String district) {
         try {
             List<StoryList> tempStoryLists = storyDao.queryBuilder()
                     .where()
-                    .like("title", "%"+title+"%")
+                    .like("title", "%" + title + "%")
                     .and()
                     .eq("district", district)
                     .query();
@@ -159,6 +177,13 @@ public class StoryListDao {
         return null;
     }
 
+    /**
+     * 通过scene在有限制的district内查
+     *
+     * @param scene: String
+     * @param district: String
+     * @return List<StoryList>
+     */
     public List<StoryList> queryStoryBySceneWithDistrict(String scene, String district) {
         try {
             List<StoryList> tempStoryLists = storyDao.queryBuilder()
@@ -183,6 +208,7 @@ public class StoryListDao {
      * 通过id获取
      *
      * @param id
+     * @return StoryList
      */
     public StoryList queryStoryById(String id) {
         try {
@@ -195,6 +221,8 @@ public class StoryListDao {
 
     /**
      * 获取story表的全部内容
+     *
+     * @return List<StoryList>
      */
     public List<StoryList> query() {
         try {

@@ -6,7 +6,11 @@ import com.lzy.imagepicker.view.CropImageView
 import com.tongjisse.adventure.utils.GlideImageLoaderHelper
 import com.tongjisse.adventure.utils.OrmLiteHelper
 
-
+/**
+ * Init tools
+ *
+ * @author Feifan Wang
+ */
 class AdventureApp: Application() {
     override fun onCreate() {
         super.onCreate()

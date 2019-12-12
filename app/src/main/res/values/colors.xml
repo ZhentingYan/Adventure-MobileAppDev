@@ -13,4 +13,5 @@
     <color name="defaultLayoutColor">#FAFAFA</color>
     <color name="blue">#33b5e5</color>
     <color name="ip_pb_color">#ffff0000</color>
+    <color name="transparent">#00000000</color>
 </resources>

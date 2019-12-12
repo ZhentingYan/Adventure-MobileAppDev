@@ -64,12 +64,20 @@
                     android:textSize="18sp" />
 
                 <ImageView
-                    android:id="@+id/ivPreview"
+                    android:id="@+id/ivPickedImg"
                     android:layout_width="350dp"
                     android:layout_height="350dp"
                     android:layout_marginTop="20dp"
-                    android:background="@drawable/bg_draw1"
-                    app:srcCompat="@drawable/undraw_traveling_t8y2" />
+                    android:background="@color/transparent"
+                    android:scaleType="centerCrop"/>
+
+                <ImageView
+                    android:id="@+id/ivPickImg"
+                    android:layout_width="350dp"
+                    android:layout_height="350dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@color/white"
+                    app:srcCompat="@drawable/selector_image_add" />
 
 
             </LinearLayout>
@@ -87,7 +95,7 @@
             android:layout_marginEnd="29dp"
             android:layout_marginRight="29dp"
             android:layout_marginBottom="20dp"
-            android:background="@drawable/reg_proceed_button_fail"
+            android:background="@drawable/reg_proceed_button"
             android:elevation="12dp"
             android:text=">"
             android:textAllCaps="false"
