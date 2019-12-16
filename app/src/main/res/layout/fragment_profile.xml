@@ -41,9 +41,9 @@
             android:layout_below="@+id/tvEdit"
             android:layout_alignParentStart="true"
             android:layout_alignParentLeft="true"
-            android:layout_marginTop="14dp"
+            android:layout_marginTop="20dp"
             android:fontFamily="serif"
-            android:text="今天你想去哪里？来Adventure探索您的未知之旅！"
+            android:text="今天你想去哪？来Adventure探索您的未知之旅！"
             android:textSize="15dp" />
 
         <ImageView

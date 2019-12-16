@@ -143,13 +143,16 @@ class RegisterAvatarFragment : Fragment() {
      *
      */
     fun registrationProceed() {
-        if (selImage!!.isNotEmpty())
+        if (selImage!!.isNotEmpty()) {
             AVATAR = selImage.get(0)
-        val fragmentManager = fragmentManager
-        val fragmentTransaction = fragmentManager!!.beginTransaction()
-        fragmentTransaction.replace(R.id.progressFragment, PhoneNumFragment())
-        fragmentTransaction.addToBackStack(null)
-        fragmentTransaction.commit()
+            val fragmentManager = fragmentManager
+            val fragmentTransaction = fragmentManager!!.beginTransaction()
+            fragmentTransaction.replace(R.id.progressFragment, PhoneNumFragment())
+            fragmentTransaction.addToBackStack(null)
+            fragmentTransaction.commit()
+        }
+        else context!!.toast("你还没有上传头像哦！", Toast.LENGTH_SHORT)
+
     }
 
     companion object {

@@ -63,6 +63,7 @@ class StoryDetailActivity : BaseActivityWithPresenter(), StoryDetailView {
         tvStoryPublisher.text = story.user.firstName + story.user.lastName
         tvContent.text = story.content
         tvPlace.text = story.district
+        ivPublisher.loadImage(story.user.avatar.path)
     }
 
     override fun onDestroy() {

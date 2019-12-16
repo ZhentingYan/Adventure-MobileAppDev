@@ -47,7 +47,7 @@ class StoryDetailPresenter(
                 view.getStoryFailed(null)
             }
         } catch (error: SQLException) {
-            view.showSqlError(error)
+            view.showSQLError(error)
         }
     }
 

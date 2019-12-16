@@ -29,11 +29,12 @@ class StoryListAdapter(
     val storyListDao = StoryListDao()
 
     override fun ViewHolder.onBindViewHolder() {
-        firstName.text = storyList.user.firstName
+        tvFirstName.text = storyList.user.firstName
         lastName.text = storyList.user.lastName
-        title.text = storyList.title
-        date.text = storyList.time.split(" ").get(0)
+        tvStoryTitle.text = storyList.title
+        tvDate.text = storyList.time.split(" ").get(0)
         ivStory.loadImage(storyList.photo.path)
+        ivPublisher.loadImage(storyList.user.avatar.path)
 
 
         ivStory.setOnClickListener() {
@@ -49,10 +50,12 @@ class StoryListAdapter(
     }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val firstName by bindView<TextView>(R.id.tvFirstName)
+        val tvFirstName by bindView<TextView>(R.id.tvFirstName)
         val lastName by bindView<TextView>(R.id.tvLastName)
-        val title by bindView<TextView>(R.id.tvStoryTitle)
-        val date by bindView<TextView>(R.id.tvDate)
+        val tvStoryTitle by bindView<TextView>(R.id.tvStoryTitle)
+        val tvDate by bindView<TextView>(R.id.tvDate)
         val ivStory by bindView<ImageView>(R.id.ivStory)
+        val ivPublisher by bindView<ImageView>(R.id.ivPublisher)
+
     }
 }

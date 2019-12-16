@@ -53,7 +53,7 @@ class UserStoryActivity : BaseActivityWithPresenter(), UserStoryView {
         } else {
             ErrorLayout.visibility = View.VISIBLE
             srStories.visibility = View.GONE
-            tvError.text = "你还没有游记哦......快记录旅行途中有趣的故事吧！"
+            tvError.text = "你还没有发布过游记哦......"
         }
     }
 
@@ -66,7 +66,7 @@ class UserStoryActivity : BaseActivityWithPresenter(), UserStoryView {
         } else {
             ErrorLayout.visibility = View.VISIBLE
             rvListing.visibility = View.GONE
-            tvError.text = "你还没有游记哦......快记录旅行途中有趣的故事吧！"
+            tvError.text = "你还没有发布过游记哦......"
         }
     }
 }
