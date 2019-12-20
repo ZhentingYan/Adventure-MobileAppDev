@@ -95,8 +95,6 @@ class MyAdventureFragment : BaseFragmentWithPresenter(), MyAdventureView {
                             val intent1 = Intent(activity, ImageGridActivity::class.java)
                             startActivityForResult(intent1, REQUEST_CODE_SELECT)
                         }
-                        else -> {
-                        }
                     }
                 }
             }, names)
@@ -119,27 +117,16 @@ class MyAdventureFragment : BaseFragmentWithPresenter(), MyAdventureView {
     }
 
     @Suppress("UNCHECKED_CAST")
-    public override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         var images: ArrayList<ImageItem>?
-        if (resultCode == ImagePicker.RESULT_CODE_ITEMS) {
-            //添加图片返回
-            if (data != null && requestCode == REQUEST_CODE_SELECT) {
-                images = data.getSerializableExtra(ImagePicker.EXTRA_RESULT_ITEMS) as ArrayList<ImageItem>
-                if (images.isNotEmpty()) {
-                    presenter.updateAvatar(images.get(0), mSessionManager.email)
-                }
+        //添加图片返回，此处不提供预览功能
+        if (data != null && requestCode == REQUEST_CODE_SELECT) {
+            images = data.getSerializableExtra(ImagePicker.EXTRA_RESULT_ITEMS) as ArrayList<ImageItem>
+            if (images.isNotEmpty()) {
+                presenter.updateAvatar(images.get(0), mSessionManager.email)
             }
         }
-//        else if (resultCode == ImagePicker.RESULT_CODE_BACK) {
-//            //预览图片返回
-//            if (data != null && requestCode == REQUEST_CODE_PREVIEW) {
-//                images = data.getSerializableExtra(ImagePicker.EXTRA_IMAGE_ITEMS) as ArrayList<ImageItem>
-//                if (images.isEmpty()) {
-//                    selImage = images
-//                }
-//            }
-//        }
     }
 
     override fun updateAvatarSuccess(avatar: ImageItem) {

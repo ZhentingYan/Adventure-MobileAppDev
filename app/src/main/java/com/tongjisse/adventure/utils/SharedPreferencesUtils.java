@@ -65,45 +65,45 @@ public class SharedPreferencesUtils {
     }
 
     public void writeString(String key, String str) {
-        SharedPreferences.Editor editor = getPreferenceEditor();
-        editor.putString(key, str);
-        editor.apply();
+        SharedPreferences.Editor tempEditor = getPreferenceEditor();
+        tempEditor.putString(key, str);
+        tempEditor.apply();
     }
 
     public void writeFloat(String key, float flt) {
-        SharedPreferences.Editor editor = getPreferenceEditor();
-        editor.putFloat(key, flt);
-        editor.apply();
+        SharedPreferences.Editor tempEditor = getPreferenceEditor();
+        tempEditor.putFloat(key, flt);
+        tempEditor.apply();
     }
 
     public void writeLong(String key, long lng) {
-        SharedPreferences.Editor editor = getPreferenceEditor();
-        editor.putLong(key, lng);
-        editor.apply();
+        SharedPreferences.Editor tempEditor = getPreferenceEditor();
+        tempEditor.putLong(key, lng);
+        tempEditor.apply();
     }
 
     public void writeInteger(String key, int integer) {
-        SharedPreferences.Editor editor = getPreferenceEditor();
-        editor.putInt(key, integer);
-        editor.apply();
+        SharedPreferences.Editor tempEditor = getPreferenceEditor();
+        tempEditor.putInt(key, integer);
+        tempEditor.apply();
     }
 
     public void writeBoolean(String key, boolean bln) {
-        SharedPreferences.Editor editor = getPreferenceEditor();
-        editor.putBoolean(key, bln);
-        editor.apply();
+        SharedPreferences.Editor tempEditor = getPreferenceEditor();
+        tempEditor.putBoolean(key, bln);
+        tempEditor.apply();
     }
 
     public void remove(String key) {
-        SharedPreferences.Editor editor = getPreferenceEditor();
-        editor.remove(key);
-        editor.apply();
+        SharedPreferences.Editor tempEditor = getPreferenceEditor();
+        tempEditor.remove(key);
+        tempEditor.apply();
     }
 
     public void clearAll() {
-        SharedPreferences.Editor editor = getPreferenceEditor();
-        editor.clear();
-        editor.apply();
+        SharedPreferences.Editor tempEditor = getPreferenceEditor();
+        tempEditor.clear();
+        tempEditor.apply();
     }
 
 

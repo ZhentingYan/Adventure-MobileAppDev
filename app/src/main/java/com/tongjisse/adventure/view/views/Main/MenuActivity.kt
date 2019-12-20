@@ -20,66 +20,21 @@ import kotlinx.android.synthetic.main.tab_item.view.*
 
 
 class MenuActivity : AppCompatActivity() {
-    // internal var exploreFragment: ExploreFragment
     lateinit var thisFragment: Fragment
 
     companion object {
         lateinit var sectionTab: TabLayout
     }
 
-    private fun changeTabsFont(tabLayout: TabLayout) {
-        val vg = tabLayout.getChildAt(0) as ViewGroup
-        val tabsCount = vg.childCount
-        for (j in 0 until tabsCount) {
-            val vgTab = vg.getChildAt(j) as ViewGroup
-            val tabChildsCount = vgTab.childCount
-            for (i in 0 until tabChildsCount) {
-                val tabViewChild = vgTab.getChildAt(i)
-                if (tabViewChild is TextView) {
-                    tabViewChild.setTextSize(TypedValue.COMPLEX_UNIT_SP, 35f)
-                }
-            }
-        }
-    }
-
-    /*
-    override fun onBackPressed() {
-        val currentFragment = supportFragmentManager.findFragmentById(R.id.sectionFragmentReplace)
-
-        if (currentFragment is LocationFragment || currentFragment is SearchGuestFragment) {
-
-            super.onBackPressed()
-            //section tab is invisible when one of the search-bar filters are clicked
-            findViewById(R.id.sectionTab).setVisibility(View.VISIBLE)
-        } else if (currentFragment is ExploreFragment || currentFragment is ProfileFragment) {
-            finish()
-        } else {
-            super.onBackPressed()
-        }
-
-    }
-*/
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_menu)
 
-/*
-        val profileFragment = ProfileFragment()
-        val fragmentManager = supportFragmentManager
-        val fragmentTransaction = fragmentManager.beginTransaction()
-        fragmentTransaction.add(R.id.sectionFragmentReplace, exploreFragment, "exploreFragment")
-
-        fragmentTransaction.hide(profileFragment)
-        fragmentTransaction.show(exploreFragment)
-        fragmentTransaction.commit()
-*/
         sectionTab = findViewById(R.id.sectionTab) as TabLayout
 
         val tabName = arrayOf("探索", "景点", "故事", "心愿单", "我的")
         val tabPics = arrayOf(R.drawable.explore_logo, R.drawable.scene_logo, R.drawable.story_logo, R.drawable.likes_logo, R.drawable.profile_logo)
-        // sectionTab.addTab(sectionTab.newTab().setText("Explore"))
-        // sectionTab.addTab(sectionTab.newTab().setText("Profile"))
-        //changeTabsFont(sectionTab)
+
         for (i in 0..4) {
             val tab = sectionTab.newTab()
             val view = LayoutInflater.from(this).inflate(R.layout.tab_item, null)
@@ -166,7 +121,7 @@ class MenuActivity : AppCompatActivity() {
             }
 
             override fun onTabReselected(tab: TabLayout.Tab) {
-
+                // no need to do this in this version
             }
 
         })

@@ -48,7 +48,6 @@ class ScenicSpotDetailActivity : BaseActivityWithPresenter(), ScenicSpotDetailVi
      */
     override fun show(items: List<ScenicSpotDetail>) {
         val detail = items[0]
-        val marker = mMap.addMarker(MarkerOptions().position(LatLng(detail.latitude.toDouble(), detail.longitude.toDouble())).title(detail.name).snippet(detail.address))
         tvAddress.text = detail.address
         tvPublisher.text = detail.intro
         tvType.text = detail.type

@@ -34,22 +34,18 @@ public class OrmLiteHelper extends OrmLiteSqliteOpenHelper {
 
     /**
      * 新建 OrmLiteHelper 实例，使用单例模式
-     *
      */
     public static void createInstance(Context context) {
         Log.d(TAG, "createInstance: " + "helper created");
         if (sORMLITEHELPER == null) {
             synchronized (OrmLiteHelper.class) {
-                if (sORMLITEHELPER == null) {
-                    sORMLITEHELPER = new OrmLiteHelper(context);
-                }
+                sORMLITEHELPER = new OrmLiteHelper(context);
             }
         }
     }
 
     /**
      * 获取 OrmLiteHelper 实例
-     *
      */
     public static OrmLiteHelper getInstance() {
         return sORMLITEHELPER;
@@ -71,16 +67,12 @@ public class OrmLiteHelper extends OrmLiteSqliteOpenHelper {
 
     @Override
     public void close() {
-        for (String key : daos.keySet()) {
-            Dao dao = daos.get(key);
-            dao = null;
-        }
+        daos.clear();
         super.close();
     }
 
     /**
      * 新建表
-     *
      */
     @Override
     public void onCreate(SQLiteDatabase database, ConnectionSource connectionSource) {
@@ -89,13 +81,12 @@ public class OrmLiteHelper extends OrmLiteSqliteOpenHelper {
             TableUtils.createTable(connectionSource, WishList.class);
             TableUtils.createTable(connectionSource, StoryList.class);
         } catch (SQLException e) {
-            e.printStackTrace();
+            Log.e(TAG, e.toString());
         }
     }
 
     /**
      * 删除表并重建数据库
-     *
      */
     @Override
     public void onUpgrade(SQLiteDatabase database, ConnectionSource connectionSource, int oldVersion, int newVersion) {
@@ -105,7 +96,7 @@ public class OrmLiteHelper extends OrmLiteSqliteOpenHelper {
             TableUtils.dropTable(connectionSource, StoryList.class, true);
             onCreate(database, connectionSource);
         } catch (SQLException e) {
-            e.printStackTrace();
+            Log.e(TAG, e.toString());
         }
         onCreate(database, connectionSource);
     }

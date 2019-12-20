@@ -52,7 +52,6 @@ class InnerScrollView(context: Context, attrs: AttributeSet) : ScrollView(contex
             } else if (ev.action == MotionEvent.ACTION_UP) {
                 // 把滚动事件恢复给父Scrollview
                 setParentScrollAble(true)
-            } else if (ev.action == MotionEvent.ACTION_MOVE) {
             }
         }
         return super.onInterceptTouchEvent(ev)
@@ -60,34 +59,32 @@ class InnerScrollView(context: Context, attrs: AttributeSet) : ScrollView(contex
 
     override fun onTouchEvent(ev: MotionEvent): Boolean {
         val child = getChildAt(0)
-        if (parentScrollView != null) {
-            if (ev.action == MotionEvent.ACTION_MOVE) {
-                var height = child.measuredHeight
-                height = height - measuredHeight
-                // System.out.println("height=" + height);
-                val scrollY = scrollY
-                // System.out.println("scrollY" + scrollY);
-                val y = ev.y.toInt()
-                // 手指向下滑动
-                if (currentY < y) {
-                    if (scrollY <= 0) {
-                        // 如果向下滑动到头，就把滚动交给父Scrollview
-                        setParentScrollAble(true)
-                        return false
-                    } else {
-                        setParentScrollAble(false)
-                    }
-                } else if (currentY > y) {
-                    if (scrollY >= height) {
-                        // 如果向上滑动到头，就把滚动交给父Scrollview
-                        setParentScrollAble(true)
-                        return false
-                    } else {
-                        setParentScrollAble(false)
-                    }
+        if (parentScrollView != null && ev.action == MotionEvent.ACTION_MOVE) {
+            var height = child.measuredHeight
+            height = height - measuredHeight
+            // System.out.println("height=" + height);
+            val scrollY = scrollY
+            // System.out.println("scrollY" + scrollY);
+            val y = ev.y.toInt()
+            // 手指向下滑动
+            if (currentY < y) {
+                if (scrollY <= 0) {
+                    // 如果向下滑动到头，就把滚动交给父Scrollview
+                    setParentScrollAble(true)
+                    return false
+                } else {
+                    setParentScrollAble(false)
                 }
-                currentY = y
+            } else if (currentY > y) {
+                if (scrollY >= height) {
+                    // 如果向上滑动到头，就把滚动交给父Scrollview
+                    setParentScrollAble(true)
+                    return false
+                } else {
+                    setParentScrollAble(false)
+                }
             }
+            currentY = y
         }
         return super.onTouchEvent(ev)
     }

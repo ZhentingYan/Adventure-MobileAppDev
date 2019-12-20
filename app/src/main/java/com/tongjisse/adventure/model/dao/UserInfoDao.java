@@ -4,11 +4,11 @@ import android.util.Log;
 
 import com.j256.ormlite.dao.Dao;
 import com.lzy.imagepicker.bean.ImageItem;
-import com.tongjisse.adventure.R;
 import com.tongjisse.adventure.data.bean.UserInfo;
 import com.tongjisse.adventure.utils.OrmLiteHelper;
 
 import java.sql.SQLException;
+import java.util.Collections;
 import java.util.List;
 
 import static android.support.constraint.Constraints.TAG;
@@ -28,13 +28,14 @@ public class UserInfoDao {
             userDao = helper.getDao(UserInfo.class);
             if (userDao == null) {
                 Log.d(TAG, "UserInfoDao: " + "NULL!");
+            } else {
+                // 新建测试账户
+                userDao.createIfNotExists(new UserInfo("FNAME", "LNAME",
+                        "admin123", "test@admin.com", "18918911111",
+                        18, new ImageItem()));
             }
-            // 新建测试账户
-            userDao.createIfNotExists(new UserInfo("FNAME", "LNAME",
-                    "admin123", "test@admin.com", "18918911111",
-                    18, new ImageItem()));
         } catch (SQLException e) {
-            e.printStackTrace();
+            Log.e(TAG,e.toString());
         }
     }
 
@@ -49,7 +50,7 @@ public class UserInfoDao {
         try {
             userDao.createIfNotExists(info);
         } catch (SQLException e) {
-            e.printStackTrace();
+            Log.e(TAG,e.toString());
         }
     }
 
@@ -62,7 +63,7 @@ public class UserInfoDao {
         try {
             userDao.delete(info);
         } catch (SQLException e) {
-            e.printStackTrace();
+            Log.e(TAG,e.toString());
         }
     }
 
@@ -74,7 +75,7 @@ public class UserInfoDao {
             List<UserInfo> allInfo = this.query();
             userDao.delete(allInfo);
         } catch (SQLException e) {
-            e.printStackTrace();
+            Log.e(TAG,e.toString());
         }
     }
 
@@ -87,7 +88,7 @@ public class UserInfoDao {
         try {
             userDao.update(info);
         } catch (SQLException e) {
-            e.printStackTrace();
+            Log.e(TAG,e.toString());
         }
     }
 
@@ -101,14 +102,14 @@ public class UserInfoDao {
         try {
             List<UserInfo> tempUserList = userDao.queryBuilder()
                     .where().eq("emailAddress", email).query();
-            if (tempUserList.size() < 1) {
+            if (tempUserList.isEmpty()) {
                 return null;
             } else {
                 Log.d(TAG, "queryInfoByEmail: " + tempUserList.toString() + tempUserList.size());
                 return tempUserList.get(0);
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            Log.e(TAG,e.toString());
         }
         return null;
     }
@@ -123,7 +124,7 @@ public class UserInfoDao {
         try {
             return userDao.queryForId(id);
         } catch (SQLException e) {
-            e.printStackTrace();
+            Log.e(TAG,e.toString());
         }
         return null;
     }
@@ -137,8 +138,8 @@ public class UserInfoDao {
         try {
             return userDao.queryForAll();
         } catch (SQLException e) {
-            e.printStackTrace();
+            Log.e(TAG,e.toString());
         }
-        return null;
+        return Collections.emptyList();
     }
 }

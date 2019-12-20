@@ -70,10 +70,6 @@ class StoryPublishActivity : BaseActivityWithPresenter(), StoryPublishView {
                 mSessionManager.refineLocation(province!!.name, city!!.name, district!!.name, mSessionManager.longitude, mSessionManager.latitude)
                 tvDistrictSelect.text = mSessionManager.defaultAddress
             }
-
-            override fun onCancel() {
-
-            }
         })
         presenter.getUser(mSessionManager.email)
 
@@ -103,8 +99,6 @@ class StoryPublishActivity : BaseActivityWithPresenter(), StoryPublishView {
                             ImagePicker.getInstance().setFreeCrop(true, FreeCropImageView.CropMode.FREE)
                             val intent1 = Intent(this@StoryPublishActivity, ImageGridActivity::class.java)
                             startActivityForResult(intent1, REQUEST_CODE_SELECT)
-                        }
-                        else -> {
                         }
                     }
                 }
@@ -267,14 +261,18 @@ class StoryPublishActivity : BaseActivityWithPresenter(), StoryPublishView {
                 }
             }
         }
-        if (selImage!!.isNotEmpty()) {
+
+        changeImg()
+    }
+
+    fun changeImg() {
+        if (selImage != null && selImage.isNotEmpty()) {
             ivPickedImg.visibility = View.VISIBLE
             ivPickImg.visibility = View.GONE
             ImagePicker.getInstance().imageLoader.displayImage(this, selImage!!.get(0).path, ivPickedImg, 0, 0)
         } else {
             ivPickedImg.visibility = View.GONE
             ivPickImg.visibility = View.VISIBLE
-            applicationContext.toast("添加的图片受到神秘东方力量影响，居然消失了！", Toast.LENGTH_SHORT)
         }
     }
 

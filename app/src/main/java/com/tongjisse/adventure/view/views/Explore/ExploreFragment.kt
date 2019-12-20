@@ -140,8 +140,6 @@ class ExploreFragment : BaseFragmentWithPresenter(), WeatherSearch.OnWeatherSear
                 presenter.showUserWishLists(mSessionManager.email, mSessionManager.district)
                 tvLikes.text = district!!.name + "的心愿单"
             }
-
-            override fun onCancel() {}
         })
         //加载天气、定位、心愿单信息
         fragmentInit()

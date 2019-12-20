@@ -54,10 +54,6 @@ class StoryListFragment : BaseFragmentWithPresenter(), StoryListView {
                 mSessionManager.refineLocation(province!!.name, city!!.name, district!!.name, mSessionManager.longitude, mSessionManager.latitude)
                 tvLocation.text = mSessionManager.defaultAddress
             }
-
-            override fun onCancel() {
-
-            }
         })
 
         swipeRefreshView.setOnRefreshListener {

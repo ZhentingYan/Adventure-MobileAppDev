@@ -70,8 +70,6 @@ class WishListFragment : BaseFragmentWithPresenter(), WishListView {
                 tvLocation.text = mSessionManager.defaultAddress
                 presenter.showUserWishLists(mSessionManager.email, mSessionManager.district)
             }
-
-            override fun onCancel() {}
         })
 
         swipeRefreshView.setOnRefreshListener {

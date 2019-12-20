@@ -1,7 +1,6 @@
 package com.tongjisse.adventure.utils;
 
 import android.app.Activity;
-import android.content.Context;
 import android.net.Uri;
 import android.widget.ImageView;
 
@@ -40,5 +39,6 @@ public class GlideImageLoaderHelper implements ImageLoader {
 
     @Override
     public void clearMemoryCache() {
+        // no need here
     }
 }

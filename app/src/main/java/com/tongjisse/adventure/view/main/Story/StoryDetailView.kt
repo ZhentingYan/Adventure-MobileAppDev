@@ -4,7 +4,6 @@ import com.tongjisse.adventure.data.bean.StoryList
 import java.sql.SQLException
 
 interface StoryDetailView {
-    // var refresh:Boolean
     fun getStorySuccess(detail: StoryList)
     fun getStoryFailed(error:SQLException?)
     fun delStorySuccess()

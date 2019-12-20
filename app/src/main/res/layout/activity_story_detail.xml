@@ -207,15 +207,6 @@
                         android:textSize="15sp" />
                 </LinearLayout>
 
-                <!--<FrameLayout-->
-                <!--android:id="@+id/mapLayout"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:orientation="vertical">-->
-
-                <!--</FrameLayout>-->
-
-
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"

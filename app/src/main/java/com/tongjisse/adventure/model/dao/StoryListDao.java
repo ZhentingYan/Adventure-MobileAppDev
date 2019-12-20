@@ -8,6 +8,7 @@ import com.tongjisse.adventure.data.bean.UserInfo;
 import com.tongjisse.adventure.utils.OrmLiteHelper;
 
 import java.sql.SQLException;
+import java.util.Collections;
 import java.util.List;
 
 import static android.support.constraint.Constraints.TAG;
@@ -19,6 +20,10 @@ import static android.support.constraint.Constraints.TAG;
  */
 public class StoryListDao {
     private Dao<StoryList, Long> storyDao;
+    static private String DISTRICT = "district";
+    static private String USER = "user";
+    static private String SCENE = "scene";
+    static private String TITLE = "title";
 
     public StoryListDao() {
         OrmLiteHelper helper = OrmLiteHelper.getInstance();
@@ -29,7 +34,7 @@ public class StoryListDao {
                 Log.d(TAG, "StoryListDao: " + "NULL!");
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            Log.e(TAG,e.toString());
         }
     }
 
@@ -45,7 +50,7 @@ public class StoryListDao {
             storyList.setId(storyList.getTime() + storyList.getUser().toString());
             storyDao.createIfNotExists(storyList);
         } catch (SQLException e) {
-            e.printStackTrace();
+            Log.e(TAG,e.toString());
         }
     }
 
@@ -58,7 +63,7 @@ public class StoryListDao {
         try {
             storyDao.delete(storyList);
         } catch (SQLException e) {
-            e.printStackTrace();
+            Log.e(TAG,e.toString());
         }
     }
 
@@ -70,7 +75,7 @@ public class StoryListDao {
             List<StoryList> allStoryList = this.query();
             storyDao.delete(allStoryList);
         } catch (SQLException e) {
-            e.printStackTrace();
+            Log.e(TAG,e.toString());
         }
     }
 
@@ -83,7 +88,7 @@ public class StoryListDao {
         try {
             storyDao.update(storyList);
         } catch (SQLException e) {
-            e.printStackTrace();
+            Log.e(TAG,e.toString());
         }
     }
 
@@ -97,8 +102,8 @@ public class StoryListDao {
         UserInfoDao userDao = new UserInfoDao();
         UserInfo user = userDao.queryInfoByEmail(email);
         List<StoryList> tempStoryLists = queryStoryByUser(user);
-        if (tempStoryLists == null || tempStoryLists.size() < 1) {
-            return null;
+        if (tempStoryLists == null || tempStoryLists.isEmpty()) {
+            return Collections.emptyList();
         } else {
             return tempStoryLists;
         }
@@ -113,17 +118,17 @@ public class StoryListDao {
     public List<StoryList> queryStoryByUser(UserInfo user) {
         try {
             List<StoryList> tempStoryLists = storyDao.queryBuilder()
-                    .where().eq("user", user).query();
-            if (tempStoryLists.size() < 1) {
-                return null;
+                    .where().eq(USER, user).query();
+            if (tempStoryLists.isEmpty()) {
+                return Collections.emptyList();
             } else {
                 Log.d(TAG, "queryStoryByUser: " + tempStoryLists.toString() + tempStoryLists.size());
                 return tempStoryLists;
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            Log.e(TAG,e.toString());
         }
-        return null;
+        return Collections.emptyList();
     }
 
     /**
@@ -136,18 +141,18 @@ public class StoryListDao {
         try {
             List<StoryList> tempStoryLists = storyDao.queryBuilder()
                     .where()
-                    .eq("district", district)
+                    .eq(DISTRICT, district)
                     .query();
-            if (tempStoryLists.size() < 1) {
-                return null;
+            if (tempStoryLists.isEmpty()) {
+                return Collections.emptyList();
             } else {
                 Log.d(TAG, "queryStoryByDistrict: " + tempStoryLists.toString() + tempStoryLists.size());
                 return tempStoryLists;
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            Log.e(TAG,e.toString());
         }
-        return null;
+        return Collections.emptyList();
     }
 
     /**
@@ -161,20 +166,20 @@ public class StoryListDao {
         try {
             List<StoryList> tempStoryLists = storyDao.queryBuilder()
                     .where()
-                    .like("title", "%" + title + "%")
+                    .like(TITLE, "%" + title + "%")
                     .and()
-                    .eq("district", district)
+                    .eq(DISTRICT, district)
                     .query();
-            if (tempStoryLists.size() < 1) {
-                return null;
+            if (tempStoryLists.isEmpty()) {
+                return Collections.emptyList();
             } else {
                 Log.d(TAG, "queryStoryByTitleWithDistrict: " + tempStoryLists.toString() + tempStoryLists.size());
                 return tempStoryLists;
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            Log.e(TAG,e.toString());
         }
-        return null;
+        return Collections.emptyList();
     }
 
     /**
@@ -188,20 +193,20 @@ public class StoryListDao {
         try {
             List<StoryList> tempStoryLists = storyDao.queryBuilder()
                     .where()
-                    .like("scene", "%" + scene + "%")
+                    .like(SCENE, "%" + scene + "%")
                     .and()
-                    .eq("district", district)
+                    .eq(DISTRICT, district)
                     .query();
-            if (tempStoryLists.size() < 1) {
-                return null;
+            if (tempStoryLists.isEmpty()) {
+                return Collections.emptyList();
             } else {
                 Log.d(TAG, "queryStoryBySceneWithDistrict: " + tempStoryLists.toString() + tempStoryLists.size());
                 return tempStoryLists;
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            Log.e(TAG,e.toString());
         }
-        return null;
+        return Collections.emptyList();
     }
 
     /**
@@ -214,7 +219,7 @@ public class StoryListDao {
         try {
             return storyDao.queryForEq("id", id).get(0);
         } catch (SQLException e) {
-            e.printStackTrace();
+            Log.e(TAG,e.toString());
         }
         return null;
     }
@@ -228,8 +233,8 @@ public class StoryListDao {
         try {
             return storyDao.queryForAll();
         } catch (SQLException e) {
-            e.printStackTrace();
+            Log.e(TAG,e.toString());
         }
-        return null;
+        return Collections.emptyList();
     }
 }

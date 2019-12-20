@@ -164,8 +164,6 @@ class ScenicSpotFragment : BaseFragmentWithPresenter(), ScenicSpotView {
                 presenter.loadScenicSpots(mSessionManager.district)
 
             }
-
-            override fun onCancel() {}
         })
         swipeRefreshView.setOnRefreshListener {
             swipeRefreshView.isRefreshing = true

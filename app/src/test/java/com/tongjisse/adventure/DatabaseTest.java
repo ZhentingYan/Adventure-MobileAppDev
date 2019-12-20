@@ -1,7 +1,6 @@
 package com.tongjisse.adventure;
 
 import android.app.Activity;
-import android.media.Image;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -28,10 +27,6 @@ public class DatabaseTest extends Activity {
         mOrmDao = new UserInfoDao();
         Log.d("CC", "onCreate: "+"Ss");
         initOrmInfo();
-//        mOrmDao.delAllInfo();
-//        queryEmail("1e");
-//        queryOrmOri();
-//        queryOrmOri(1);
     }
 
     @After

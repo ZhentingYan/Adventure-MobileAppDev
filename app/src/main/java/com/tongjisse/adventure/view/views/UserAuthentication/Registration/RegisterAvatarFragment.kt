@@ -75,8 +75,6 @@ class RegisterAvatarFragment : Fragment() {
                             val intent1 = Intent(context, ImageGridActivity::class.java)
                             startActivityForResult(intent1, REQUEST_CODE_SELECT)
                         }
-                        else -> {
-                        }
                     }
                 }
             }, names)
@@ -127,14 +125,18 @@ class RegisterAvatarFragment : Fragment() {
                 }
             }
         }
-        if (selImage!!.isNotEmpty()) {
+
+        changeImg()
+    }
+
+    fun changeImg() {
+        if (selImage != null && selImage.isNotEmpty()) {
             ivPickedImg.visibility = View.VISIBLE
             ivPickImg.visibility = View.GONE
             ImagePicker.getInstance().imageLoader.displayImage(activity, selImage!!.get(0).path, ivPickedImg, 0, 0)
         } else {
             ivPickedImg.visibility = View.GONE
             ivPickImg.visibility = View.VISIBLE
-            context!!.toast("添加的图片受到神秘东方力量影响，居然消失了！", Toast.LENGTH_SHORT)
         }
     }
 

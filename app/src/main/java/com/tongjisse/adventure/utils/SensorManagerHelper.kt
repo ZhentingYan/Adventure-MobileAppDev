@@ -100,6 +100,8 @@ class SensorManagerHelper(private val context: Context?) : SensorEventListener {
         }
     }
 
-    override fun onAccuracyChanged(sensor: Sensor, accuracy: Int) {}
+    override fun onAccuracyChanged(sensor: Sensor, accuracy: Int) {
+        // no need here
+    }
 
 }
