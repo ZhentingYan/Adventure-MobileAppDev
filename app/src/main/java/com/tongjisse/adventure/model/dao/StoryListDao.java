@@ -20,10 +20,10 @@ import static android.support.constraint.Constraints.TAG;
  */
 public class StoryListDao {
     private Dao<StoryList, Long> storyDao;
-    static private String DISTRICT = "district";
-    static private String USER = "user";
-    static private String SCENE = "scene";
-    static private String TITLE = "title";
+    private static String DISTRICT = "district";
+    private static String USER = "user";
+    private static String SCENE = "scene";
+    private static String TITLE = "title";
 
     public StoryListDao() {
         OrmLiteHelper helper = OrmLiteHelper.getInstance();
