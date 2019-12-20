@@ -47,6 +47,16 @@ class RegisterAvatarFragment : Fragment() {
         bNext.setOnClickListener {
             registrationProceed()
         }
+
+        ivPickedImg.setOnClickListener() {
+            //打开预览
+            val intentPreview = Intent(context, ImagePreviewDelActivity::class.java)
+            intentPreview.putExtra(ImagePicker.EXTRA_IMAGE_ITEMS, selImage)
+            intentPreview.putExtra(ImagePicker.EXTRA_SELECTED_IMAGE_POSITION, 0)
+            intentPreview.putExtra(ImagePicker.EXTRA_FROM_ITEMS, true)
+            startActivityForResult(intentPreview, REQUEST_CODE_PREVIEW)
+        }
+
         ivPickImg.setOnClickListener() {
             val names = ArrayList<String>()
             names.add("拍照")
@@ -78,14 +88,6 @@ class RegisterAvatarFragment : Fragment() {
                 }
             }, names)
         }
-        ivPickedImg.setOnClickListener() {
-            //打开预览
-            val intentPreview = Intent(context, ImagePreviewDelActivity::class.java)
-            intentPreview.putExtra(ImagePicker.EXTRA_IMAGE_ITEMS, selImage)
-            intentPreview.putExtra(ImagePicker.EXTRA_SELECTED_IMAGE_POSITION, 0)
-            intentPreview.putExtra(ImagePicker.EXTRA_FROM_ITEMS, true)
-            startActivityForResult(intentPreview, REQUEST_CODE_PREVIEW)
-        }
     }
 
     fun showDialog(listener: SelectDialog.SelectDialogListener, names: List<String>): SelectDialog {
@@ -114,7 +116,7 @@ class RegisterAvatarFragment : Fragment() {
      *
      */
     @Suppress("UNCHECKED_CAST")
-    public override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         var images: ArrayList<ImageItem>?
         if (resultCode == ImagePicker.RESULT_CODE_ITEMS) {
