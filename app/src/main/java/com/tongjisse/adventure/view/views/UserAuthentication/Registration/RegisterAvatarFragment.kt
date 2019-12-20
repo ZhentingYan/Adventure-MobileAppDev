@@ -47,7 +47,6 @@ class RegisterAvatarFragment : Fragment() {
         bNext.setOnClickListener {
             registrationProceed()
         }
-
         ivPickImg.setOnClickListener() {
             val names = ArrayList<String>()
             names.add("拍照")
@@ -79,7 +78,6 @@ class RegisterAvatarFragment : Fragment() {
                 }
             }, names)
         }
-
         ivPickedImg.setOnClickListener() {
             //打开预览
             val intentPreview = Intent(context, ImagePreviewDelActivity::class.java)
