@@ -100,6 +100,17 @@ class RegisterAvatarFragment : Fragment() {
         return dialog
     }
 
+    fun changeImg() {
+        if (selImage != null && selImage.isNotEmpty()) {
+            ivPickedImg.visibility = View.VISIBLE
+            ivPickImg.visibility = View.GONE
+            ImagePicker.getInstance().imageLoader.displayImage(activity, selImage!!.get(0).path, ivPickedImg, 0, 0)
+        } else {
+            ivPickedImg.visibility = View.GONE
+            ivPickImg.visibility = View.VISIBLE
+        }
+    }
+
     /**
      * 处理图片上传结果
      *
@@ -127,17 +138,6 @@ class RegisterAvatarFragment : Fragment() {
         }
 
         changeImg()
-    }
-
-    fun changeImg() {
-        if (selImage != null && selImage.isNotEmpty()) {
-            ivPickedImg.visibility = View.VISIBLE
-            ivPickImg.visibility = View.GONE
-            ImagePicker.getInstance().imageLoader.displayImage(activity, selImage!!.get(0).path, ivPickedImg, 0, 0)
-        } else {
-            ivPickedImg.visibility = View.GONE
-            ivPickImg.visibility = View.VISIBLE
-        }
     }
 
     /**
