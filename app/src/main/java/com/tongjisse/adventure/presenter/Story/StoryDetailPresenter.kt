@@ -1,9 +1,6 @@
 package com.tongjisse.adventure.presenter.Story
 
 import com.tongjisse.adventure.data.bean.StoryList
-import com.tongjisse.adventure.data.bean.UserInfo
-import com.tongjisse.adventure.data.bean.WishList
-import com.tongjisse.adventure.data.plusAssign
 import com.tongjisse.adventure.model.dao.StoryListDao
 import com.tongjisse.adventure.presenter.BasePresenter
 import com.tongjisse.adventure.view.main.Story.StoryDetailView

@@ -19,11 +19,11 @@ import static android.support.constraint.Constraints.TAG;
  * @author Feifan Wang
  */
 public class StoryListDao {
-    private Dao<StoryList, Long> storyDao;
     private static String DISTRICT = "district";
     private static String USER = "user";
     private static String SCENE = "scene";
     private static String TITLE = "title";
+    private Dao<StoryList, Long> storyDao;
 
     public StoryListDao() {
         OrmLiteHelper helper = OrmLiteHelper.getInstance();
@@ -34,7 +34,7 @@ public class StoryListDao {
                 Log.d(TAG, "StoryListDao: " + "NULL!");
             }
         } catch (SQLException e) {
-            Log.e(TAG,e.toString());
+            Log.e(TAG, e.toString());
         }
     }
 
@@ -50,7 +50,7 @@ public class StoryListDao {
             storyList.setId(storyList.getTime() + storyList.getUser().toString());
             storyDao.createIfNotExists(storyList);
         } catch (SQLException e) {
-            Log.e(TAG,e.toString());
+            Log.e(TAG, e.toString());
         }
     }
 
@@ -63,7 +63,7 @@ public class StoryListDao {
         try {
             storyDao.delete(storyList);
         } catch (SQLException e) {
-            Log.e(TAG,e.toString());
+            Log.e(TAG, e.toString());
         }
     }
 
@@ -75,7 +75,7 @@ public class StoryListDao {
             List<StoryList> allStoryList = this.query();
             storyDao.delete(allStoryList);
         } catch (SQLException e) {
-            Log.e(TAG,e.toString());
+            Log.e(TAG, e.toString());
         }
     }
 
@@ -88,7 +88,7 @@ public class StoryListDao {
         try {
             storyDao.update(storyList);
         } catch (SQLException e) {
-            Log.e(TAG,e.toString());
+            Log.e(TAG, e.toString());
         }
     }
 
@@ -126,7 +126,7 @@ public class StoryListDao {
                 return tempStoryLists;
             }
         } catch (SQLException e) {
-            Log.e(TAG,e.toString());
+            Log.e(TAG, e.toString());
         }
         return Collections.emptyList();
     }
@@ -150,7 +150,7 @@ public class StoryListDao {
                 return tempStoryLists;
             }
         } catch (SQLException e) {
-            Log.e(TAG,e.toString());
+            Log.e(TAG, e.toString());
         }
         return Collections.emptyList();
     }
@@ -158,7 +158,7 @@ public class StoryListDao {
     /**
      * 通过title在有限制的district内查
      *
-     * @param title: String
+     * @param title:    String
      * @param district: String
      * @return List<StoryList>
      */
@@ -177,7 +177,7 @@ public class StoryListDao {
                 return tempStoryLists;
             }
         } catch (SQLException e) {
-            Log.e(TAG,e.toString());
+            Log.e(TAG, e.toString());
         }
         return Collections.emptyList();
     }
@@ -185,7 +185,7 @@ public class StoryListDao {
     /**
      * 通过scene在有限制的district内查
      *
-     * @param scene: String
+     * @param scene:    String
      * @param district: String
      * @return List<StoryList>
      */
@@ -204,7 +204,7 @@ public class StoryListDao {
                 return tempStoryLists;
             }
         } catch (SQLException e) {
-            Log.e(TAG,e.toString());
+            Log.e(TAG, e.toString());
         }
         return Collections.emptyList();
     }
@@ -219,7 +219,7 @@ public class StoryListDao {
         try {
             return storyDao.queryForEq("id", id).get(0);
         } catch (SQLException e) {
-            Log.e(TAG,e.toString());
+            Log.e(TAG, e.toString());
         }
         return null;
     }
@@ -233,7 +233,7 @@ public class StoryListDao {
         try {
             return storyDao.queryForAll();
         } catch (SQLException e) {
-            Log.e(TAG,e.toString());
+            Log.e(TAG, e.toString());
         }
         return Collections.emptyList();
     }

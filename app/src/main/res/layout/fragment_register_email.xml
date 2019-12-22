@@ -16,7 +16,7 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="26dp"
-        android:text="很好，您的电子邮件？"
+        android:text="您的电子邮件？"
         android:textColor="#ffffff"
         android:textSize="32sp"
         android:textStyle="normal|bold" />
@@ -60,7 +60,6 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:layout_marginTop="110dp"
-        android:layout_marginEnd="275dp"
         android:layout_marginBottom="347dp"
         android:text="邮箱地址"
         android:textColor="#ffffff" />

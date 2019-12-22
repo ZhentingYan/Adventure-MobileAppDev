@@ -7,7 +7,6 @@ import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.lzy.imagepicker.bean.ImageItem
 import com.tongjisse.adventure.R
 import kotlinx.android.synthetic.main.fragment_register_name.*
 
@@ -34,6 +33,7 @@ class RegisterNameFragment : android.support.v4.app.Fragment() {
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {
                 // no need here
             }
+
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
                 // no need here
             }

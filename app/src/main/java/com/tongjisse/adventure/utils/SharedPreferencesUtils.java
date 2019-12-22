@@ -6,9 +6,9 @@ import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
 public class SharedPreferencesUtils {
-    private Context context;
     @SuppressLint("StaticFieldLeak")
     private static SharedPreferencesUtils spUtils = null;
+    private Context context;
     private SharedPreferences sharedPreferences = null;
     private SharedPreferences.Editor editor = null;
 

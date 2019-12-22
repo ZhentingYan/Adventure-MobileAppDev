@@ -28,7 +28,7 @@ public class WishListDao {
                 Log.d(TAG, "UserInfoDao: " + "NULL!");
             }
         } catch (SQLException e) {
-            Log.e(TAG,e.toString());
+            Log.e(TAG, e.toString());
         }
     }
 
@@ -43,7 +43,7 @@ public class WishListDao {
         try {
             wishDao.createIfNotExists(wish);
         } catch (SQLException e) {
-            Log.e(TAG,e.toString());
+            Log.e(TAG, e.toString());
         }
     }
 
@@ -56,7 +56,7 @@ public class WishListDao {
         try {
             wishDao.delete(wish);
         } catch (SQLException e) {
-            Log.e(TAG,e.toString());
+            Log.e(TAG, e.toString());
         }
     }
 
@@ -68,7 +68,7 @@ public class WishListDao {
             List<WishList> allWish = this.query();
             wishDao.delete(allWish);
         } catch (SQLException e) {
-            Log.e(TAG,e.toString());
+            Log.e(TAG, e.toString());
         }
     }
 
@@ -83,7 +83,7 @@ public class WishListDao {
             wish.setState(state);
             wishDao.update(wish);
         } catch (SQLException e) {
-            Log.e(TAG,e.toString());
+            Log.e(TAG, e.toString());
         }
     }
 
@@ -97,7 +97,7 @@ public class WishListDao {
         try {
             return wishDao.queryForId(id);
         } catch (SQLException e) {
-            Log.e(TAG,e.toString());
+            Log.e(TAG, e.toString());
         }
         return null;
     }
@@ -111,7 +111,7 @@ public class WishListDao {
         try {
             return wishDao.queryForAll();
         } catch (SQLException e) {
-            Log.e(TAG,e.toString());
+            Log.e(TAG, e.toString());
         }
         return Collections.emptyList();
     }
@@ -119,7 +119,7 @@ public class WishListDao {
     /**
      * 通过user在限制的district中查
      *
-     * @param user: String
+     * @param user:     String
      * @param district: String
      * @return List<WishList>
      */
@@ -127,7 +127,7 @@ public class WishListDao {
         try {
             return wishDao.queryBuilder().where().eq("user", user).and().eq("district", district).query();
         } catch (SQLException e) {
-            Log.e(TAG,e.toString());
+            Log.e(TAG, e.toString());
         }
         return Collections.emptyList();
     }
@@ -142,7 +142,7 @@ public class WishListDao {
         try {
             return wishDao.queryForEq("user", user);
         } catch (SQLException e) {
-            Log.e(TAG,e.toString());
+            Log.e(TAG, e.toString());
         }
         return Collections.emptyList();
     }

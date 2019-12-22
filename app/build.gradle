@@ -14,6 +14,11 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        manifestPlaceholders = [
+                GETUI_APP_ID : "drGIeebdwp6A7Q2lSrP4J3",
+                GETUI_APP_KEY : "ICt86Gie418OpaGUxXnVI4",
+                GETUI_APP_SECRET : "yhZgqg1gWd7w0IOyPt4KY5"
+        ]
         ndk {
             //设置支持的SO库架构（开发者可以根据需要，选择一个或多个平台的so）
             abiFilters "armeabi", "armeabi-v7a", "arm64-v8a", "x86","x86_64"
@@ -24,6 +29,13 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+    }
+}
+
+allprojects{
+    repositories {
+        jcenter()
+        maven {url "http://mvn.gt.igexin.com/nexus/content/repositories/releases/"}
     }
 }
 
@@ -59,5 +71,9 @@ dependencies {
     api('com.cysion:ImagePicker:1.0.8'){
         exclude group: 'com.android.support'
     }
+    implementation 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.0'  //1.0.5及以前版本的老用户升级需谨慎，API改动过大
+    //implementation 'com.getui:sdk:2.13.3.0'
+    implementation 'com.getui:sdk:2.13.3.0'
+
 
 }

@@ -4,6 +4,8 @@ import android.content.Context
 import com.amap.api.location.AMapLocationClient
 import com.amap.api.location.AMapLocationClientOption
 import com.amap.api.location.AMapLocationListener
+import com.amap.api.maps.AMapUtils
+import com.amap.api.maps.model.LatLng
 
 class AMapHelper(context: Context?, locationListener: AMapLocationListener) {
     var locationClient: AMapLocationClient? = null
@@ -64,4 +66,21 @@ class AMapHelper(context: Context?, locationListener: AMapLocationListener) {
         return mOption
     }
 
+    /**
+     * 计算用户与景点距离
+     * @param user_latitude 用户纬度
+     * @param user_longitude 用户经度
+     * @param latitude:String 景点纬度
+     * @param longitude:String 景点经度
+     */
+    fun getDistance(user_latitude: String, user_longitude: String, latitude: String, longitude: String): Float {
+        if (user_latitude.equals("") || user_longitude.equals("")) {
+            return -0.1 as Float
+        } else {
+            val userPoint = LatLng(user_latitude.toDouble(), user_longitude.toDouble())
+            val placePoint = LatLng(latitude.toDouble(), longitude.toDouble())
+            val distance = AMapUtils.calculateLineDistance(userPoint, placePoint)
+            return distance
+        }
+    }
 }

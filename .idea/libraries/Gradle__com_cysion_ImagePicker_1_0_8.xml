@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="Gradle: com.cysion:ImagePicker-1.0.8">
+    <CLASSES>
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/ImagePicker-1.0.8.aar/2efd112a68b76f43142cf004c6c6be1b/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/ImagePicker-1.0.8.aar/2efd112a68b76f43142cf004c6c6be1b/jars/classes.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.cysion/ImagePicker/1.0.8/ba4d972cc8da4564a6b5c201db364624bb2c386f/ImagePicker-1.0.8-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

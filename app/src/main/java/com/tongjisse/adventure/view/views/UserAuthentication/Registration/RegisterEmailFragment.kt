@@ -3,7 +3,6 @@ package com.tongjisse.adventure.view.views.UserAuthentication.Registration
 
 import android.graphics.Color
 import android.os.Bundle
-import android.support.v4.app.Fragment
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.LayoutInflater
@@ -12,8 +11,6 @@ import android.view.ViewGroup
 import android.widget.Toast
 import com.tongjisse.adventure.R
 import com.tongjisse.adventure.data.bean.UserInfo
-import com.tongjisse.adventure.model.dao.UserInfoDao
-import com.tongjisse.adventure.presenter.Presenter
 import com.tongjisse.adventure.presenter.UserAuthentication.RegisterPresenter
 import com.tongjisse.adventure.view.common.BaseFragmentWithPresenter
 import com.tongjisse.adventure.view.common.toast

@@ -21,7 +21,6 @@ import com.tongjisse.adventure.model.ScenicSpotGallery
 import com.tongjisse.adventure.presenter.ScenicSpot.ScenicSpotPresenter
 import com.tongjisse.adventure.utils.*
 import com.tongjisse.adventure.view.common.BaseFragmentWithPresenter
-import com.tongjisse.adventure.view.common.bindToSwipeRefresh
 import com.tongjisse.adventure.view.common.toast
 import com.tongjisse.adventure.view.main.MainListAdapter
 import com.tongjisse.adventure.view.main.ScenicSpot.ScenicSpotGalleryAdapter
@@ -37,14 +36,13 @@ class ScenicSpotFragment : BaseFragmentWithPresenter(), ScenicSpotView {
     /**
      * Multiple Helpers
      */
-    lateinit var mJDCityPicker: CityPickerHelper
+    var mJDCityPicker: CityPickerHelper? = null
     lateinit var mAMapHelper: AMapHelper
     lateinit var mSessionManager: SessionManager
     lateinit var mSensorManagerHelper: SensorManagerHelper
     /**
      * Delegate
      */
-    override var refresh by bindToSwipeRefresh(R.id.swipeRefreshView)
     override val presenter by lazy { ScenicSpotPresenter(this, ScenicSpotRepository.get()) }
 
     companion object {
@@ -52,6 +50,14 @@ class ScenicSpotFragment : BaseFragmentWithPresenter(), ScenicSpotView {
         var shakeJudge: Boolean = false
     }
 
+    /**
+     * 加载页数
+     */
+    var page = 1
+    /**
+     * 防止多次摇动
+     */
+    var judgeFinish = true
     //AmapLocationListener Implementation
     internal var mLocationListener: AMapLocationListener = AMapLocationListener { location ->
         if (null != location) {
@@ -60,7 +66,8 @@ class ScenicSpotFragment : BaseFragmentWithPresenter(), ScenicSpotView {
                 mSessionManager.refineLocation(location.province, location.city, location.district, location.longitude.toString(), location.latitude.toString())
                 tvLocation.text = mSessionManager.defaultAddress
                 context!!.toast("定位成功，您目前在${mSessionManager.defaultAddress}")
-                presenter.loadScenicSpots(location.district)
+                page = 1
+                presenter.loadScenicSpots(location.district, page.toString())
             } else {
                 //定位失败时显示错误信息
                 showLocateError()
@@ -80,7 +87,10 @@ class ScenicSpotFragment : BaseFragmentWithPresenter(), ScenicSpotView {
      */
     fun showSearchError() {
         ErrorLayout.visibility = View.VISIBLE
-        tvError.text = "在${mSessionManager.district}似乎没有景点......"
+        if (page > 1) {
+            tvError.text = "不要刷新啦，没有景点啦！"
+            page = 1
+        } else tvError.text = "在${mSessionManager.district}似乎没有景点......"
     }
 
     /**
@@ -101,6 +111,9 @@ class ScenicSpotFragment : BaseFragmentWithPresenter(), ScenicSpotView {
      * @author ZhentingYan
      */
     override fun showError(error: Throwable) {
+        smartRefreshView.finishLoadMore(2000/*,false*/);//传入false表示加载失败
+        smartRefreshView.finishRefresh(2000/*,false*/);//传入false表示加载失败
+
         if (shakeJudge) {
             context!!.toast("看来没有和你有缘的景点呢～")
         } else {
@@ -117,8 +130,11 @@ class ScenicSpotFragment : BaseFragmentWithPresenter(), ScenicSpotView {
      * @author ZhentingYan
      */
     override fun show(items: List<ScenicSpotGallery>) {
+        smartRefreshView.finishLoadMore(2000/*,false*/);//传入false表示加载失败
+        smartRefreshView.finishRefresh(2000/*,false*/);//传入false表示加载失败
         if (shakeJudge) {
             //判断本次show是否是摇一摇产生的
+            judgeFinish = true
             if (!items.isEmpty()) {
                 var recommendedSpot = items[MathUtils.getRandom(0, items.size).toInt()]
                 val intent = Intent(context, ScenicSpotDetailActivity::class.java)
@@ -129,9 +145,14 @@ class ScenicSpotFragment : BaseFragmentWithPresenter(), ScenicSpotView {
         } else {
             //本次show不是摇一摇产生的结果
             if (!items.isEmpty()) {
+                page++
                 ErrorLayout.visibility = View.GONE
-                val categoryItemAdapters = items.map(::ScenicSpotGalleryAdapter)
-
+                //对获取的景点列表进行处理，更新距离属性以便于排序
+                for (scenicSpot in items) {
+                    scenicSpot.distance = mAMapHelper.getDistance(mSessionManager.latitude, mSessionManager.longitude, scenicSpot.latitude, scenicSpot.longitude).toDouble()
+                    scenicSpot.type.removePrefix("风景名胜;")
+                }
+                val categoryItemAdapters = items.toMutableList().sortedBy { it.distance }.map(::ScenicSpotGalleryAdapter)
                 recyclerView.adapter = MainListAdapter(categoryItemAdapters)
             } else {
                 showSearchError()
@@ -157,20 +178,30 @@ class ScenicSpotFragment : BaseFragmentWithPresenter(), ScenicSpotView {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         recyclerView.layoutManager = GridLayoutManager(context, 2)
         mAMapHelper = AMapHelper(context, mLocationListener)
-        mJDCityPicker = CityPickerHelper(context, object : OnCityItemClickListener() {
-            override fun onSelected(province: ProvinceBean?, city: CityBean?, district: DistrictBean?) {
-                mSessionManager.refineLocation(province!!.name, city!!.name, district!!.name, mSessionManager.longitude, mSessionManager.latitude)
-                tvLocation.text = mSessionManager.defaultAddress
-                presenter.loadScenicSpots(mSessionManager.district)
-
-            }
-        })
-        swipeRefreshView.setOnRefreshListener {
-            swipeRefreshView.isRefreshing = true
-            presenter.loadScenicSpots(mSessionManager.district)
+        smartRefreshView.setOnRefreshListener {
+            if (page - 2 == 0)
+                page = 1
+            else page = page - 2
+            presenter.loadScenicSpots(mSessionManager.district, page.toString())
+        }
+        smartRefreshView.setOnLoadMoreListener {
+            presenter.loadScenicSpots(mSessionManager.district, page.toString())
         }
         tvLocation.setOnClickListener {
-            mJDCityPicker.showJD()
+            if (mJDCityPicker == null) {
+                mJDCityPicker = CityPickerHelper(context, object : OnCityItemClickListener() {
+                    override fun onSelected(province: ProvinceBean?, city: CityBean?, district: DistrictBean?) {
+                        mSessionManager.refineLocation(province!!.name, city!!.name, district!!.name, mSessionManager.longitude, mSessionManager.latitude)
+                        tvLocation.text = mSessionManager.defaultAddress
+                        page = 1
+                        presenter.loadScenicSpots(mSessionManager.district, page.toString())
+
+                    }
+                })
+                mJDCityPicker!!.showJD()
+            } else {
+                mJDCityPicker!!.showJD()
+            }
         }
         ivIcon.setOnClickListener {
             mAMapHelper.locationClient!!.startLocation()
@@ -192,20 +223,29 @@ class ScenicSpotFragment : BaseFragmentWithPresenter(), ScenicSpotView {
                 //Not need to override
             }
         })
+        //设置传感器监听器
         mSensorManagerHelper.setOnShakeListener(object : SensorManagerHelper.OnShakeListener {
             override fun onShake() {
-                shakeJudge = true
-                presenter.loadScenicSpots(mSessionManager.district)
+                if (judgeFinish) {
+                    judgeFinish = false
+                    mSensorManagerHelper.playShakeSound(context!!)
+                    shakeJudge = true
+                    page--
+                    presenter.loadScenicSpots(mSessionManager.district, page.toString())
+                    page++
+                }
             }
         })
     }
 
     fun fragmentInit() {
+        judgeFinish = true
         if (mSessionManager.district.equals("")) {
             mAMapHelper.locationClient!!.startLocation()//定位一次
         } else {
             tvLocation.text = mSessionManager.defaultAddress
-            presenter.loadScenicSpots(mSessionManager.district)
+            page = 1
+            presenter.loadScenicSpots(mSessionManager.district, page.toString())
         }
     }
 

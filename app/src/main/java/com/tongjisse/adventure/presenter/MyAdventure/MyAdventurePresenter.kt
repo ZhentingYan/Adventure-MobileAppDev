@@ -1,7 +1,6 @@
 package com.tongjisse.adventure.presenter.MyAdventure
 
 import com.lzy.imagepicker.bean.ImageItem
-import com.tongjisse.adventure.data.bean.UserInfo
 import com.tongjisse.adventure.model.dao.UserInfoDao
 import com.tongjisse.adventure.presenter.BasePresenter
 import com.tongjisse.adventure.view.main.MyAdventure.MyAdventureView

@@ -14,7 +14,8 @@ interface AmapApi {
 
     @GET("/v3/place/text")
     fun getScenicSpots(@Query("types") types: String?,
-                       @Query("city") city: String?
+                       @Query("city") city: String?,
+                       @Query("page") page: String
     ): Single<DataWrapper<List<ScenicSpotDto>>>
 
     @GET("/v3/place/text")

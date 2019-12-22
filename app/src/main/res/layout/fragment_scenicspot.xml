@@ -8,6 +8,7 @@
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
+
         <LinearLayout
             android:id="@+id/searchLayout"
             android:layout_width="match_parent"
@@ -99,9 +100,8 @@
 
         </LinearLayout>
 
-        <android.support.v4.widget.SwipeRefreshLayout
-            xmlns:android="http://schemas.android.com/apk/res/android"
-            android:id="@+id/swipeRefreshView"
+        <com.scwang.smartrefresh.layout.SmartRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/smartRefreshView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_below="@id/ErrorLayout">
@@ -112,7 +112,7 @@
                 android:layout_height="match_parent">
 
             </android.support.v7.widget.RecyclerView>
-        </android.support.v4.widget.SwipeRefreshLayout>
+        </com.scwang.smartrefresh.layout.SmartRefreshLayout>
 
         <LinearLayout
             android:id="@+id/ErrorLayout"
@@ -133,14 +133,13 @@
                 android:id="@+id/tvError"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="serif"
                 android:gravity="center"
                 android:text="正在为您探索附近的景点......"
-                android:textSize="19dp"
-                android:fontFamily="serif" />
+                android:textSize="19dp" />
         </LinearLayout>
 
     </RelativeLayout>
-
 
 
 </LinearLayout>

@@ -1,8 +1,6 @@
 package com.tongjisse.adventure.view.views.Story
 
-import android.app.Activity
 import android.content.Intent
-import android.content.Intent.getIntent
 import android.os.Bundle
 import android.view.View
 import android.view.Window
@@ -11,13 +9,10 @@ import com.tongjisse.adventure.data.bean.StoryList
 import com.tongjisse.adventure.presenter.Story.StoryDetailPresenter
 import com.tongjisse.adventure.utils.SessionManager
 import com.tongjisse.adventure.view.common.BaseActivityWithPresenter
-import com.tongjisse.adventure.view.common.getIntent
 import com.tongjisse.adventure.view.common.loadImage
 import com.tongjisse.adventure.view.common.toast
 import com.tongjisse.adventure.view.main.Story.StoryDetailView
 import kotlinx.android.synthetic.main.activity_story_detail.*
-import kotlinx.android.synthetic.main.fragment_scenicspot_desc.*
-import java.io.Serializable
 import java.sql.SQLException
 
 /**
@@ -30,7 +25,6 @@ class StoryDetailActivity : BaseActivityWithPresenter(), StoryDetailView {
     private lateinit var story: StoryList
     private lateinit var mSessionManager: SessionManager
     override val presenter by lazy { StoryDetailPresenter(this) }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         requestWindowFeature(Window.FEATURE_NO_TITLE)

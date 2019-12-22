@@ -55,7 +55,6 @@
         android:layout_marginTop="77dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="test@admin.com"
         android:textColor="#ffffff"
         android:textCursorDrawable="@null" />
 
@@ -70,7 +69,6 @@
         android:layout_alignParentRight="true"
         android:ems="10"
         android:inputType="textPassword"
-        android:text="admin123"
         android:textColor="#ffffff"
         android:textCursorDrawable="@null" />
 
@@ -84,6 +82,7 @@
         android:layout_alignParentBottom="true"
         android:background="@drawable/reg_proceed_button_fail"
         android:clickable="true"
+        android:enabled="false"
         android:text=">"
         android:textAllCaps="false"
         android:textColor="#ff6666"

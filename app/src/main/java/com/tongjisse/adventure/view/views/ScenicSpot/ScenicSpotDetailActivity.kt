@@ -17,10 +17,7 @@ import com.tongjisse.adventure.view.common.BaseActivityWithPresenter
 import com.tongjisse.adventure.view.common.loadImage
 import com.tongjisse.adventure.view.common.toast
 import com.tongjisse.adventure.view.main.ScenicSpot.ScenicSpotDetailView
-import kotlinx.android.synthetic.main.activity_story_detail.*
 import kotlinx.android.synthetic.main.fragment_scenicspot_desc.*
-import kotlinx.android.synthetic.main.fragment_scenicspot_desc.tvPlaceTitle
-import kotlinx.android.synthetic.main.fragment_scenicspot_desc.tvPublisher
 import java.sql.SQLException
 import java.text.DecimalFormat
 
@@ -63,6 +60,7 @@ class ScenicSpotDetailActivity : BaseActivityWithPresenter(), ScenicSpotDetailVi
             val df = DecimalFormat()
             df.applyPattern("0.00")
             tvDistance.text = df.format(distance.toFloat() / 1000.00) + "km"
+            mMap.addMarker(MarkerOptions().position(LatLng(detail.latitude!!.toDouble(), detail.longitude!!.toDouble())).title(detail.name).snippet(detail.address))
         }
 
         ivStar.setOnClickListener {
@@ -157,18 +155,22 @@ class ScenicSpotDetailActivity : BaseActivityWithPresenter(), ScenicSpotDetailVi
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         requestWindowFeature(Window.FEATURE_NO_TITLE)
-        setContentView(R.layout.fragment_scenicspot_desc)
-        //在activity执行onCreate时执行mMapView.onCreate(savedInstanceState)，创建地图
-        mapView.onCreate(savedInstanceState);
-        mMap = mapView.map
-        AMapInit()
-        val intent = getIntent()
         mSessionManager = SessionManager(applicationContext)
-        poiID = intent.getStringExtra("id")
-        imageUrl = intent.getStringExtra("picAddr")
-        presenter.loadScenicSpotDetail(poiID)
-        presenter.getUserWishList(mSessionManager.email)
-
+        if (mSessionManager.isLoggedIn) {
+            setContentView(R.layout.fragment_scenicspot_desc)
+            //在activity执行onCreate时执行mMapView.onCreate(savedInstanceState)，创建地图
+            mapView.onCreate(savedInstanceState);
+            mMap = mapView.map
+            AMapInit()
+            val intent = getIntent()
+            poiID = intent.getStringExtra("id")
+            imageUrl = intent.getStringExtra("picAddr")
+            presenter.loadScenicSpotDetail(poiID)
+            presenter.getUserWishList(mSessionManager.email)
+        } else {
+            mSessionManager.logoutUser()
+            toast("亲爱的探索者，你还没有登录哦～")
+        }
     }
 
     /**

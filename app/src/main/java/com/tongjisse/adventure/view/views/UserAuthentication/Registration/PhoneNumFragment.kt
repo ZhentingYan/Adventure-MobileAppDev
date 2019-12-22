@@ -34,7 +34,7 @@ class PhoneNumFragment : BaseFragmentWithPresenter(), RegisterView {
     }
 
     override fun RegisterSuccess(userInfo: UserInfo?) {
-        mSessionManager.createLoginSession(userInfo!!.emailAddress, userInfo.firstName, userInfo.lastName, userInfo.phoneNum,userInfo.age,userInfo.password)
+        mSessionManager.createLoginSession(userInfo!!.emailAddress, userInfo.firstName, userInfo.lastName, userInfo.phoneNum, userInfo.age, userInfo.password)
         val intent = Intent(activity, MenuActivity::class.java)
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
         startActivity(intent)
@@ -85,6 +85,7 @@ class PhoneNumFragment : BaseFragmentWithPresenter(), RegisterView {
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {
                 // no need here
             }
+
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
                 // no need here
             }

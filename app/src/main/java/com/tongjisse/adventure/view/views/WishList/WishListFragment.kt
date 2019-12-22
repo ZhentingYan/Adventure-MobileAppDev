@@ -24,7 +24,7 @@ import java.sql.SQLException
 
 
 class WishListFragment : BaseFragmentWithPresenter(), WishListView {
-    lateinit var mJDCityPiker: CityPickerHelper
+    var mJDCityPiker: CityPickerHelper? = null
     lateinit var mSessionManager: SessionManager
     override val presenter by lazy { WishListPresenter(this) }
 
@@ -64,13 +64,6 @@ class WishListFragment : BaseFragmentWithPresenter(), WishListView {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         wishRecyclerView.layoutManager = GridLayoutManager(context, 1)
         mSessionManager = SessionManager(context)
-        mJDCityPiker = CityPickerHelper(context, object : OnCityItemClickListener() {
-            override fun onSelected(province: ProvinceBean?, city: CityBean?, district: DistrictBean?) {
-                mSessionManager.refineLocation(province!!.name, city!!.name, district!!.name, mSessionManager.longitude, mSessionManager.latitude)
-                tvLocation.text = mSessionManager.defaultAddress
-                presenter.showUserWishLists(mSessionManager.email, mSessionManager.district)
-            }
-        })
 
         swipeRefreshView.setOnRefreshListener {
             swipeRefreshView.isRefreshing = true
@@ -80,14 +73,23 @@ class WishListFragment : BaseFragmentWithPresenter(), WishListView {
         }
         fragmentInit()
         tvLocation.setOnClickListener {
-            mJDCityPiker.showJD()
+            if (mJDCityPiker == null) {
+                mJDCityPiker = CityPickerHelper(context, object : OnCityItemClickListener() {
+                    override fun onSelected(province: ProvinceBean?, city: CityBean?, district: DistrictBean?) {
+                        mSessionManager.refineLocation(province!!.name, city!!.name, district!!.name, mSessionManager.longitude, mSessionManager.latitude)
+                        tvLocation.text = mSessionManager.defaultAddress
+                        presenter.showUserWishLists(mSessionManager.email, mSessionManager.district)
+                    }
+                })
+                mJDCityPiker!!.showJD()
+            } else mJDCityPiker!!.showJD()
+
         }
     }
 
     fun fragmentInit() {
         if (mSessionManager.district.equals("")) {
             tvLocation.text = "请选择目的地"
-            mJDCityPiker.showJD()
         } else {
             tvLocation.text = mSessionManager.defaultAddress
             presenter.showUserWishLists(mSessionManager.email, mSessionManager.district)

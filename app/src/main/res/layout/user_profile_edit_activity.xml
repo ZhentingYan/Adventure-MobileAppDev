@@ -20,321 +20,322 @@
         android:textAllCaps="false"
         android:textColor="@color/white"
         android:textSize="16sp" />
-<ScrollView
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="20dp"
-        android:orientation="vertical"
-        android:padding="10dp">
+        android:layout_height="wrap_content">
 
-        <TextView
-            android:id="@+id/tvUserName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="3dp"
-            android:fontFamily="serif"
-            android:text="严 祯颋"
-            android:textSize="32sp"
-            android:textStyle="bold" />
-
-        <View
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginBottom="30dp"
-            android:background="@color/lightRed" />
+            android:layout_height="match_parent"
+            android:layout_marginTop="20dp"
+            android:orientation="vertical"
+            android:padding="10dp">
 
-        <TextView
-            android:id="@+id/textView12"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="10dp"
-            android:fontFamily="serif"
-            android:text="联系方式"
-            android:textSize="18sp"
-            android:textStyle="bold" />
+            <TextView
+                android:id="@+id/tvUserName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="3dp"
+                android:fontFamily="serif"
+                android:text="严 祯颋"
+                android:textSize="32sp"
+                android:textStyle="bold" />
 
-        <android.support.v7.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="15dp">
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginBottom="30dp"
+                android:background="@color/lightRed" />
 
-            <LinearLayout
+            <TextView
+                android:id="@+id/textView12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="10dp"
+                android:fontFamily="serif"
+                android:text="联系方式"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <android.support.v7.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="10dp">
+                android:layout_marginBottom="15dp">
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/lightRed" />
-
-                <RelativeLayout
-                    android:id="@+id/layoutEmail"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingStart="10dp"
-                    android:paddingLeft="10dp"
-                    android:paddingTop="15dp"
-                    android:paddingEnd="10dp"
-                    android:paddingRight="10dp"
-                    android:paddingBottom="15dp">
+                    android:orientation="vertical"
+                    android:padding="10dp">
 
-                    <TextView
-                        android:layout_width="wrap_content"
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/lightRed" />
+
+                    <RelativeLayout
+                        android:id="@+id/layoutEmail"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:fontFamily="serif"
-                        android:text="电子邮件"
-                        android:textSize="15dp"
-                        android:textStyle="bold" />
+                        android:paddingStart="10dp"
+                        android:paddingLeft="10dp"
+                        android:paddingTop="15dp"
+                        android:paddingEnd="10dp"
+                        android:paddingRight="10dp"
+                        android:paddingBottom="15dp">
 
-                    <EditText
-                        android:id="@+id/etEmail"
-                        android:layout_width="wrap_content"
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="serif"
+                            android:text="电子邮件"
+                            android:textSize="15dp"
+                            android:textStyle="bold" />
+
+                        <EditText
+                            android:id="@+id/etEmail"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:background="@null"
+                            android:enabled="false"
+                            android:fontFamily="serif"
+                            android:text="email@gmail.com"
+                            android:textColor="@color/lightRed"
+                            android:textSize="15dp"
+                            android:textStyle="bold" />
+                    </RelativeLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/lightRed" />
+
+                    <RelativeLayout
+                        android:id="@+id/layoutPhoneNum"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:background="@null"
-                        android:enabled="false"
-                        android:fontFamily="serif"
-                        android:text="email@gmail.com"
-                        android:textColor="@color/lightRed"
-                        android:textSize="15dp"
-                        android:textStyle="bold" />
-                </RelativeLayout>
+                        android:paddingStart="10dp"
+                        android:paddingLeft="10dp"
+                        android:paddingTop="15dp"
+                        android:paddingEnd="10dp"
+                        android:paddingRight="10dp"
+                        android:paddingBottom="15dp">
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/lightRed" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="serif"
+                            android:text="电话号码"
+                            android:textSize="15dp"
+                            android:textStyle="bold" />
 
-                <RelativeLayout
-                    android:id="@+id/layoutPhoneNum"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingStart="10dp"
-                    android:paddingLeft="10dp"
-                    android:paddingTop="15dp"
-                    android:paddingEnd="10dp"
-                    android:paddingRight="10dp"
-                    android:paddingBottom="15dp">
+                        <EditText
+                            android:id="@+id/etPhoneNum"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:background="@null"
+                            android:enabled="false"
+                            android:fontFamily="serif"
+                            android:text="+1 289 772 3345"
+                            android:textColor="@color/lightRed"
+                            android:textSize="15dp"
+                            android:textStyle="bold" />
+                    </RelativeLayout>
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="serif"
-                        android:text="电话号码"
-                        android:textSize="15dp"
-                        android:textStyle="bold" />
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/lightRed" />
 
-                    <EditText
-                        android:id="@+id/etPhoneNum"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:background="@null"
-                        android:enabled="false"
-                        android:fontFamily="serif"
-                        android:text="+1 289 772 3345"
-                        android:textColor="@color/lightRed"
-                        android:textSize="15dp"
-                        android:textStyle="bold" />
-                </RelativeLayout>
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/lightRed" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="10dp"
+                android:fontFamily="serif"
+                android:text="个人信息"
+                android:textSize="18sp"
+                android:textStyle="bold" />
 
-            </LinearLayout>
-        </android.support.v7.widget.CardView>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="10dp"
-            android:fontFamily="serif"
-            android:text="个人信息"
-            android:textSize="18sp"
-            android:textStyle="bold" />
-
-        <android.support.v7.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="15dp">
-
-            <LinearLayout
+            <android.support.v7.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="10dp">
+                android:layout_marginBottom="15dp">
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/lightRed" />
-
-                <RelativeLayout
-                    android:id="@+id/layoutWork"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingStart="10dp"
-                    android:paddingLeft="10dp"
-                    android:paddingTop="15sp"
-                    android:paddingEnd="10dp"
-                    android:paddingRight="10dp"
-                    android:paddingBottom="15dp">
+                    android:orientation="vertical"
+                    android:padding="10dp">
 
-                    <TextView
-                        android:layout_width="wrap_content"
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/lightRed" />
+
+                    <RelativeLayout
+                        android:id="@+id/layoutWork"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:fontFamily="serif"
-                        android:text="姓氏"
-                        android:textSize="15dp"
-                        android:textStyle="bold" />
+                        android:paddingStart="10dp"
+                        android:paddingLeft="10dp"
+                        android:paddingTop="15sp"
+                        android:paddingEnd="10dp"
+                        android:paddingRight="10dp"
+                        android:paddingBottom="15dp">
 
-                    <EditText
-                        android:id="@+id/etFirstName"
-                        android:layout_width="wrap_content"
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="serif"
+                            android:text="姓氏"
+                            android:textSize="15dp"
+                            android:textStyle="bold" />
+
+                        <EditText
+                            android:id="@+id/etFirstName"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:background="@null"
+                            android:enabled="false"
+                            android:fontFamily="serif"
+                            android:text="严"
+                            android:textColor="@color/lightRed"
+                            android:textSize="15dp"
+                            android:textStyle="bold" />
+                    </RelativeLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/lightRed" />
+
+                    <RelativeLayout
+                        android:id="@+id/layoutLanguages"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:background="@null"
-                        android:enabled="false"
-                        android:fontFamily="serif"
-                        android:text="严"
-                        android:textColor="@color/lightRed"
-                        android:textSize="15dp"
-                        android:textStyle="bold" />
-                </RelativeLayout>
+                        android:paddingStart="10dp"
+                        android:paddingLeft="10dp"
+                        android:paddingTop="15sp"
+                        android:paddingEnd="10dp"
+                        android:paddingRight="10dp"
+                        android:paddingBottom="15dp">
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/lightRed" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="serif"
+                            android:text="名字"
+                            android:textSize="15dp"
+                            android:textStyle="bold" />
 
-                <RelativeLayout
-                    android:id="@+id/layoutLanguages"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingStart="10dp"
-                    android:paddingLeft="10dp"
-                    android:paddingTop="15sp"
-                    android:paddingEnd="10dp"
-                    android:paddingRight="10dp"
-                    android:paddingBottom="15dp">
+                        <EditText
+                            android:id="@+id/etLastName"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:background="@null"
+                            android:enabled="false"
+                            android:fontFamily="serif"
+                            android:text="祯颋"
+                            android:textColor="@color/lightRed"
+                            android:textSize="15dp"
+                            android:textStyle="bold" />
+                    </RelativeLayout>
 
-                    <TextView
-                        android:layout_width="wrap_content"
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/lightRed" />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:fontFamily="serif"
-                        android:text="名字"
-                        android:textSize="15dp"
-                        android:textStyle="bold" />
+                        android:paddingStart="10dp"
+                        android:paddingLeft="10dp"
+                        android:paddingTop="15sp"
+                        android:paddingEnd="10dp"
+                        android:paddingRight="10dp"
+                        android:paddingBottom="15dp">
 
-                    <EditText
-                        android:id="@+id/etLastName"
-                        android:layout_width="wrap_content"
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="serif"
+                            android:text="年龄"
+                            android:textSize="15dp"
+                            android:textStyle="bold" />
+
+                        <EditText
+                            android:id="@+id/etAge"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:background="@null"
+                            android:enabled="false"
+                            android:fontFamily="serif"
+                            android:text="18"
+                            android:textColor="@color/lightRed"
+                            android:textSize="15dp"
+                            android:textStyle="bold" />
+                    </RelativeLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/lightRed" />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:background="@null"
-                        android:enabled="false"
-                        android:fontFamily="serif"
-                        android:text="祯颋"
-                        android:textColor="@color/lightRed"
-                        android:textSize="15dp"
-                        android:textStyle="bold" />
-                </RelativeLayout>
+                        android:paddingStart="10dp"
+                        android:paddingLeft="10dp"
+                        android:paddingTop="15sp"
+                        android:paddingEnd="10dp"
+                        android:paddingRight="10dp"
+                        android:paddingBottom="15dp">
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/lightRed" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="serif"
+                            android:text="密码"
+                            android:textSize="15dp"
+                            android:textStyle="bold" />
 
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingStart="10dp"
-                    android:paddingLeft="10dp"
-                    android:paddingTop="15sp"
-                    android:paddingEnd="10dp"
-                    android:paddingRight="10dp"
-                    android:paddingBottom="15dp">
+                        <EditText
+                            android:id="@+id/etPassword"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:background="@null"
+                            android:enabled="false"
+                            android:fontFamily="serif"
+                            android:inputType="textPassword"
+                            android:text="123456678"
+                            android:textColor="@color/lightRed"
+                            android:textSize="15dp"
+                            android:textStyle="bold" />
+                    </RelativeLayout>
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="serif"
-                        android:text="年龄"
-                        android:textSize="15dp"
-                        android:textStyle="bold" />
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/lightRed" />
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
 
-                    <EditText
-                        android:id="@+id/etAge"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:background="@null"
-                        android:enabled="false"
-                        android:fontFamily="serif"
-                        android:text="18"
-                        android:textColor="@color/lightRed"
-                        android:textSize="15dp"
-                        android:textStyle="bold" />
-                </RelativeLayout>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/lightRed" />
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingStart="10dp"
-                    android:paddingLeft="10dp"
-                    android:paddingTop="15sp"
-                    android:paddingEnd="10dp"
-                    android:paddingRight="10dp"
-                    android:paddingBottom="15dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="serif"
-                        android:text="密码"
-                        android:textSize="15dp"
-                        android:textStyle="bold" />
-
-                    <EditText
-                        android:id="@+id/etPassword"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:background="@null"
-                        android:enabled="false"
-                        android:fontFamily="serif"
-                        android:inputType="textPassword"
-                        android:text="123456678"
-                        android:textColor="@color/lightRed"
-                        android:textSize="15dp"
-                        android:textStyle="bold" />
-                </RelativeLayout>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/lightRed" />
-            </LinearLayout>
-        </android.support.v7.widget.CardView>
-
-    </LinearLayout>
-</ScrollView>
+        </LinearLayout>
+    </ScrollView>
 
 </RelativeLayout>
 

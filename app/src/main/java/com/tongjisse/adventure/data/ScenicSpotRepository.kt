@@ -8,7 +8,7 @@ import io.reactivex.Single
 
 interface ScenicSpotRepository {
     fun getScenicSpotDetails(id: String?): Single<List<ScenicSpotDetail>>
-    fun getScenicSpots(types: String?, city: String?): Single<List<ScenicSpotGallery>>
+    fun getScenicSpots(types: String?, city: String?, page: String): Single<List<ScenicSpotGallery>>
     fun getScenicSpotsWithKeywords(types: String?, city: String?, keywords: String?): Single<List<ScenicSpotGallery>>
 
     companion object : Provider<ScenicSpotRepository>() {

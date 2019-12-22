@@ -15,9 +15,10 @@ class ScenicSpotRepositoryImpl : ScenicSpotRepository {
         it.pois?.map(::ScenicSpotDetail)
     }
 
-    override fun getScenicSpots(types: String?, city: String?): Single<List<ScenicSpotGallery>> = api.getScenicSpots(
+    override fun getScenicSpots(types: String?, city: String?, page: String): Single<List<ScenicSpotGallery>> = api.getScenicSpots(
             types = types,
-            city = city
+            city = city,
+            page = page
     ).map {
         it.pois?.map(::ScenicSpotGallery)
     }

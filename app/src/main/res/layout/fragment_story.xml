@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -86,6 +85,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
                     android:background="@color/white">
+
                     <Spinner
                         android:id="@+id/spType"
                         android:layout_width="wrap_content"
@@ -96,7 +96,7 @@
                     <EditText
                         android:id="@+id/etSearchStory"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:background="#f5f5f5"
                         android:fontFamily="serif"
                         android:hint="你想查找什么样的旅行故事？"
@@ -107,8 +107,7 @@
 
         </LinearLayout>
 
-        <android.support.v4.widget.SwipeRefreshLayout
-            xmlns:android="http://schemas.android.com/apk/res/android"
+        <android.support.v4.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
             android:id="@+id/swipeRefreshView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -147,21 +146,21 @@
                 android:text="正在为您探索附近的旅行故事......"
                 android:textSize="19dp" />
         </LinearLayout>
-        <Button
-            android:text="+"
-            android:textColor="#ff6666"
-            android:id="@+id/bPublish"
-            android:background="@drawable/reg_proceed_button"
-            android:textSize="30sp"
-            android:textAllCaps="false"
-            style="@style/Widget.AppCompat.Button"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"
-            android:layout_width="50dp"
-            android:layout_height="50dp"/>
-    </RelativeLayout>
 
+        <Button
+            android:id="@+id/bPublish"
+            style="@style/Widget.AppCompat.Button"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/reg_proceed_button"
+            android:text="+"
+            android:textAllCaps="false"
+            android:textColor="#ff6666"
+            android:textSize="30sp" />
+    </RelativeLayout>
 
 
 </LinearLayout>

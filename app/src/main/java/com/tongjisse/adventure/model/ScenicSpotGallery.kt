@@ -9,7 +9,8 @@ data class ScenicSpotGallery(
         val type: String,
         val longitude: String,
         val latitude: String,
-        val imageurl: String
+        val imageurl: String,
+        var distance: Double
 ) {
     constructor(dto: ScenicSpotDto) : this(
             id = dto.id,
@@ -17,6 +18,7 @@ data class ScenicSpotGallery(
             type = dto.type,
             imageurl = dto.imageUrl,
             longitude = dto.location.split(",")!![0],
-            latitude = dto.location.split(",")!![1]
+            latitude = dto.location.split(",")!![1],
+            distance = 0.0
     )
 }

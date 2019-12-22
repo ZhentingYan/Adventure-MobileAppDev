@@ -35,7 +35,7 @@ public class UserInfoDao {
                         18, new ImageItem()));
             }
         } catch (SQLException e) {
-            Log.e(TAG,e.toString());
+            Log.e(TAG, e.toString());
         }
     }
 
@@ -50,7 +50,7 @@ public class UserInfoDao {
         try {
             userDao.createIfNotExists(info);
         } catch (SQLException e) {
-            Log.e(TAG,e.toString());
+            Log.e(TAG, e.toString());
         }
     }
 
@@ -63,7 +63,7 @@ public class UserInfoDao {
         try {
             userDao.delete(info);
         } catch (SQLException e) {
-            Log.e(TAG,e.toString());
+            Log.e(TAG, e.toString());
         }
     }
 
@@ -75,7 +75,7 @@ public class UserInfoDao {
             List<UserInfo> allInfo = this.query();
             userDao.delete(allInfo);
         } catch (SQLException e) {
-            Log.e(TAG,e.toString());
+            Log.e(TAG, e.toString());
         }
     }
 
@@ -88,7 +88,7 @@ public class UserInfoDao {
         try {
             userDao.update(info);
         } catch (SQLException e) {
-            Log.e(TAG,e.toString());
+            Log.e(TAG, e.toString());
         }
     }
 
@@ -109,7 +109,7 @@ public class UserInfoDao {
                 return tempUserList.get(0);
             }
         } catch (SQLException e) {
-            Log.e(TAG,e.toString());
+            Log.e(TAG, e.toString());
         }
         return null;
     }
@@ -124,7 +124,7 @@ public class UserInfoDao {
         try {
             return userDao.queryForId(id);
         } catch (SQLException e) {
-            Log.e(TAG,e.toString());
+            Log.e(TAG, e.toString());
         }
         return null;
     }
@@ -138,7 +138,7 @@ public class UserInfoDao {
         try {
             return userDao.queryForAll();
         } catch (SQLException e) {
-            Log.e(TAG,e.toString());
+            Log.e(TAG, e.toString());
         }
         return Collections.emptyList();
     }

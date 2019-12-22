@@ -1,12 +1,7 @@
 package com.tongjisse.adventure.view.views.Story
 
-import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
-import android.support.v7.widget.GridLayoutManager
-import android.support.v7.widget.RecyclerView
-import android.text.Editable
-import android.text.TextWatcher
 import android.view.View
 import android.view.Window
 import android.widget.AdapterView
@@ -17,7 +12,6 @@ import com.lljjcoder.bean.CityBean
 import com.lljjcoder.bean.DistrictBean
 import com.lljjcoder.bean.ProvinceBean
 import com.lzy.imagepicker.ImagePicker
-import com.lzy.imagepicker.ImagePicker.REQUEST_CODE_PREVIEW
 import com.lzy.imagepicker.bean.ImageItem
 import com.lzy.imagepicker.ui.ImageGridActivity
 import com.lzy.imagepicker.ui.ImagePreviewDelActivity
@@ -27,7 +21,6 @@ import com.tongjisse.adventure.data.bean.StoryList
 import com.tongjisse.adventure.data.bean.UserInfo
 import com.tongjisse.adventure.presenter.Story.StoryPublishPresenter
 import com.tongjisse.adventure.utils.CityPickerHelper
-import com.tongjisse.adventure.utils.GlideImageLoaderHelper
 import com.tongjisse.adventure.utils.SessionManager
 import com.tongjisse.adventure.utils.TimeUtils
 import com.tongjisse.adventure.view.common.BaseActivityWithPresenter
@@ -36,11 +29,7 @@ import com.tongjisse.adventure.view.common.toast
 import com.tongjisse.adventure.view.main.Story.StoryPublishView
 import com.tongjisse.adventure.view.views.Image.SelectDialog
 import kotlinx.android.synthetic.main.activity_publish_story.*
-import kotlinx.android.synthetic.main.activity_publish_story.bPublish
 import java.sql.SQLException
-import java.text.SimpleDateFormat
-import java.util.*
-import kotlin.collections.ArrayList
 
 /**
  * Publish new story or modify old story

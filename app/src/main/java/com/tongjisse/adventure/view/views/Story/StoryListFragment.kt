@@ -1,18 +1,13 @@
 package com.tongjisse.adventure.view.views.Story
 
-import android.app.Activity.RESULT_OK
 import android.content.Intent
-import android.content.Intent.getIntent
 import android.os.Bundle
 import android.support.v7.widget.GridLayoutManager
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
-import com.j256.ormlite.stmt.query.In
 import com.lljjcoder.Interface.OnCityItemClickListener
 import com.lljjcoder.bean.CityBean
 import com.lljjcoder.bean.DistrictBean
@@ -28,7 +23,6 @@ import com.tongjisse.adventure.view.main.MainListAdapter
 import com.tongjisse.adventure.view.main.Story.StoryListAdapter
 import com.tongjisse.adventure.view.main.Story.StoryListView
 import kotlinx.android.synthetic.main.fragment_story.*
-import kotlinx.android.synthetic.main.story_adapter_item.*
 import java.sql.SQLException
 
 class StoryListFragment : BaseFragmentWithPresenter(), StoryListView {
@@ -104,6 +98,7 @@ class StoryListFragment : BaseFragmentWithPresenter(), StoryListView {
                 //Not need to override
             }
         })
+        fragmentInit()
     }
 
     override fun getStoryListsSuccess(userStoryLists: List<StoryList>) {
@@ -115,7 +110,7 @@ class StoryListFragment : BaseFragmentWithPresenter(), StoryListView {
         } else {
             ErrorLayout.visibility = View.VISIBLE
             storyRecyclerView.visibility = View.GONE
-            tvError.text = "你还没有游记哦......快记录旅行途中有趣的故事吧！"
+            tvError.text = "在${mSessionManager.district}还没有游记哦..."
         }
     }
 
@@ -159,6 +154,20 @@ class StoryListFragment : BaseFragmentWithPresenter(), StoryListView {
             SHOW_BY_SCENE -> {
                 presenter.loadStoriesByScene(etSearchStory.text.toString(), mSessionManager.defaultAddress)
             }
+        }
+    }
+
+    /**
+     *  Fragment初始化
+     *  @author ZhentingYan
+     */
+    fun fragmentInit() {
+        if (mSessionManager.district.equals("")) {
+            tvLocation.text = "请选择目的地..."
+            getStoryListsFailed(null)
+        } else {
+            tvLocation.text = mSessionManager.defaultAddress
+            presenter.loadStoriesByDistrict(mSessionManager.district)
         }
     }
 }

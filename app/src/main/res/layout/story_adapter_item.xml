@@ -80,9 +80,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
+            android:fontFamily="serif"
             android:text="2019年11月16日"
-            android:textSize="14sp"
-            android:fontFamily="serif" />
+            android:textSize="14sp" />
     </LinearLayout>
 
 </LinearLayout>

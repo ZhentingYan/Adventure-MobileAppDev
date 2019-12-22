@@ -2,7 +2,6 @@ package com.tongjisse.adventure.utils
 
 import android.content.Context
 import android.content.Intent
-import android.provider.ContactsContract
 import com.tongjisse.adventure.view.views.Welcome.WelcomeActivity
 
 /**
@@ -97,14 +96,15 @@ class SessionManager(private val context: Context?) {
      * Call this Function when user successfully log in
      * @author ZhentingYan
      */
-    fun createLoginSession(email: String, firstName: String, lastName: String, phoneNum: String,age:Int,password:String) {
+    fun createLoginSession(email: String, firstName: String, lastName: String, phoneNum: String, age: Int, password: String) {
         this.isLoggedIn = true
         this.email = email
         this.firstName = firstName
         this.lastName = lastName
         this.phoneNum = phoneNum
-        this.age=age
-        this.password=password
+        this.age = age
+        this.password = password
+        isLoggedIn = true
     }
 
     /**
@@ -125,7 +125,7 @@ class SessionManager(private val context: Context?) {
      */
     fun logoutUser() {
         // Clearing all data from Shared Preferences
-        utils.clearAll();
+        utils.clearAll()
         // After logout redirect user to LogIn Activity
         val intent = Intent(context, WelcomeActivity::class.java)
         // Add new Flag to start new Activity
@@ -133,6 +133,7 @@ class SessionManager(private val context: Context?) {
         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         // Staring Login Activity
         context!!.startActivity(intent)
+        isLoggedIn = false
     }
 
     //Common used final Strings
@@ -147,7 +148,7 @@ class SessionManager(private val context: Context?) {
         val CITY_NAME = "CITY_NAME"
         val LATITUDE = "LATITUDE"
         val LONGITUDE = "LONGITUDE"
-        val PASSWORD="PASSWORD"
-        val AGE="AGE"
+        val PASSWORD = "PASSWORD"
+        val AGE = "AGE"
     }
 }

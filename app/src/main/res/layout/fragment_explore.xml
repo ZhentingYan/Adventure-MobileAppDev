@@ -77,9 +77,9 @@
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
                     android:layout_toRightOf="@id/ivWeather"
-                    android:layout_alignParentRight="true"
                     android:gravity="center"
                     android:orientation="vertical">
 
@@ -238,30 +238,30 @@
             </com.tongjisse.adventure.view.common.InnerScrollView>
 
             <RelativeLayout
+                android:id="@+id/mainErrorLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_gravity="center"
+                android:background="@drawable/linear_layout_background">
+
+                <ImageView
+                    android:id="@+id/ivDemon"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:layout_centerInParent="true"
+                    app:srcCompat="@drawable/undraw_traveling_t8y2" />
+
+                <TextView
+                    android:id="@+id/tvError"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:id="@+id/mainErrorLayout"
-                    android:layout_gravity="center"
-                    android:background="@drawable/linear_layout_background">
+                    android:layout_below="@id/ivDemon"
+                    android:layout_alignParentStart="true"
+                    android:text="在这个城市，你的心愿单还是空的哦！"
+                    android:textAlignment="center" />
 
-                    <ImageView
-                        android:id="@+id/ivDemon"
-                        android:layout_width="150dp"
-                        android:layout_height="150dp"
-                        android:layout_centerInParent="true"
-                        app:srcCompat="@drawable/undraw_traveling_t8y2" />
-
-                    <TextView
-                        android:id="@+id/tvError"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/ivDemon"
-                        android:layout_alignParentStart="true"
-                        android:text="在这个城市，你的心愿单还是空的哦！"
-                        android:textAlignment="center" />
-
-                </RelativeLayout>
+            </RelativeLayout>
 
         </LinearLayout>
 

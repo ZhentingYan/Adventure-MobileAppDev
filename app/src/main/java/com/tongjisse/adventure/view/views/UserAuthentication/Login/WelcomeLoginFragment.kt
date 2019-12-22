@@ -23,7 +23,7 @@ class WelcomeLoginFragment : BaseFragmentWithPresenter(), WelcomeLoginView {
     override val presenter by lazy { WelcomeLoginPresenter(this) }
     lateinit var mSessionManager: SessionManager
     override fun LoginSuccess(userInfo: UserInfo) {
-        mSessionManager.createLoginSession(userInfo.emailAddress, userInfo.firstName, userInfo.lastName, userInfo.phoneNum,userInfo.age,userInfo.password)
+        mSessionManager.createLoginSession(userInfo.emailAddress, userInfo.firstName, userInfo.lastName, userInfo.phoneNum, userInfo.age, userInfo.password)
         val intent = Intent(activity, MenuActivity::class.java)
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
         startActivity(intent)
@@ -47,9 +47,11 @@ class WelcomeLoginFragment : BaseFragmentWithPresenter(), WelcomeLoginView {
             override fun afterTextChanged(s: Editable) {
                 logInProceed()
             }
+
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {
                 // no need here
             }
+
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
                 // no need here
             }

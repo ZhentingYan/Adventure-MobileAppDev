@@ -5,9 +5,9 @@ import java.sql.SQLException
 
 interface StoryPublishView {
     fun addStorySuccess()
-    fun addStoryFailed(error:SQLException)
+    fun addStoryFailed(error: SQLException)
     fun updateStorySuccess()
     fun updateStoryFailed(error: SQLException)
-    fun getUserInfo(user:UserInfo)
+    fun getUserInfo(user: UserInfo)
     fun userSqlError(error: SQLException)
 }

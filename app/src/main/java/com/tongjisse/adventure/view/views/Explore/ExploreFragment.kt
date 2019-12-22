@@ -34,7 +34,7 @@ class ExploreFragment : BaseFragmentWithPresenter(), WeatherSearch.OnWeatherSear
     private lateinit var mweathersearch: WeatherSearch
     private lateinit var mAMapHelper: AMapHelper
     private lateinit var mSessionManager: SessionManager
-    private lateinit var mJDCityPiker: CityPickerHelper
+    private var mJDCityPiker: CityPickerHelper? = null
     override val presenter by lazy { ExplorePresenter(this) }
     val SUN = "晴"
     val CLOUDY = "阴"
@@ -132,19 +132,22 @@ class ExploreFragment : BaseFragmentWithPresenter(), WeatherSearch.OnWeatherSear
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         mainRecyclerView.layoutManager = GridLayoutManager(context, 1)
-        mJDCityPiker = CityPickerHelper(context, object : OnCityItemClickListener() {
-            override fun onSelected(province: ProvinceBean?, city: CityBean?, district: DistrictBean?) {
-                mSessionManager.refineLocation(province!!.name, city!!.name, district!!.name, mSessionManager.longitude, mSessionManager.latitude)
-                tvLocation.text = mSessionManager.defaultAddress
-                loadWeather(district!!.name)
-                presenter.showUserWishLists(mSessionManager.email, mSessionManager.district)
-                tvLikes.text = district!!.name + "的心愿单"
-            }
-        })
         //加载天气、定位、心愿单信息
         fragmentInit()
         tvLocation.setOnClickListener {
-            mJDCityPiker.showJD()
+            if (mJDCityPiker == null) {
+                mJDCityPiker = CityPickerHelper(context, object : OnCityItemClickListener() {
+                    override fun onSelected(province: ProvinceBean?, city: CityBean?, district: DistrictBean?) {
+                        mSessionManager.refineLocation(province!!.name, city!!.name, district!!.name, mSessionManager.longitude, mSessionManager.latitude)
+                        tvLocation.text = mSessionManager.defaultAddress
+                        loadWeather(district!!.name)
+                        presenter.showUserWishLists(mSessionManager.email, mSessionManager.district)
+                        tvLikes.text = district!!.name + "的心愿单"
+                    }
+                })
+                mJDCityPiker!!.showJD()
+            } else mJDCityPiker!!.showJD()
+
         }
         ivIcon.setOnClickListener {
             tvTemperature.text = "暂无温度"
@@ -168,6 +171,7 @@ class ExploreFragment : BaseFragmentWithPresenter(), WeatherSearch.OnWeatherSear
         if (!hidden)
             fragmentInit()
     }
+
     /**
      * Load Weather with city or district name
      * @param city:String

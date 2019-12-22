@@ -5,8 +5,8 @@ import java.sql.SQLException
 
 interface StoryDetailView {
     fun getStorySuccess(detail: StoryList)
-    fun getStoryFailed(error:SQLException?)
+    fun getStoryFailed(error: SQLException?)
     fun delStorySuccess()
-    fun delStoryFailed(error:SQLException)
+    fun delStoryFailed(error: SQLException)
     fun showSQLError(error: SQLException)
 }

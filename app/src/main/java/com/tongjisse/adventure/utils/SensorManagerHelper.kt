@@ -5,12 +5,14 @@ import android.hardware.Sensor
 import android.hardware.SensorEvent
 import android.hardware.SensorEventListener
 import android.hardware.SensorManager
+import android.media.MediaPlayer
+import com.tongjisse.adventure.R
 
 class SensorManagerHelper(private val context: Context?) : SensorEventListener {
     // 速度阈值，当摇晃速度达到这值后产生作用
-    private val SPEED_SHRESHOLD = 5000
+    private val SPEED_SHRESHOLD = 8000
     // 两次检测的时间间隔
-    private val UPTATE_INTERVAL_TIME = 50
+    private val UPTATE_INTERVAL_TIME = 150
     // 传感器管理器
     private var sensorManager: SensorManager? = null
     // 传感器
@@ -102,6 +104,11 @@ class SensorManagerHelper(private val context: Context?) : SensorEventListener {
 
     override fun onAccuracyChanged(sensor: Sensor, accuracy: Int) {
         // no need here
+    }
+
+    fun playShakeSound(context: Context) {
+        val player = MediaPlayer.create(context, R.raw.shake_sound)
+        player.start()
     }
 
 }

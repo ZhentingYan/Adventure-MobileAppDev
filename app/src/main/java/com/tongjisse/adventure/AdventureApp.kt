@@ -3,19 +3,24 @@ package com.tongjisse.adventure
 import android.app.Application
 import com.lzy.imagepicker.ImagePicker
 import com.lzy.imagepicker.view.CropImageView
+import com.tongjisse.adventure.receiver.MyIntentService
+import com.tongjisse.adventure.receiver.MyPushService
 import com.tongjisse.adventure.utils.GlideImageLoaderHelper
 import com.tongjisse.adventure.utils.OrmLiteHelper
+
 
 /**
  * Init tools
  *
  * @author Feifan Wang
  */
-class AdventureApp: Application() {
+class AdventureApp : Application() {
     override fun onCreate() {
         super.onCreate()
         OrmLiteHelper.createInstance(this)
         initImagePicker()
+        com.igexin.sdk.PushManager.getInstance().initialize(applicationContext, MyPushService::class.java)
+        com.igexin.sdk.PushManager.getInstance().registerPushIntentService(applicationContext, MyIntentService::class.java)
     }
 
     private fun initImagePicker() {
@@ -31,4 +36,5 @@ class AdventureApp: Application() {
         //imagePicker.outPutX = 1000                         //保存文件的宽度。单位像素
         //imagePicker.outPutY = 1000                         //保存文件的高度。单位像素
     }
+
 }

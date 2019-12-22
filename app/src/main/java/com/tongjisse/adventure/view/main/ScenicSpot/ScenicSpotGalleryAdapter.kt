@@ -5,8 +5,6 @@ import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
-import com.amap.api.maps.AMapUtils
-import com.amap.api.maps.model.LatLng
 import com.tongjisse.adventure.R
 import com.tongjisse.adventure.model.ScenicSpotGallery
 import com.tongjisse.adventure.utils.SessionManager
@@ -26,15 +24,12 @@ class ScenicSpotGalleryAdapter(
         ivPhoto.loadImage(scenicSpot.imageurl)
         //Log.e("test",scenicSpot.name)
         mSessionManager = SessionManager(ivPhoto.context)
-        if (mSessionManager.latitude.equals("") || mSessionManager.longitude.equals(""))
+        if (scenicSpot.distance < 0)
             tvDistance.text = "获取定位信息失败..."
         else {
-            val userPoint = LatLng(mSessionManager.latitude.toDouble(), mSessionManager.longitude.toDouble())
-            val placePoint = LatLng(scenicSpot.latitude.toDouble(), scenicSpot.longitude.toDouble())
-            val distance = AMapUtils.calculateLineDistance(userPoint, placePoint)
             val df = DecimalFormat()
             df.applyPattern("0.00")
-            tvDistance.text = df.format(distance.toFloat() / 1000.00) + "km"
+            tvDistance.text = df.format(scenicSpot.distance.toFloat() / 1000.00) + "km"
         }
         tvType.text = scenicSpot.type
         ivPhoto.setOnClickListener {

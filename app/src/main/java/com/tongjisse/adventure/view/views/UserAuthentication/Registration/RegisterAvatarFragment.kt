@@ -2,24 +2,19 @@ package com.tongjisse.adventure.view.views.UserAuthentication.Registration
 
 import android.app.Activity
 import android.content.Intent
-import android.media.Image
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
-import android.widget.Toast
-import com.isseiaoki.simplecropview.FreeCropImageView
 import com.lzy.imagepicker.ImagePicker
-import com.lzy.imagepicker.ImagePicker.REQUEST_CODE_PREVIEW
 import com.lzy.imagepicker.bean.ImageItem
 import com.lzy.imagepicker.ui.ImageGridActivity
 import com.lzy.imagepicker.ui.ImagePreviewDelActivity
 import com.lzy.imagepicker.view.CropImageView
 import com.tongjisse.adventure.R
 import com.tongjisse.adventure.utils.SessionManager
-import com.tongjisse.adventure.view.common.toast
 import com.tongjisse.adventure.view.views.Image.SelectDialog
 import kotlinx.android.synthetic.main.fragment_add_avatar.*
 

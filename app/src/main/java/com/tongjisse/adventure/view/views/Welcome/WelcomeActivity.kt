@@ -3,11 +3,7 @@ package com.tongjisse.adventure.view.views.Welcome
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import com.lzy.imagepicker.ImagePicker
-import com.lzy.imagepicker.view.CropImageView
 import com.tongjisse.adventure.R
-import com.tongjisse.adventure.utils.GlideImageLoaderHelper
-import com.tongjisse.adventure.utils.OrmLiteHelper
 import com.tongjisse.adventure.utils.SessionManager
 import com.tongjisse.adventure.view.common.toast
 import com.tongjisse.adventure.view.views.Main.MenuActivity

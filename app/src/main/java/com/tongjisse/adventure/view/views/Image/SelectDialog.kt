@@ -9,15 +9,8 @@ import android.view.View
 import android.view.View.OnClickListener
 import android.view.ViewGroup
 import android.view.ViewGroup.LayoutParams
-import android.view.Window
-import android.view.WindowManager
-import android.widget.AdapterView
+import android.widget.*
 import android.widget.AdapterView.OnItemClickListener
-import android.widget.BaseAdapter
-import android.widget.Button
-import android.widget.ListView
-import android.widget.TextView
-
 import com.tongjisse.adventure.R
 
 /**
@@ -36,7 +29,6 @@ class SelectDialog : Dialog, OnClickListener, OnItemClickListener {
     private var mUseCustomColor = false
     private var mFirstItemColor: Int = 0
     private var mOtherItemColor: Int = 0
-
 
 
     // 取消事件监听接口

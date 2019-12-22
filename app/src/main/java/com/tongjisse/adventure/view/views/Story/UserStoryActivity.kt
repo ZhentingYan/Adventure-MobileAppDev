@@ -1,9 +1,7 @@
 package com.tongjisse.adventure.view.views.Story
 
-import android.nfc.Tag
 import android.os.Bundle
 import android.support.v7.widget.GridLayoutManager
-import android.util.Log
 import android.view.View
 import android.view.Window
 import com.tongjisse.adventure.R
@@ -16,8 +14,6 @@ import com.tongjisse.adventure.view.main.MainListAdapter
 import com.tongjisse.adventure.view.main.Story.StoryListAdapter
 import com.tongjisse.adventure.view.main.Story.UserStoryView
 import kotlinx.android.synthetic.main.activity_owned_stories.*
-import kotlinx.android.synthetic.main.activity_owned_stories.ErrorLayout
-import kotlinx.android.synthetic.main.activity_owned_stories.tvError
 import java.sql.SQLException
 
 /**

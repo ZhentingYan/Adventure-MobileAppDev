@@ -84,13 +84,14 @@
 
             </android.support.v7.widget.RecyclerView>
         </android.support.v4.widget.SwipeRefreshLayout>
+
         <LinearLayout
             android:id="@+id/ErrorLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
+            android:layout_below="@id/searchLayout"
             android:gravity="center"
-            android:layout_below="@id/searchLayout">
+            android:orientation="vertical">
 
             <ImageView
                 android:layout_width="261dp"
@@ -103,10 +104,10 @@
                 android:id="@+id/tvError"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="serif"
                 android:gravity="center"
                 android:text="紧急加载心愿单中......"
-                android:textSize="19dp"
-                android:fontFamily="serif" />
+                android:textSize="19dp" />
 
         </LinearLayout>
     </RelativeLayout>
