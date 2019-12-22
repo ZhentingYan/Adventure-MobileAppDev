@@ -75,7 +75,7 @@ class AMapHelper(context: Context?, locationListener: AMapLocationListener) {
      */
     fun getDistance(user_latitude: String, user_longitude: String, latitude: String, longitude: String): Float {
         if (user_latitude.equals("") || user_longitude.equals("")) {
-            return -0.1 as Float
+            return (-0.1).toFloat()
         } else {
             val userPoint = LatLng(user_latitude.toDouble(), user_longitude.toDouble())
             val placePoint = LatLng(latitude.toDouble(), longitude.toDouble())

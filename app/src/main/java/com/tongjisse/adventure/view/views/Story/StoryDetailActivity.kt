@@ -56,7 +56,7 @@ class StoryDetailActivity : BaseActivityWithPresenter(), StoryDetailView {
         tvPublishDate.text = story.time
         tvStoryPublisher.text = story.user.firstName + story.user.lastName
         tvContent.text = story.content
-        tvPlace.text = story.district
+        tvPlace.text = story.scene
         ivPublisher.loadImage(story.user.avatar.path)
     }
 
