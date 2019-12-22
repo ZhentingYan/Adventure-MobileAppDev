@@ -109,8 +109,8 @@ class StoryPublishActivity : BaseActivityWithPresenter(), StoryPublishView {
         bPublish.setOnClickListener() {
             story.user = user
             story.district = tvDistrictSelect.text.toString()
-            if (selImage != null) {
-                story.photo = selImage!!.get(0)
+            if (selImage.isNotEmpty()) {
+                story.photo = selImage.get(0)
             }
             story.title = etTitle.text.toString()
             story.scene = etPlace.text.toString()

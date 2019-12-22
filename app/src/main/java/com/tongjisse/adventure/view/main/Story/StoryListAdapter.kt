@@ -30,7 +30,8 @@ class StoryListAdapter(
         tvStoryTitle.text = storyList.title
         tvDate.text = storyList.time.split(" ").get(0)
         ivStory.loadImage(storyList.photo.path)
-        ivPublisher.loadImage(storyList.user.avatar.path)
+        if (storyList.user.avatar.path != null)
+            ivPublisher.loadImage(storyList.user.avatar.path)
 
 
         ivStory.setOnClickListener() {
