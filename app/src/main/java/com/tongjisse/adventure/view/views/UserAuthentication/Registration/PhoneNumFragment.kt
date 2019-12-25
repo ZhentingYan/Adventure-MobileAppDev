@@ -22,7 +22,7 @@ import java.util.regex.Pattern
 
 
 /**
- * Created by Owner on 2017-07-21.
+ * Created by ZhentingYan（UserAuthentication Module）
  */
 
 class PhoneNumFragment : BaseFragmentWithPresenter(), RegisterView {

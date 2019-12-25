@@ -15,6 +15,9 @@ import kotlinx.android.synthetic.main.fragment_register_age.*
 import java.text.SimpleDateFormat
 import java.util.*
 
+/**
+ * Created by ZhentingYan（UserAuthentication Module）
+ */
 class RegisterAgeFragment : Fragment() {
     internal lateinit var newDate: Calendar
     internal lateinit var simpleDateFormat: SimpleDateFormat

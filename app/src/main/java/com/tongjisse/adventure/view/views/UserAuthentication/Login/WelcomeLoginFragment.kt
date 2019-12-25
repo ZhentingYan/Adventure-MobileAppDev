@@ -18,6 +18,9 @@ import com.tongjisse.adventure.view.main.UserAuthenticatioon.WelcomeLoginView
 import com.tongjisse.adventure.view.views.Main.MenuActivity
 import kotlinx.android.synthetic.main.fragment_login.*
 
+/**
+ * Created by ZhentingYan（UserAuthentication Module）
+ */
 
 class WelcomeLoginFragment : BaseFragmentWithPresenter(), WelcomeLoginView {
     override val presenter by lazy { WelcomeLoginPresenter(this) }

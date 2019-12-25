@@ -19,6 +19,9 @@ import kotlinx.android.synthetic.main.fragment_register_email.*
 import java.sql.SQLException
 import java.util.regex.Pattern
 
+/**
+ * Created by ZhentingYan（UserAuthentication Module）
+ */
 class RegisterEmailFragment : BaseFragmentWithPresenter(), RegisterView {
 
     override val presenter by lazy { RegisterPresenter(this) }

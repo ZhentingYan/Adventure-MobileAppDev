@@ -10,9 +10,8 @@ import android.view.ViewGroup
 import com.tongjisse.adventure.R
 import kotlinx.android.synthetic.main.fragment_register_name.*
 
-
 /**
- * Created by Owner on 2017-06-09.
+ * Created by ZhentingYan（UserAuthentication Module）
  */
 
 class RegisterNameFragment : android.support.v4.app.Fragment() {

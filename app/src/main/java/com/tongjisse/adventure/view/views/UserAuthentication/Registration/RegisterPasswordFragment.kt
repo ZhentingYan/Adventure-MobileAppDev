@@ -13,7 +13,9 @@ import com.tongjisse.adventure.R
 import kotlinx.android.synthetic.main.fragment_password.*
 import java.util.regex.Pattern
 
-
+/**
+ * Created by ZhentingYan（UserAuthentication Module）
+ */
 class RegisterPasswordFragment : Fragment() {
     /**
      * View Initialization
